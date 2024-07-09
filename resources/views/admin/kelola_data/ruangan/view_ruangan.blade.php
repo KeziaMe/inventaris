@@ -25,8 +25,8 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>3224</td>
-                                        <td>Keith Baird</td>
+                                        <td></td>
+                                        <td>Ruang Kepala Sekolah</td>
                                         <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <span class="text-muted sr-only">Action</span>
@@ -39,8 +39,8 @@
                                     </tr>
 
                                     <tr>
-                                        <td>3225</td>
-                                        <td>Aku</td>
+                                        <td></td>
+                                        <td>Ruang Tata Usaha</td>
                                         <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <span class="text-muted sr-only">Action</span>

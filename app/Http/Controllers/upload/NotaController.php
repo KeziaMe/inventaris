@@ -12,4 +12,12 @@ class NotaController extends Controller
     {
         return view("admin.upload.nota");
     }
+    public function arsipNota()
+    {
+        return view("admin.upload.arsip_nota");
+    }
+    public function detailNota()
+    {
+        return view("admin.upload.detail_nota");
+    }
 }

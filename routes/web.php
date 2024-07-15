@@ -108,3 +108,9 @@ Route::middleware('auth', 'verified')->group(function () {
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/upload/nota', [NotaController::class, 'nota'])->name('nota');
 });
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/arsip/nota', [NotaController::class, 'arsipNota'])->name('nota.arsip');
+});
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/detail/nota', [NotaController::class, 'detailNota'])->name('nota.detail');
+});

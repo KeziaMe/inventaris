@@ -32,7 +32,6 @@
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="{{route('nota.detail')}}">Detail</a>
-                                            <a class="dropdown-item" href="#">Edit</a>
                                             <a class="dropdown-item" href="#">Hapus</a>
                                         </div>
                                     </td>

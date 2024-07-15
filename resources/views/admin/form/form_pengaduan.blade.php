@@ -33,9 +33,8 @@
                                     <label for="custom-select">Kondisi Barang</label>
                                     <select class="custom-select" id="custom-select">
                                         <option selected>Pilih Kondisi Barang</option>
-                                        <option value="1">Baik</option>
-                                        <option value="2">Kurang Baik</option>
-                                        <option value="3">Rusak Berat</option>
+                                        <option value="1">Kurang Baik</option>
+                                        <option value="2">Rusak Berat</option>
                                     </select>
                                 </div>
 

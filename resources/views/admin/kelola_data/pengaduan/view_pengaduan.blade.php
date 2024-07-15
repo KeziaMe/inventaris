@@ -52,7 +52,7 @@
                                             <td></td>
                                             <td>20 Mei 2024</td>
                                             <td>ini keterangan</td>
-                                            <td>Baik</td>
+                                            <td>Rusak Berat</td>
                                             <td>perbaikan</td>
                                             <td>21 Mei 2024</td>
                                             <td>19 Mei 2024</td>

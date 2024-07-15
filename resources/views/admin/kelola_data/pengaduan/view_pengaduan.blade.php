@@ -31,7 +31,7 @@
                                             <td></td>
                                             <td>19 Mei 2024</td>
                                             <td>ini keterangan</td>
-                                            <td><span class="badge badge-pill badge-warning">Kurang Baik</span></td>
+                                            <td>Kurang Baik</td>
                                             <td>perbaikan</td>
                                             <td>21 Mei 2024</td>
                                             <td>19 Mei 2024</td>
@@ -52,7 +52,7 @@
                                             <td></td>
                                             <td>20 Mei 2024</td>
                                             <td>ini keterangan</td>
-                                            <td><span class="badge badge-pill badge-success">Baik</span></td>
+                                            <td>Baik</td>
                                             <td>perbaikan</td>
                                             <td>21 Mei 2024</td>
                                             <td>19 Mei 2024</td>
@@ -73,7 +73,7 @@
                                             <td></td>
                                             <td>21 Mei 2024</td>
                                             <td>ini keterangan</td>
-                                            <td><span class="badge badge-pill badge-danger">Rusak Berat</span></td>
+                                            <td>Rusak Berat</td>
                                             <td>perbaikan</td>
                                             <td>21 Mei 2024</td>
                                             <td>19 Mei 2024</td>

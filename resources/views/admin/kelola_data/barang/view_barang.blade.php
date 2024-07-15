@@ -36,7 +36,7 @@
                                             <td>3224</td>
                                             <td>Keith Baird</td>
                                             <td>Enim Limited</td>
-                                            <td><span class="badge badge-pill badge-warning">Kurang Baik</span></td>
+                                            <td>Kurang Baik</td>
                                             <td>Ini Keterangan</td>
                                             <td>Apr 24, 2019</td>
                                             <td>Apr 24, 2019</td>
@@ -54,7 +54,7 @@
                                             <td>3214</td>
                                             <td>Aaak</td>
                                             <td>Enim Limited</td>
-                                            <td><span class="badge badge-pill badge-success">Baik</span></td>
+                                            <td>Baik</td>
                                             <td>Ini Keterangan</td>
                                             <td>Apr 24, 2019</td>
                                             <td>Apr 24, 2019</td>
@@ -72,7 +72,7 @@
                                             <td>3224</td>
                                             <td>Vew</td>
                                             <td>Enim Limited</td>
-                                            <td><span class="badge badge-pill badge-danger">Rusak Berat</span></td>
+                                            <td>Rusak Berat</td>
                                             <td>Ini Keterangan</td>
                                             <td>Apr 24, 2019</td>
                                             <td>Apr 24, 2019</td>

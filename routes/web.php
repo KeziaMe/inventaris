@@ -58,6 +58,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/kelola_data/barang/edit', [BarangController::class, 'barangEdit'])->name('barang.edit');
 
 });
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/kelola_data/barang/unduh', [BarangController::class, 'barangUnduh'])->name('barang.unduh');
+
+});
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/kelola_data/jenisbarang/view', [JenisBarangController::class, 'jenisbarangView'])->name('jenisbarang.view');
@@ -80,6 +84,10 @@ Route::middleware('auth', 'verified')->group(function () {
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/kelola_data/pengaduan/detail', [PengaduanController::class, 'pengaduanDetail'])->name('pengaduan.detail');
 });
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/kelola_data/pengaduan/unduh', [PengaduanController::class, 'pengaduanUnduh'])->name('pengaduan.unduh');
+});
+
 
 
 Route::middleware('auth', 'verified')->group(function () {

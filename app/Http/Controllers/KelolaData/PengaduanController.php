@@ -27,4 +27,8 @@ class PengaduanController extends Controller
     {
         return view("admin.kelola_data.pengaduan.detail_pengaduan");
     }
+    public function pengaduanUnduh()
+    {
+        return view("admin.kelola_data.pengaduan.unduh_pengaduan");
+    }
 }

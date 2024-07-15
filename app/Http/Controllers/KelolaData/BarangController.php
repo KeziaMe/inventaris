@@ -20,4 +20,8 @@ class BarangController extends Controller
     {
         return view("admin.kelola_data.barang.edit_barang");
     }
+    public function barangUnduh()
+    {
+        return view("admin.kelola_data.barang.unduh_barang");
+    }
 }

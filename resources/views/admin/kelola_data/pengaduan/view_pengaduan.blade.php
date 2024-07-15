@@ -6,6 +6,12 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Data Pengaduan</h2>
+                <div class="col text-end">
+                    <a href="{{route('pengaduan.unduh')}}" class="btn btn-primary" style="color: white;">
+                        <i class="fe fe-download"></i>Unduh
+                    </a>
+                </div>
+
 
                 <div class="row">
                     <!-- simple table -->

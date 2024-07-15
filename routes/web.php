@@ -9,6 +9,7 @@ use App\Http\Controllers\KelolaData\PengaduanController;
 use App\Http\Controllers\KelolaData\PenggunaController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\upload\NotaController;
+use App\Http\Controllers\Role\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,4 +114,14 @@ Route::middleware('auth', 'verified')->group(function () {
 });
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/detail/nota', [NotaController::class, 'detailNota'])->name('nota.detail');
+});
+
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/view/role', [RoleController::class, 'roleView'])->name('role.view');
+});
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/tambah/role', [RoleController::class, 'roleTambah'])->name('role.tambah');
+});
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/edit/role', [RoleController::class, 'roleEdit'])->name('role.edit');
 });

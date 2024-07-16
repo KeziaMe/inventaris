@@ -15,9 +15,9 @@
                         <div class="card-body">
                             <form>
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label">Nama</label>
+                                    <label for="nama" class="col-sm-3 col-form-label">Nama</label>
                                     <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="inputEmail3"
+                                        <input type="text" name="nama" class="form-control" id="nama"
                                             placeholder="Masukkan Nama">
                                     </div>
                                 </div>
@@ -25,7 +25,7 @@
                                 <div class="form-group row align-items-center">
                                     <label for="custom-select" class="col-sm-3 col-form-label">Role</label>
                                     <div class="col-sm-9">
-                                        <select class="custom-select" id="custom-select">
+                                        <select class="custom-select" id="custom-select" name="">
                                             <option selected disabled>Pilih Role</option>
                                             <option value="1">Kepala Sekolah</option>
                                             <option value="2">Admin (TU)</option>
@@ -36,13 +36,24 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
+                                    <label for="email" class="col-sm-3 col-form-label">Email</label>
                                     <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="inputEmail3"
+                                        <input type="email" class="form-control" id="email"
                                             placeholder="Masukkan Email">
                                     </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="password" class="col-sm-3 col-form-label">Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="password"
+                                            placeholder="Masukkan Password">
+                                    </div>
+
+
 
                                 </div>
+
                                 <div class="form-group mb-2">
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                 </div>

@@ -30,7 +30,7 @@
                                 @foreach ($allDataUser as $key => $user)
                                     <tr>
                                         <td>{{$key + 1}}</td>
-                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->nama}}</td>
                                         <td></td>
                                         <td>{{$user->email}}.</td>
                                         <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"

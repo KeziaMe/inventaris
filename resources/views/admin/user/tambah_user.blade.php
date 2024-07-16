@@ -13,11 +13,12 @@
                             <strong class="card-title">Tambah Data </strong>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form method="post" action="{{route('user.store')}}">
+                                @csrf
                                 <div class="form-group row">
-                                    <label for="textnama" class="col-sm-3 col-form-label">Nama</label>
+                                    <label for="textNama" class="col-sm-3 col-form-label">Nama</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="textnama" class="form-control" id="textnama"
+                                        <input type="text" name="textNama" class="form-control" id="textNama"
                                             placeholder="Masukkan Nama">
                                     </div>
                                 </div>
@@ -25,12 +26,12 @@
                                 <div class="form-group row align-items-center">
                                     <label for="custom-select" class="col-sm-3 col-form-label">Role</label>
                                     <div class="col-sm-9">
-                                        <select class="custom-select" id="textrole" name="textrole">
+                                        <select class="custom-select" id="textRole" name="textRole">
                                             <option selected disabled>Pilih Role</option>
-                                            <option value="kepala_sekolah"></option>
-                                            <option value="admin"></option>
-                                            <option value="sarpras"></option>
-                                            <option value="bendahara"></option>
+                                            <option value="kepala_sekolah">Kepala Sekolah</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="sarpras">SARPRAS</option>
+                                            <option value="bendahara">Bendahara</option>
                                         </select>
                                     </div>
                                 </div>

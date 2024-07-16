@@ -99,6 +99,9 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/user/view', [UserController::class, 'userView'])->name('user.view');
 });
 Route::middleware('auth', 'verified')->group(function () {
+    Route::post('/user/store', [UserController::class, 'userStore'])->name('user.store');
+});
+Route::middleware('auth', 'verified')->group(function () {
     Route::get('/user/Tambah', [UserController::class, 'userTambah'])->name('user.tambah');
 });
 Route::middleware('auth', 'verified')->group(function () {

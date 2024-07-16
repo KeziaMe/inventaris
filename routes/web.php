@@ -95,6 +95,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/kelola_data/pengguna/view', [PenggunaController::class, 'penggunaView'])->name('pengguna.view');
 });
 
+
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/user/view', [UserController::class, 'userView'])->name('user.view');
 });
@@ -105,7 +106,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/user/Tambah', [UserController::class, 'userTambah'])->name('user.tambah');
 });
 Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/user/Edit', [UserController::class, 'userEdit'])->name('user.edit');
+    Route::get('/user/Edit/{id}', [UserController::class, 'userEdit'])->name('user.edit');
+});
+Route::middleware('auth', 'verified')->group(function () {
+    Route::post('/user/Update/{id}', [UserController::class, 'userUpdate'])->name('user.update');
 });
 
 

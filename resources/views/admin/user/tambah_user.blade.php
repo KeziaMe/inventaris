@@ -15,9 +15,9 @@
                         <div class="card-body">
                             <form>
                                 <div class="form-group row">
-                                    <label for="nama" class="col-sm-3 col-form-label">Nama</label>
+                                    <label for="textnama" class="col-sm-3 col-form-label">Nama</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="nama" class="form-control" id="nama"
+                                        <input type="text" name="textnama" class="form-control" id="textnama"
                                             placeholder="Masukkan Nama">
                                     </div>
                                 </div>
@@ -25,12 +25,12 @@
                                 <div class="form-group row align-items-center">
                                     <label for="custom-select" class="col-sm-3 col-form-label">Role</label>
                                     <div class="col-sm-9">
-                                        <select class="custom-select" id="custom-select" name="">
+                                        <select class="custom-select" id="textrole" name="textrole">
                                             <option selected disabled>Pilih Role</option>
-                                            <option value="1">Kepala Sekolah</option>
-                                            <option value="2">Admin (TU)</option>
-                                            <option value="3">SARPRAS</option>
-                                            <option value="4">Bendahara</option>
+                                            <option value="kepala_sekolah"></option>
+                                            <option value="admin"></option>
+                                            <option value="sarpras"></option>
+                                            <option value="bendahara"></option>
                                         </select>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                 <div class="form-group row">
                                     <label for="email" class="col-sm-3 col-form-label">Email</label>
                                     <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="email"
+                                        <input type="email" class="form-control" id="email" name="email"
                                             placeholder="Masukkan Email">
                                     </div>
                                 </div>
@@ -46,12 +46,9 @@
                                 <div class="form-group row">
                                     <label for="password" class="col-sm-3 col-form-label">Password</label>
                                     <div class="col-sm-9">
-                                        <input type="password" class="form-control" id="password"
+                                        <input type="password" class="form-control" id="password" name="password"
                                             placeholder="Masukkan Password">
                                     </div>
-
-
-
                                 </div>
 
                                 <div class="form-group mb-2">

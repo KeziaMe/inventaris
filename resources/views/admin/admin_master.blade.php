@@ -90,19 +90,18 @@
           buttonsStyling: false
         });
         swalWithBootstrapButtons.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
+          title: "Apakah anda yakin ingin menghapus?",
           icon: "warning",
           showCancelButton: true,
-          confirmButtonText: "Yes, delete it!",
-          cancelButtonText: "No, cancel!",
+          confirmButtonText: "Ya",
+          cancelButtonText: "Batalkan!",
           reverseButtons: true
         }).then((result) => {
           if (result.isConfirmed) {
             window.location.href = link
             swalWithBootstrapButtons.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
+              title: "Hapus!",
+              text: "Kamu telah berhasil menghapus",
               icon: "success"
             });
           } else if (
@@ -110,8 +109,8 @@
             result.dismiss === Swal.DismissReason.cancel
           ) {
             swalWithBootstrapButtons.fire({
-              title: "Cancelled",
-              text: "Your imaginary file is safe :)",
+              title: "Batal",
+              text: "Anda batal menghapus",
               icon: "error"
             });
           }

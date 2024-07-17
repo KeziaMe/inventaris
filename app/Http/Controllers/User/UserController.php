@@ -59,4 +59,13 @@ class UserController extends Controller
 
         return redirect()->route('user.view')->with('message', 'berhasil tambah user');
     }
+
+
+    public function userHapus($id)
+    {
+        $hapusDataUser = User::find($id);
+        $hapusDataUser->delete();
+
+        return redirect()->route('user.view')->with('message', 'berhasil tambah user');
+    }
 }

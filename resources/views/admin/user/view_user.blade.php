@@ -39,7 +39,7 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item" href="{{route('user.edit', $user->id)}}">Edit</a>
-                                                <a class="dropdown-item" href="#">Hapus</a>
+                                                <a class="dropdown-item" href="{{route('user.hapus', $user->id)}}">Hapus</a>
                                             </div>
                                         </td>
                                     </tr>

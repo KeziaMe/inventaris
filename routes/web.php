@@ -96,22 +96,16 @@ Route::middleware('auth', 'verified')->group(function () {
 });
 
 
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/user/view', [UserController::class, 'userView'])->name('user.view');
+// Semua route untuk user
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('user')->group(function () {
+        Route::get('/view', [UserController::class, 'userView'])->name('user.view');
+        Route::get('/Tambah', [UserController::class, 'userTambah'])->name('user.tambah');
+        Route::post('/store', [UserController::class, 'userStore'])->name('user.store');
+        Route::get('/Edit/{id}', [UserController::class, 'userEdit'])->name('user.edit');
+        Route::post('/Update/{id}', [UserController::class, 'userUpdate'])->name('user.update');
+    });
 });
-Route::middleware('auth', 'verified')->group(function () {
-    Route::post('/user/store', [UserController::class, 'userStore'])->name('user.store');
-});
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/user/Tambah', [UserController::class, 'userTambah'])->name('user.tambah');
-});
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/user/Edit/{id}', [UserController::class, 'userEdit'])->name('user.edit');
-});
-Route::middleware('auth', 'verified')->group(function () {
-    Route::post('/user/Update/{id}', [UserController::class, 'userUpdate'])->name('user.update');
-});
-
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/upload/nota', [NotaController::class, 'nota'])->name('nota');

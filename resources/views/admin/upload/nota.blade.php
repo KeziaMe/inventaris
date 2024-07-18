@@ -13,7 +13,10 @@
                                 <strong>Nota</strong>
                             </div>
                             <div class="card-body">
-                                <form action="/file-upload" class="dropzone bg-light rounded-lg" id="tinydash-dropzone">
+                                <form method="post" action="{{ route('nota.store') }}" enctype="multipart/form-data"
+                                    class="dropzone bg-light rounded-lg" id="tinydash-dropzone">
+                                    @csrf
+
                                     <div class="dz-message needsclick">
                                         <div class="circle circle-lg bg-primary">
                                             <i class="fe fe-upload fe-24 text-white"></i>
@@ -21,16 +24,25 @@
                                         <h5 class="text-muted mt-4">Letakkan file di sini atau klik untuk mengunggah
                                         </h5>
                                     </div>
-                                    <div class="form-group mb-3">
-                                        <label for="simpleinput">Keterangan</label>
-                                        <input type="text" id="simpleinput" class="form-control">
-                                    </div>
-                                </form>
 
-                                <div class="form-group mb-2 mt-4"> <!-- Agar ada jaraknya -->
-                                    <div class="form-group mb-2">
+                                    <input type="file" name="textNota" id="textNota" class="d-none">
+
+                                    <div class="form-group mb-3">
+                                        <label for="textKeterangan">Keterangan</label>
+                                        <input type="text" name="textKeterangan" id="textKeterangan"
+                                            class="form-control">
+                                    </div>
+
+                                    <div class="form-group mb-2 mt-4">
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
-
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 @endsection

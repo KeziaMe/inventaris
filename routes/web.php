@@ -116,22 +116,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/upload/nota', [NotaController::class, 'nota'])->name('nota');
-});
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/arsip/nota', [NotaController::class, 'arsipNota'])->name('nota.arsip');
-});
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/detail/nota', [NotaController::class, 'detailNota'])->name('nota.detail');
-});
 
-Route::middleware('auth', 'verified')->group(function () {
-
-});
-Route::middleware('auth', 'verified')->group(function () {
-
-});
-Route::middleware('auth', 'verified')->group(function () {
-
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('nota')->group(function () {
+        Route::get('/upload', [NotaController::class, 'notaUpload'])->name('nota.upload');
+        Route::get('/arsip', [NotaController::class, 'arsipNota'])->name('nota.arsip');
+        Route::get('/detail', [NotaController::class, 'detailNota'])->name('nota.detail');
+        Route::post('/store', [NotaController::class, 'notaStore'])->name('nota.store');
+    });
 });

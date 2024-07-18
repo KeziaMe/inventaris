@@ -68,7 +68,7 @@
       </li>
 
       <li class="nav-item w-100">
-        <a class="nav-link" href="{{route('nota')}}">
+        <a class="nav-link" href="{{route('nota.upload')}}">
           <i class="fe fe-file fe-16"></i>
           <span class="ml-3 item-text">Unggah Nota</span>
         </a>

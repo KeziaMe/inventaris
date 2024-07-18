@@ -6,12 +6,6 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Role</h2>
-                <div class="col text-end mb-3"> <!-- ada jarak dengan tabel -->
-                    <a href="{{route('role.tambah')}}" class="btn btn-success" style="color: white;">
-                        <i class="fe fe-plus"></i>Tambah
-                    </a>
-                </div>
-
                 <div class="card shadow">
                     <div class="card-body">
                         <!-- table -->
@@ -20,24 +14,18 @@
                                 <tr>
                                     <th>NO</th>
                                     <th>Role</th>
-                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <span class="text-muted sr-only">Action</span>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="{{route('role.edit')}}">Edit</a>
-                                            <a class="dropdown-item" href="#">Hapus</a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach ($allDataRole as $key => $role)
+
+                                    <tr>
+                                        <td>{{$key + 1}}</td>
+                                        <td>{{$role->role}}</td>
+                                    </tr>
+
+                                @endforeach
 
                             </tbody>
                         </table>

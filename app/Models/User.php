@@ -23,6 +23,13 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    // Definisikan relasi ke Role
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
     protected $fillable = [
         'name',
         'email',

@@ -31,8 +31,8 @@
                                     <tr>
                                         <td>{{$key + 1}}</td>
                                         <td>{{$user->nama}}</td>
-                                        <td></td>
-                                        <td>{{$user->email}}.</td>
+                                        <td>{{$user->role}}</td>
+                                        <td>{{$user->email}}</td>
                                         <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <span class="text-muted sr-only">Action</span>

@@ -99,6 +99,13 @@ Route::middleware('auth', 'verified')->group(function () {
 
 // Semua route untuk user
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('role')->group(function () {
+        Route::get('/view', [RoleController::class, 'roleView'])->name('role.view');
+    });
+});
+
+// Semua route untuk user
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/view', [UserController::class, 'userView'])->name('user.view');
         Route::get('/Tambah', [UserController::class, 'userTambah'])->name('user.tambah');
@@ -120,11 +127,11 @@ Route::middleware('auth', 'verified')->group(function () {
 });
 
 Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/view/role', [RoleController::class, 'roleView'])->name('role.view');
+
 });
 Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/tambah/role', [RoleController::class, 'roleTambah'])->name('role.tambah');
+
 });
 Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/edit/role', [RoleController::class, 'roleEdit'])->name('role.edit');
+
 });

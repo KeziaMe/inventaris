@@ -28,10 +28,12 @@
                                     <div class="col-sm-9">
                                         <select class="custom-select" id="textRole" name="textRole">
                                             <option selected disabled>Pilih Role</option>
-                                            <option value="kepala_sekolah">Kepala Sekolah</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="sarpras">SARPRAS</option>
-                                            <option value="bendahara">Bendahara</option>
+                                            @foreach ($roles as $role)
+
+                                                <option value="{{$role->role}}">{{$role->role}}</option>
+
+                                            @endforeach
+
                                         </select>
                                     </div>
                                 </div>

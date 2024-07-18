@@ -26,15 +26,17 @@
                                 <div class="form-group row align-items-center">
                                     <label for="custom-select" class="col-sm-3 col-form-label">Role</label>
                                     <div class="col-sm-9">
-                                        <select class="custom-select" id="textRole" name="textRole"  value="{{$editData->role}}">
+                                        <select class="custom-select" id="textRole" name="textRole">
                                             <option selected disabled>Pilih Role</option>
-                                            <option value="kepala_sekolah">Kepala Sekolah</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="sarpras">SARPRAS</option>
-                                            <option value="bendahara">Bendahara</option>
+                                            @foreach ($roles as $role)
+                                             <option value="{{$role->role}}"
+                                                {{($editData->role=="$role->role"? "selected":"")}}>{{$role->role}}</option>
+                                            @endforeach
+
                                         </select>
                                     </div>
                                 </div>
+
 
                                 <div class="form-group row">
                                     <label for="email" class="col-sm-3 col-form-label">Email</label>

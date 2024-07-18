@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -17,7 +18,8 @@ class UserController extends Controller
 
     public function userTambah()
     {
-        return view("admin.user.tambah_user");
+        $roles = Role::all();
+        return view("admin.user.tambah_user", compact('roles'));
     }
 
     public function userStore(Request $request)
@@ -39,8 +41,9 @@ class UserController extends Controller
 
     public function userEdit($id)
     {
+        $roles = Role::all();
         $editData = User::find($id);
-        return view("admin.user.edit_user", compact('editData'));
+        return view("admin.user.edit_user", compact('editData', 'roles'));
     }
 
     public function userUpdate(Request $request, $id)

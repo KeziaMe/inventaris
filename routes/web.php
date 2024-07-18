@@ -121,7 +121,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('nota')->group(function () {
         Route::get('/upload', [NotaController::class, 'notaUpload'])->name('nota.upload');
         Route::get('/arsip', [NotaController::class, 'arsipNota'])->name('nota.arsip');
-        Route::get('/detail', [NotaController::class, 'detailNota'])->name('nota.detail');
+        Route::get('/detail/{id}', [NotaController::class, 'detailNota'])->name('nota.detail');
         Route::post('/store', [NotaController::class, 'notaStore'])->name('nota.store');
     });
 });

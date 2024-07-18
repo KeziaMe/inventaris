@@ -36,10 +36,12 @@ class NotaController extends Controller
     }
     public function arsipNota()
     {
-        return view("admin.upload.arsip_nota");
+        $data['allDataNota'] = Nota::all();
+        return view("admin.upload.arsip_nota", $data);
     }
-    public function detailNota()
+    public function detailNota($id)
     {
-        return view("admin.upload.detail_nota");
+        $viewNota = Nota::find($id);
+        return view("admin.upload.detail_nota", compact('viewNota'));
     }
 }

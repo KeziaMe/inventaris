@@ -7,15 +7,15 @@
             <div class="row mb-5">
                 <div class="col-12 text-center mb-4">
                     <h2>Arsip Nota</h2>
-                    <img src="{{asset('backend/assets/images/logo2.png')}}" style="width: 200px; height: auto;"
+                    <img src="{{asset('storage/' . $viewNota->foto_nota)}}" style="width: 200px; height: auto;"
                         class="navbar-brand-img brand-sm mx-auto mb-4" alt="...">
                 </div>
 
 
                 <div class="col-md-5">
                     <p class="small text-muted text-uppercase mb-2">Keterangan</p>
-                    <p class="mb-4">
-                        <strong>Beli pegangan pintu</strong>
+
+                    <strong>{{asset($viewNota->keterangan)}}</strong>
                     </p>
                 </div>
             </div> <!-- /.row -->

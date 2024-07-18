@@ -75,6 +75,8 @@
   <script src="{{asset('backend/js/uppy.min.js')}}"></script>
   <script src="{{asset('backend/js/quill.min.js')}}"></script>
 
+
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script type="text/javascript">
     $(function () {
@@ -312,7 +314,7 @@
       });
     }
   </script>
-  <script src="{{asset('backend/js/apps.js')}}"></script>
+  <script src="{{asset('backend/js/app.js')}}"></script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-56159088-1"></script>
   <script>

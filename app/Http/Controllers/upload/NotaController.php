@@ -23,7 +23,7 @@ class NotaController extends Controller
         $data = new Nota();
 
         if ($request->file('textNota')) {
-            $textNota = $request->file('textNota')->store('nota/textNota', 'public');
+            $textNota = $request->file('textNota')->store('nota/foto_nota', 'public');
             $data->foto_nota = $textNota;
         } else {
             $data->foto_nota = '';

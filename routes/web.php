@@ -11,6 +11,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\upload\NotaController;
 use App\Http\Controllers\Role\RoleController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -123,5 +124,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/arsip', [NotaController::class, 'arsipNota'])->name('nota.arsip');
         Route::get('/detail/{id}', [NotaController::class, 'detailNota'])->name('nota.detail');
         Route::post('/store', [NotaController::class, 'notaStore'])->name('nota.store');
+        Route::get('/hapus/{id}', [NotaController::class, 'hapusNota'])->name('nota.hapus');
     });
 });

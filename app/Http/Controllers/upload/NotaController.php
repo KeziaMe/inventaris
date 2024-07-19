@@ -5,6 +5,7 @@ namespace App\Http\Controllers\upload;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Nota;
+use Illuminate\Support\Facades\Storage;
 
 class NotaController extends Controller
 {
@@ -43,5 +44,21 @@ class NotaController extends Controller
     {
         $viewNota = Nota::find($id);
         return view("admin.upload.detail_nota", compact('viewNota'));
+    }
+
+    public function hapusNota($id)
+    {
+        $deleteNota = Nota::find($id);
+        if ($deleteNota) {
+            // Delete the photo from storage if exists
+            if ($deleteNota->foto_nota && Storage::disk('public')->exists($deleteNota->foto_nota)) {
+                Storage::disk('public')->delete($deleteNota->foto_nota);
+            }
+
+            // Delete the siswa data from database
+            $deleteNota->delete();
+
+            return redirect()->route('nota.arsip');
+        }
     }
 }

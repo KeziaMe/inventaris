@@ -40,7 +40,7 @@
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item"
                                                     href="{{route('nota.detail', $nota->id)}}">Detail</a>
-                                                <a class="dropdown-item" href="#">Hapus</a>
+                                                <a class="dropdown-item" href="{{route('nota.hapus', $nota->id)}}">Hapus</a>
                                             </div>
                                         </td>
                                     </tr>

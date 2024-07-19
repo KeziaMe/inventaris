@@ -25,7 +25,13 @@
 
                                     <tr>
                                         <td>{{$key + 1}}</td>
-                                        <td>{{$nota->foto_nota}}</td>
+                                        <td>@if($nota->foto_nota)
+                                                <img src="{{asset('storage/' . $nota->foto_nota)}}" alt=""
+                                                    title="{{$nota->foto_nota}}" class="card-img-top"
+                                                    style="width: 100px; display: block;">
+                                            </td>
+                                        @endif
+
                                         <td>{{$nota->keterangan}}</td>
                                         <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

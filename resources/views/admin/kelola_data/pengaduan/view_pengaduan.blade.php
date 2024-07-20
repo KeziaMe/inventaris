@@ -23,7 +23,6 @@
                                         <tr>
                                             <th>NO</th>
                                             <th>Tanggal Pengaduan</th>
-                                            <th>Keterangan</th>
                                             <th>Kondisi Barang</th>
                                             <th>Nama Status Pengaduan</th>
                                             <th>Tanggal Masuk</th>
@@ -33,69 +32,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td>19 Mei 2024</td>
-                                            <td>ini keterangan</td>
-                                            <td>Kurang Baik</td>
-                                            <td>perbaikan</td>
-                                            <td>21 Mei 2024</td>
-                                            <td>19 Mei 2024</td>
-                                            <td>001</td>
-                                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="text-muted sr-only">Action</span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item"
-                                                        href="{{route('pengaduan.detail')}}">Detail</a>
-                                                    <a class="dropdown-item" href="{{route('pengaduan.edit')}}">Edit</a>
-                                                    <a class="dropdown-item" href="#">Hapus</a>
-                                                </div>
+                                        @foreach ($allDataPengaduan as $key => $pengaduan)
+                                            <tr>
+                                                <td>{{$key + 1}}</td>
+                                                <td>{{$pengaduan->ket}}</td>
+                                                <td>{{$pengaduan->id_kondisi_brg}}</td>
+                                                <td>{{$pengaduan->nm_status_pengaduan}}</td>
+                                                <td>{{$pengaduan->tgl_masuk}}</td>
+                                                <td>{{$pengaduan->tgl_update}}</td>
+                                                <td>{{$pengaduan->id_inventarisasi}}</td>
 
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>20 Mei 2024</td>
-                                            <td>ini keterangan</td>
-                                            <td>Rusak Berat</td>
-                                            <td>perbaikan</td>
-                                            <td>21 Mei 2024</td>
-                                            <td>19 Mei 2024</td>
-                                            <td>001</td>
+                                                <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted sr-only">Action</span>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item"
+                                                            href="{{route('pengaduan.detail')}}">Detail</a>
+                                                        <a class="dropdown-item" href="{{route('pengaduan.edit')}}">Edit</a>
+                                                        <a class="dropdown-item" href="#">Hapus</a>
+                                                    </div>
+                                            </tr>
+                                        @endforeach
 
-                                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="text-muted sr-only">Action</span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item"
-                                                        href="{{route('pengaduan.detail')}}">Detail</a>
-                                                    <a class="dropdown-item" href="{{route('pengaduan.edit')}}">Edit</a>
-                                                    <a class="dropdown-item" href="#">Hapus</a>
-                                                </div>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>21 Mei 2024</td>
-                                            <td>ini keterangan</td>
-                                            <td>Rusak Berat</td>
-                                            <td>perbaikan</td>
-                                            <td>21 Mei 2024</td>
-                                            <td>19 Mei 2024</td>
-                                            <td>001</td>
-
-                                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="text-muted sr-only">Action</span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item"
-                                                        href="{{route('pengaduan.detail')}}">Detail</a>
-                                                    <a class="dropdown-item" href="{{route('pengaduan.edit')}}">Edit</a>
-                                                    <a class="dropdown-item" href="#">Hapus</a>
-                                                </div>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

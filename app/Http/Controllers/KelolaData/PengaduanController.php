@@ -4,13 +4,15 @@ namespace App\Http\Controllers\KelolaData;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Pengaduan;
 
 class PengaduanController extends Controller
 {
     //
     public function pengaduanView()
     {
-        return view("admin.kelola_data.pengaduan.view_pengaduan");
+        $data['allDataPengaduan'] = Pengaduan::all();
+        return view("admin.kelola_data.pengaduan.view_pengaduan", $data);
     }
 
     public function form_pengaduan()

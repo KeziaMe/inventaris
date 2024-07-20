@@ -7,7 +7,7 @@
             <div class="row mb-5">
                 <div class="col-12 text-center mb-4">
                     <h2>Arsip Nota</h2>
-                    <img src="{{asset('storage/' . $viewNota->foto_nota)}}" style="width: 400px; height: auto;"
+                    <img src="{{asset('storage/' . $viewNota->foto_nota)}}" style="width: 300px; height: auto;"
                         class="navbar-brand-img brand-sm mx-auto mb-4" alt="">
                 </div>
 

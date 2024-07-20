@@ -17,16 +17,16 @@
                                 @csrf
 
                                 <div class="form-group mb-3">
-                                    <label for="textNota">Default file input</label>
+                                    <label for="textNota">Masukkan File</label>
                                     <input type="file" id="textNota" name="textNota" class="form-control-file">
                                 </div>
 
 
                                 <div class="form-group row">
-                                    <label for="textKeterangan" class="col-sm-3 col-form-label">Nama</label>
+                                    <label for="textKeterangan" class="col-sm-3 col-form-label">Keterangan</label>
                                     <div class="col-sm-9">
                                         <input type="text" name="textKeterangan" class="form-control"
-                                            id="textKeterangan" placeholder="Masukkan Nama">
+                                            id="textKeterangan" placeholder="Masukkan Keterangan">
                                     </div>
                                 </div>
 

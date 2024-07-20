@@ -48,7 +48,7 @@
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item"
-                                                            href="{{route('pengaduan.detail')}}">Detail</a>
+                                                            href="{{route('pengaduan.detail', $pengaduan->id)}}">Detail</a>
                                                         <a class="dropdown-item" href="{{route('pengaduan.edit')}}">Edit</a>
                                                         <a class="dropdown-item" href="#">Hapus</a>
                                                     </div>

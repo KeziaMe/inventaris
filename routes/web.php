@@ -77,20 +77,16 @@ Route::middleware('auth', 'verified')->group(function () {
 });
 
 
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/pengaduan/view', [PengaduanController::class, 'pengaduanView'])->name('pengaduan.view');
-    Route::get('/form/form_pengaduan', [PengaduanController::class, 'form_pengaduan'])->name('form_pengaduan');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('pengaduan')->group(function () {
+        Route::get('/view', [PengaduanController::class, 'pengaduanView'])->name('pengaduan.view');
+        Route::get('/form_pengaduan', [PengaduanController::class, 'form_pengaduan'])->name('form_pengaduan');
+        Route::get('/edit', [PengaduanController::class, 'pengaduanEdit'])->name('pengaduan.edit');
+        Route::get('/detail/{id}', [PengaduanController::class, 'pengaduanDetail'])->name('pengaduan.detail');
+        Route::get('/unduh', [PengaduanController::class, 'pengaduanUnduh'])->name('pengaduan.unduh');
+        Route::post('/store', [PengaduanController::class, 'pengaduanStore'])->name('pengaduan.store');
+    });
 });
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/pengaduan/edit', [PengaduanController::class, 'pengaduanEdit'])->name('pengaduan.edit');
-});
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/pengaduan/detail', [PengaduanController::class, 'pengaduanDetail'])->name('pengaduan.detail');
-});
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/pengaduan/unduh', [PengaduanController::class, 'pengaduanUnduh'])->name('pengaduan.unduh');
-});
-
 
 
 Route::middleware('auth', 'verified')->group(function () {

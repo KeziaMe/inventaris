@@ -81,10 +81,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('pengaduan')->group(function () {
         Route::get('/view', [PengaduanController::class, 'pengaduanView'])->name('pengaduan.view');
         Route::get('/form_pengaduan', [PengaduanController::class, 'form_pengaduan'])->name('form_pengaduan');
-        Route::get('/edit', [PengaduanController::class, 'pengaduanEdit'])->name('pengaduan.edit');
+        Route::get('/edit/{id}', [PengaduanController::class, 'pengaduanEdit'])->name('pengaduan.edit');
         Route::get('/detail/{id}', [PengaduanController::class, 'pengaduanDetail'])->name('pengaduan.detail');
         Route::get('/unduh', [PengaduanController::class, 'pengaduanUnduh'])->name('pengaduan.unduh');
         Route::post('/store', [PengaduanController::class, 'pengaduanStore'])->name('pengaduan.store');
+        Route::post('/update/{id}', [PengaduanController::class, 'pengaduanUpdate'])->name('pengaduan.update');
+        Route::get('/hapus/{id}', [PengaduanController::class, 'pengaduanHapus'])->name('pengaduan.hapus');
     });
 });
 

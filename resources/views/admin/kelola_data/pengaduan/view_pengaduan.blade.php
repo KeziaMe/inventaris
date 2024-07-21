@@ -35,7 +35,7 @@
                                         @foreach ($allDataPengaduan as $key => $pengaduan)
                                             <tr>
                                                 <td>{{$key + 1}}</td>
-                                                <td>{{$pengaduan->ket}}</td>
+                                                <td>{{$pengaduan->tgl_pengaduan}}</td>
                                                 <td>{{$pengaduan->id_kondisi_brg}}</td>
                                                 <td>{{$pengaduan->nm_status_pengaduan}}</td>
                                                 <td>{{$pengaduan->tgl_masuk}}</td>
@@ -49,8 +49,10 @@
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item"
                                                             href="{{route('pengaduan.detail', $pengaduan->id)}}">Detail</a>
-                                                        <a class="dropdown-item" href="{{route('pengaduan.edit')}}">Edit</a>
-                                                        <a class="dropdown-item" href="#">Hapus</a>
+                                                        <a class="dropdown-item"
+                                                            href="{{route('pengaduan.edit', $pengaduan->id)}}">Edit</a>
+                                                        <a class="dropdown-item" id="delete"
+                                                            href="{{route('pengaduan.hapus', $pengaduan->id)}}">Hapus</a>
                                                     </div>
                                             </tr>
                                         @endforeach

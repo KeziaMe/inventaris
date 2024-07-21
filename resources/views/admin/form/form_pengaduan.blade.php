@@ -36,7 +36,7 @@
 
                                     <div class="form-group mb-3">
                                         <label for="textKondisi_brg">Kondisi Barang</label>
-                                        <select class="textKondisi_brg" id="textKondisi_brg" name="textKondisi_brg">
+                                        <select class="custom-select" id="textKondisi_brg" name="textKondisi_brg">
                                             <option disabled selected>Pilih Kondisi Barang</option>
                                             <option value="Kurang Baik">Kurang Baik</option>
                                             <option value="Rusak Berat">Rusak Berat</option>

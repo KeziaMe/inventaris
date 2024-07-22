@@ -24,19 +24,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td>Ruang Kepala Sekolah</td>
-                                        <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="text-muted sr-only">Action</span>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="{{route('ruangan.edit')}}">Edit</a>
-                                                <a class="dropdown-item" href="#">Hapus</a>
-                                            </div>
-                                        </td>
-                                    </tr>
+
+                                    @foreach ($allDataRuangan as $key => $ruangan)
+                                        <tr>
+                                            <td>{{$key + 1}}</td>
+                                            <td>{{$pengaduan->nm_ruangan}}</td>
+
+                                        <tr>
+                                            <td></td>
+                                            <td>Ruang Kepala Sekolah</td>
+                                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="text-muted sr-only">Action</span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="{{route('ruangan.edit')}}">Edit</a>
+                                                    <a class="dropdown-item" href="#">Hapus</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    @endforeach
 
                                     <tr>
                                         <td></td>

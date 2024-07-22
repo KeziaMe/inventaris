@@ -4,13 +4,15 @@ namespace App\Http\Controllers\KelolaData;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Ruangan;
 
 class RuanganController extends Controller
 {
     //
     public function ruanganView()
     {
-        return view("admin.kelola_data.ruangan.view_ruangan");
+        $data['allDataRuangan'] = Ruangan::all();
+        return view("admin.kelola_data.ruangan.view_ruangan", $data);
     }
 
     public function ruanganTambah()

@@ -24,4 +24,18 @@ class RuanganController extends Controller
     {
         return view("admin.kelola_data.ruangan.edit_ruangan");
     }
+
+    public function ruanganStore(Request $request)
+    {
+        $validateData = $request->validate([
+            'textNama' => 'required',
+
+        ]);
+
+        $data = new Ruangan();
+        $data->nm_ruangan = $request->textNama;
+        $data->save();
+
+        return redirect()->route('ruangan.view');
+    }
 }

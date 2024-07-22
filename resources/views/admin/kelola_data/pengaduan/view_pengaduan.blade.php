@@ -54,6 +54,7 @@
                                                         <a class="dropdown-item" id="delete"
                                                             href="{{route('pengaduan.hapus', $pengaduan->id)}}">Hapus</a>
                                                     </div>
+                                                </td>
                                             </tr>
                                         @endforeach
 

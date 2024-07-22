@@ -40,14 +40,13 @@ Route::middleware([
 Route::get('/admin/logout', [BerandaController::class, 'logout'])->name('admin.logout');
 
 
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/ruangan/view', [RuanganController::class, 'ruanganView'])->name('ruangan.view');
-});
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/ruangan/tambah', [RuanganController::class, 'ruanganTambah'])->name('ruangan.tambah');
-});
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/ruangan/edit', [RuanganController::class, 'ruanganEdit'])->name('ruangan.edit');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('ruangan')->group(function () {
+        Route::get('/view', [RuanganController::class, 'ruanganView'])->name('ruangan.view');
+        Route::get('/tambah', [RuanganController::class, 'ruanganTambah'])->name('ruangan.tambah');
+        Route::get('/edit', [RuanganController::class, 'ruanganEdit'])->name('ruangan.edit');
+        Route::post('/store', [RuanganController::class, 'ruanganStore'])->name('ruangan.store');
+    });
 });
 
 

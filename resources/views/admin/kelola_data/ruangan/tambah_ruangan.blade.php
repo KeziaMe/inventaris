@@ -13,14 +13,17 @@
                             <strong class="card-title">Tambah Data </strong>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form method="post" action="{{route('ruangan.store')}}" enctype="multipart/form-data">
+                                @csrf
+
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Ruangan</label>
+                                    <label for="textNama" class="col-sm-3 col-form-label">Nama Ruangan</label>
                                     <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="inputEmail3"
+                                        <input type="textNama" class="form-control" id="textNama" name="textNama"
                                             placeholder="Masukkan Nama Ruangan">
                                     </div>
                                 </div>
+
                                 <div class="form-group mb-2">
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                 </div>

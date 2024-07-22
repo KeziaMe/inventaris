@@ -44,8 +44,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('ruangan')->group(function () {
         Route::get('/view', [RuanganController::class, 'ruanganView'])->name('ruangan.view');
         Route::get('/tambah', [RuanganController::class, 'ruanganTambah'])->name('ruangan.tambah');
-        Route::get('/edit', [RuanganController::class, 'ruanganEdit'])->name('ruangan.edit');
+        Route::get('/edit/{id}', [RuanganController::class, 'ruanganEdit'])->name('ruangan.edit');
+        Route::post('/update/{id}', [RuanganController::class, 'ruanganUpdate'])->name('ruangan.update');
         Route::post('/store', [RuanganController::class, 'ruanganStore'])->name('ruangan.store');
+        Route::get('/hapus/{id}', [RuanganController::class, 'ruanganHapus'])->name('ruangan.hapus');
     });
 });
 

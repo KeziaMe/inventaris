@@ -51,19 +51,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/barang/view', [BarangController::class, 'barangView'])->name('barang.view');
-
-    Route::get('/kelola_data/barang/tambah', [BarangController::class, 'barangTambah'])->name('barang.tambah');
-});
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/barang/edit', [BarangController::class, 'barangEdit'])->name('barang.edit');
-
-});
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/barang/unduh', [BarangController::class, 'barangUnduh'])->name('barang.unduh');
-
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('barang')->group(function () {
+        Route::get('/view', [BarangController::class, 'barangView'])->name('barang.view');
+        Route::get('/tambah', [BarangController::class, 'barangTambah'])->name('barang.tambah');
+        Route::get('/edit{id}', [BarangController::class, 'barangEdit'])->name('barang.edit');
+        Route::post('/update/{id}', [BarangController::class, 'barangUpdate'])->name('barang.update');
+        Route::get('/unduh', [BarangController::class, 'barangUnduh'])->name('barang.unduh');
+        Route::post('/store', [BarangController::class, 'barangStore'])->name('barang.store');
+        Route::get('/hapus/{id}', [BarangController::class, 'barangHapus'])->name('barang.hapus');
+    });
 });
 
 

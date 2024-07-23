@@ -35,60 +35,32 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>3224</td>
-                                            <td>Keith Baird</td>
-                                            <td>Enim Limited</td>
-                                            <td>Kurang Baik</td>
-                                            <td>Ini Keterangan</td>
-                                            <td>Apr 24, 2019</td>
-                                            <td>Apr 24, 2019</td>
-                                            <td>Mebel</td>
-                                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="text-muted sr-only">Action</span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="{{route('barang.edit')}}">Edit</a>
-                                                    <a class="dropdown-item" href="#">Hapus</a>
-                                                </div>
-                                        </tr>
-                                        <tr>
-                                            <td>3214</td>
-                                            <td>Aaak</td>
-                                            <td>Enim Limited</td>
-                                            <td>Baik</td>
-                                            <td>Ini Keterangan</td>
-                                            <td>Apr 24, 2019</td>
-                                            <td>Apr 24, 2019</td>
-                                            <td>Alat Masak</td>
-                                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="text-muted sr-only">Action</span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="{{route('barang.edit')}}">Edit</a>
-                                                    <a class="dropdown-item" href="#">Hapus</a>
-                                                </div>
-                                        </tr>
-                                        <tr>
-                                            <td>3224</td>
-                                            <td>Vew</td>
-                                            <td>Enim Limited</td>
-                                            <td>Rusak Berat</td>
-                                            <td>Ini Keterangan</td>
-                                            <td>Apr 24, 2019</td>
-                                            <td>Apr 24, 2019</td>
-                                            <td>Alat Elektronik</td>
-                                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="text-muted sr-only">Action</span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="{{route('barang.edit')}}">Edit</a>
-                                                    <a class="dropdown-item" href="#">Hapus</a>
-                                                </div>
-                                        </tr>
+                                        @foreach ($allDataBarang as $key => $barang)
+                                            <tr>
+                                                <td>{{$key + 1}}</td>
+                                                <td>{{$barang->kd_brg}}</td>
+                                                <td>{{$barang->nm_brg}}</td>
+                                                <td>{{$barang->kondisi_brg}}</td>
+                                                <td>{{$barang->ket}}</td>
+                                                <td>{{$barang->tgl_masuk}}</td>
+                                                <td>{{$barang->tgl_update}}</td>
+                                                <td>{{$barang->jenis_brg}}</td>
+
+                                                <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted sr-only">Action</span>
+                                                    </button>
+
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item"
+                                                            href="{{route('barang.edit', $barang->id)}}">Edit</a>
+                                                        <a class="dropdown-item" id="delete"
+                                                            href="{{route('barang.hapus', $barang->id)}}">Hapus</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

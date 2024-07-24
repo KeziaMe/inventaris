@@ -10,20 +10,19 @@
 
                     <div class="card shadow mb-4">
                         <div class="card-header">
-                            <strong class="card-title">Edit Jenis Barang </strong>
+                            <strong class="card-title">Edit Data </strong>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form method="post" action="{{route('jenisbarang.update', $editDataJenisBarang->id)}}"
+                                enctype="multipart/form-data">
+                                @csrf
 
-                                <div class="form-group row align-items-center">
-                                    <label for="custom-select" class="col-sm-3 col-form-label">Jenis Barang</label>
+                                <div class="form-group row">
+                                    <label for="textJenisBarang" class="col-sm-3 col-form-label">Jenis Barang</label>
                                     <div class="col-sm-9">
-                                        <select class="custom-select" id="custom-select">
-                                            <option selected disabled>Pilih Jenis Barang</option>
-                                            <option value="1">Baik</option>
-                                            <option value="2">Kurang Baik</option>
-                                            <option value="3">Rusak Berat</option>
-                                        </select>
+                                        <input type="textJenisBarang" class="form-control" id="textJenisBarang"
+                                            name="textJenisBarang" placeholder="Masukkan Nama Jenis Barang"
+                                            value="{{$editDataJenisBarang->jns_brg}}">
                                     </div>
                                 </div>
 

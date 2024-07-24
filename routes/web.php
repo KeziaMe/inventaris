@@ -68,8 +68,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('jenisbarang')->group(function () {
         Route::get('/view', [JenisBarangController::class, 'jenisbarangView'])->name('jenisbarang.view');
         Route::get('/tambah', [JenisBarangController::class, 'jenisbarangTambah'])->name('jenisbarang.tambah');
-        Route::get('/edit', [JenisBarangController::class, 'jenisbarangEdit'])->name('jenisbarang.edit');
+        Route::get('/edit/{id}', [JenisBarangController::class, 'jenisbarangEdit'])->name('jenisbarang.edit');
         Route::post('/store', [JenisBarangController::class, 'JenisbarangStore'])->name('jenisbarang.store');
+        Route::post('/update/{id}', [JenisBarangController::class, 'JenisbarangUpdate'])->name('jenisbarang.update');
+        Route::get('/hapus/{id}', [JenisBarangController::class, 'JenisbarangHapus'])->name('jenisbarang.hapus');
     });
 });
 

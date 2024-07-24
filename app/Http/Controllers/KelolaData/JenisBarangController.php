@@ -18,9 +18,10 @@ class JenisBarangController extends Controller
     {
         return view("admin.kelola_data.jenis_barang.Tambah_jenis_barang");
     }
-    public function jenisbarangEdit()
+    public function jenisbarangEdit($id)
     {
-        return view("admin.kelola_data.jenis_barang.Edit_jenis_barang");
+        $editDataJenisBarang = JenisBarang::find($id);
+        return view("admin.kelola_data.jenis_barang.Edit_jenis_barang", compact('editDataJenisBarang'));
     }
 
     public function jenisbarangStore(Request $request)
@@ -33,6 +34,27 @@ class JenisBarangController extends Controller
         $data = new JenisBarang();
         $data->jns_brg = $request->textJenisBarang;
         $data->save();
+
+        return redirect()->route('jenisbarang.view');
+    }
+
+    public function jenisbarangUpdate(Request $request, $id)
+    {
+        $validateData = $request->validate([
+            'textJenisBarang' => 'required',
+        ]);
+
+        $data = JenisBarang::find($id);
+        $data->jns_brg = $request->textJenisBarang;
+        $data->save();
+
+        return redirect()->route('jenisbarang.view');
+    }
+
+    public function jenisbarangHapus($id)
+    {
+        $hapusDataJenisBarang = JenisBarang::find($id);
+        $hapusDataJenisBarang->delete();
 
         return redirect()->route('jenisbarang.view');
     }

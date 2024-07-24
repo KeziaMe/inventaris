@@ -13,24 +13,14 @@
                             <strong class="card-title">Tambah Jenis Barang </strong>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form method="post" action="{{route('jenisbarang.store')}}" enctype="multipart/form-data">
+                                @csrf
 
-                                <div class="form-group row align-items-center">
-                                    <label for="custom-select" class="col-sm-3 col-form-label">Jenis Barang</label>
+                                <div class="form-group row">
+                                    <label for="textJenisBarang" class="col-sm-3 col-form-label">Jenis Barang</label>
                                     <div class="col-sm-9">
-                                        <select class="custom-select" id="custom-select">
-                                            <option selected disabled>Pilih Jenis Barang</option>
-                                            <option value="1">Alat Elekronik</option>
-                                            <option value="2">Mebel</option>
-                                            <option value="3">Alat Masak</option>
-                                            <option value="4">Alat Kebersihan</option>
-                                            <option value="5">Alat Pembelajaran</option>
-                                            <option value="6">Peralatan Olahraga</option>
-                                            <option value="7">Peralatan UKS</option>
-                                            <option value="8">Penghargaan</option>
-                                            <option value="9">Peralatan Lab.IPA</option>
-                                            <option value="10">Buku</option>
-                                        </select>
+                                        <input type="textJenisBarang" class="form-control" id="textJenisBarang"
+                                            name="textJenisBarang" placeholder="Masukkan Nama Jenis Barang">
                                     </div>
                                 </div>
 

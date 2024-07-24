@@ -64,16 +64,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/jenisbarang/view', [JenisBarangController::class, 'jenisbarangView'])->name('jenisbarang.view');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('jenisbarang')->group(function () {
+        Route::get('/view', [JenisBarangController::class, 'jenisbarangView'])->name('jenisbarang.view');
+        Route::get('/tambah', [JenisBarangController::class, 'jenisbarangTambah'])->name('jenisbarang.tambah');
+        Route::get('/edit', [JenisBarangController::class, 'jenisbarangEdit'])->name('jenisbarang.edit');
+        Route::post('/store', [JenisBarangController::class, 'JenisbarangStore'])->name('jenisbarang.store');
+    });
 });
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/jenisbarang/tambah', [JenisBarangController::class, 'jenisbarangTambah'])->name('jenisbarang.tambah');
-});
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/jenisbarang/edit', [JenisBarangController::class, 'jenisbarangEdit'])->name('jenisbarang.edit');
-});
-
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('pengaduan')->group(function () {

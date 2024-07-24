@@ -22,4 +22,18 @@ class JenisBarangController extends Controller
     {
         return view("admin.kelola_data.jenis_barang.Edit_jenis_barang");
     }
+
+    public function jenisbarangStore(Request $request)
+    {
+        $validateData = $request->validate([
+            'textJenisBarang' => 'required',
+
+        ]);
+
+        $data = new JenisBarang();
+        $data->jns_brg = $request->textJenisBarang;
+        $data->save();
+
+        return redirect()->route('jenisbarang.view');
+    }
 }

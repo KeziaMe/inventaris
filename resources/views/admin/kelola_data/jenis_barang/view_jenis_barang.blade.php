@@ -26,33 +26,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>3224</td>
-                                            <td>Keith Baird</td>
-                                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="text-muted sr-only">Action</span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item"
-                                                        href="{{route('jenisbarang.edit')}}">Edit</a>
-                                                    <a class="dropdown-item" href="#">Hapus</a>
-                                                </div>
-                                        </tr>
 
-                                        <tr>
-                                            <td>3225</td>
-                                            <td>Akaka</td>
-                                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="text-muted sr-only">Action</span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item"
-                                                        href="{{route('jenisbarang.edit')}}">Edit</a>
-                                                    <a class="dropdown-item" href="#">Hapus</a>
-                                                </div>
-                                        </tr>
+                                        @foreach ($allDataJenisBarang as $key => $jenisbarang)
+                                            <tr>
+                                                <td>{{$key + 1}}</td>
+                                                <td>{{$jenisbarang->jns_brg}}</td>
+
+                                                <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted sr-only">Action</span>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item"
+                                                            href="{{route('jenisbarang.edit')}}">Edit</a>
+                                                        <a class="dropdown-item" href="#">Hapus</a>
+                                                    </div>
+                                            </tr>
+
+                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

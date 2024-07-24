@@ -4,13 +4,15 @@ namespace App\Http\Controllers\KelolaData;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\JenisBarang;
 
 class JenisBarangController extends Controller
 {
     //
     public function jenisbarangView()
     {
-        return view("admin.kelola_data.jenis_barang.view_jenis_barang");
+        $data['allDataJenisBarang'] = JenisBarang::all();
+        return view("admin.kelola_data.jenis_barang.view_jenis_barang", $data);
     }
     public function jenisbarangTambah()
     {

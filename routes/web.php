@@ -68,6 +68,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('kondisibarang')->group(function () {
         Route::get('/view', [KondisiBarangController::class, 'kondisibarangView'])->name('kondisibarang.view');
+        Route::get('/tambah', [KondisiBarangController::class, 'kondisibarangTambah'])->name('kondisibarang.tambah');
+        Route::post('/store', [KondisiBarangController::class, 'KondisiBarangStore'])->name('kondisibarang.store');
+        Route::get('/edit/{id}', [KondisiBarangController::class, 'KondisiBarangEdit'])->name('kondisibarang.edit');
+        Route::post('/update/{id}', [KondisiBarangController::class, 'KondisiBarangUpdate'])->name('kondisibarang.update');
     });
 });
 
@@ -94,6 +98,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/hapus/{id}', [PengaduanController::class, 'pengaduanHapus'])->name('pengaduan.hapus');
     });
 });
+
 
 
 Route::middleware('auth', 'verified')->group(function () {

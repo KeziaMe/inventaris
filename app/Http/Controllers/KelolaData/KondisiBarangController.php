@@ -52,4 +52,12 @@ class KondisiBarangController extends Controller
 
         return redirect()->route('kondisibarang.view');
     }
+
+    public function kondisibarangHapus($id)
+    {
+        $hapusDataKondisiBarang = Kondisibarang::find($id);
+        $hapusDataKondisiBarang->delete();
+
+        return redirect()->route('kondisibarang.view');
+    }
 }

@@ -72,6 +72,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/store', [KondisiBarangController::class, 'KondisiBarangStore'])->name('kondisibarang.store');
         Route::get('/edit/{id}', [KondisiBarangController::class, 'KondisiBarangEdit'])->name('kondisibarang.edit');
         Route::post('/update/{id}', [KondisiBarangController::class, 'KondisiBarangUpdate'])->name('kondisibarang.update');
+        Route::get('/hapus/{id}', [KondisiBarangController::class, 'KondisiBarangHapus'])->name('kondisibarang.hapus');
     });
 });
 

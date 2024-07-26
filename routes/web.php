@@ -4,12 +4,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\KelolaData\RuanganController;
 use App\Http\Controllers\KelolaData\BarangController;
+use App\Http\Controllers\KelolaData\KondisiBarangController;
 use App\Http\Controllers\KelolaData\JenisBarangController;
 use App\Http\Controllers\KelolaData\PengaduanController;
 use App\Http\Controllers\KelolaData\PenggunaController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\upload\NotaController;
 use App\Http\Controllers\Role\RoleController;
+
 
 
 /*
@@ -63,6 +65,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('kondisibarang')->group(function () {
+        Route::get('/view', [KondisiBarangController::class, 'kondisibarangView'])->name('kondisibarang.view');
+    });
+});
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('jenisbarang')->group(function () {
@@ -123,3 +130,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/hapus/{id}', [NotaController::class, 'hapusNota'])->name('nota.hapus');
     });
 });
+

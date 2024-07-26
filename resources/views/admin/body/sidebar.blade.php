@@ -40,28 +40,42 @@
         </a>
         <ul class="collapse list-unstyled pl-4 w-100" id="tables">
           <li class="nav-item">
-            <a class="nav-link pl-3" href="{{route('ruangan.view')}}"><span class="ml-1 item-text">Kelola Data
+            <a class="nav-link pl-3" href="{{route('ruangan.view')}}"><span class="ml-1 item-text">
                 Ruangan</span></a>
           </li>
         </ul>
 
         <ul class="collapse list-unstyled pl-4 w-100" id="tables">
           <li class="nav-item">
-            <a class="nav-link pl-3" href="{{route('barang.view')}}"><span class="ml-1 item-text">Kelola Data
+            <a class="nav-link pl-3" href="{{route('barang.view')}}"><span class="ml-1 item-text">
                 Barang</span></a>
           </li>
         </ul>
 
         <ul class="collapse list-unstyled pl-4 w-100" id="tables">
           <li class="nav-item">
-            <a class="nav-link pl-3" href="{{route('jenisbarang.view')}}"><span class="ml-1 item-text">Kelola Data
+            <a class="nav-link pl-3" href="{{route('kondisibarang.view')}}"><span class="ml-1 item-text">
+                Kondisi Barang</span></a>
+          </li>
+        </ul>
+
+        <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+          <li class="nav-item">
+            <a class="nav-link pl-3" href="{{route('jenisbarang.view')}}"><span class="ml-1 item-text">
                 Jenis Barang</span></a>
           </li>
         </ul>
 
         <ul class="collapse list-unstyled pl-4 w-100" id="tables">
           <li class="nav-item">
-            <a class="nav-link pl-3" href="{{route('pengaduan.view')}}"><span class="ml-1 item-text">Kelola Data
+            <a class="nav-link pl-3" href="{{route('pengaduan.view')}}"><span class="ml-1 item-text">
+                Pengaduan</span></a>
+          </li>
+        </ul>
+
+        <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+          <li class="nav-item">
+            <a class="nav-link pl-3" href="{{route('pengaduan.view')}}"><span class="ml-1 item-text">Status
                 Pengaduan</span></a>
           </li>
         </ul>
@@ -69,15 +83,15 @@
 
       <li class="nav-item w-100">
         <a class="nav-link" href="{{route('nota.upload')}}">
-          <i class="fe fe-file fe-16"></i>
-          <span class="ml-3 item-text">Unggah Nota</span>
+          <i class="fe fe-list fe-16"></i>
+          <span class="ml-3 item-text">Inventarisasi</span>
         </a>
       </li>
 
       <li class="nav-item w-100">
-        <a class="nav-link" href="{{route('user.view')}}">
-          <i class="fe fe-user fe-16"></i>
-          <span class="ml-3 item-text">User</span>
+        <a class="nav-link" href="{{route('nota.upload')}}">
+          <i class="fe fe-file fe-16"></i>
+          <span class="ml-3 item-text">Unggah Nota</span>
         </a>
       </li>
 
@@ -94,6 +108,17 @@
           <span class="ml-3 item-text">Role</span>
         </a>
       </li>
+
+      <li class="nav-item w-100">
+        <a class="nav-link" href="{{route('user.view')}}">
+          <i class="fe fe-user fe-16"></i>
+          <span class="ml-3 item-text">User</span>
+        </a>
+      </li>
+
+
+
+
 
     </ul>
   </nav>

@@ -26,22 +26,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($allDataKondisiBarang as $key => $kondisibarang)
+                                            <tr>
+                                                <td>{{$key + 1}}</td>
+                                                <td>{{$kondisibarang->kondisi_brg}}</td>
 
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
 
+                                                <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted sr-only">Action</span>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item"
+                                                            href="{{route('kondisibarang.edit', $kondisibarang->id)}}">Edit</a>
+                                                        <a class="dropdown-item" id="delete"
+                                                            href="{{route('kondisibarang.hapus', $kondisibarang->id)}}">Hapus</a>
+                                                    </div>
+                                            </tr>
+                                        @endforeach
 
-                                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="text-muted sr-only">Action</span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item"
-                                                        href="{{route('kondisibarang.edit')}}">Edit</a>
-                                                    <a class="dropdown-item" id="delete" href="#">Hapus</a>
-                                                </div>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

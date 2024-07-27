@@ -13,7 +13,8 @@
                             <strong class="card-title">Tambah Data </strong>
                         </div>
                         <div class="card-body">
-                            <form method="post" action="#" enctype="multipart/form-data">
+                            <form method="post" action="{{route('kondisibarang.store')}}" enctype="multipart/form-data">
+                                @csrf
 
                                 <div class="form-group row">
                                     <label for="textKondisibarang" class="col-sm-3 col-form-label">Kondisi

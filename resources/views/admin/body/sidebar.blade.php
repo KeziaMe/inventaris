@@ -75,7 +75,7 @@
 
         <ul class="collapse list-unstyled pl-4 w-100" id="tables">
           <li class="nav-item">
-            <a class="nav-link pl-3" href="{{route('pengaduan.view')}}"><span class="ml-1 item-text">Status
+            <a class="nav-link pl-3" href="{{route('statuspengaduan.view')}}"><span class="ml-1 item-text">Status
                 Pengaduan</span></a>
           </li>
         </ul>

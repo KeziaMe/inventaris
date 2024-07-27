@@ -7,6 +7,7 @@ use App\Http\Controllers\KelolaData\BarangController;
 use App\Http\Controllers\KelolaData\KondisiBarangController;
 use App\Http\Controllers\KelolaData\JenisBarangController;
 use App\Http\Controllers\KelolaData\PengaduanController;
+use App\Http\Controllers\KelolaData\StatusPengaduanController;
 use App\Http\Controllers\KelolaData\PenggunaController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\upload\NotaController;
@@ -69,10 +70,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('kondisibarang')->group(function () {
         Route::get('/view', [KondisiBarangController::class, 'kondisibarangView'])->name('kondisibarang.view');
         Route::get('/tambah', [KondisiBarangController::class, 'kondisibarangTambah'])->name('kondisibarang.tambah');
-        Route::post('/store', [KondisiBarangController::class, 'KondisiBarangStore'])->name('kondisibarang.store');
-        Route::get('/edit/{id}', [KondisiBarangController::class, 'KondisiBarangEdit'])->name('kondisibarang.edit');
-        Route::post('/update/{id}', [KondisiBarangController::class, 'KondisiBarangUpdate'])->name('kondisibarang.update');
-        Route::get('/hapus/{id}', [KondisiBarangController::class, 'KondisiBarangHapus'])->name('kondisibarang.hapus');
+        Route::get('/edit', [KondisiBarangController::class, 'KondisiBarangEdit'])->name('kondisibarang.edit');
     });
 });
 
@@ -100,7 +98,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('statuspengaduan')->group(function () {
+        Route::get('/view', [StatusPengaduanController::class, 'statuspengaduanView'])->name('statuspengaduan.view');
+    });
+});
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/kelola_data/pengguna/view', [PenggunaController::class, 'penggunaView'])->name('pengguna.view');

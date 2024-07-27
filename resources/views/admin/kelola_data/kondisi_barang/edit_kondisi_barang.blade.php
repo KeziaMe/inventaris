@@ -13,9 +13,7 @@
                             <strong class="card-title">Edit Data </strong>
                         </div>
                         <div class="card-body">
-                            <form method="post" action="{{route('kondisibarang.update', $editDataKondisiBarang->id)}}"
-                                enctype="multipart/form-data">
-                                @csrf
+                            <form method="post" action="#" enctype="multipart/form-data">
 
                                 <div class="form-group row">
                                     <label for="textKondisibarang" class="col-sm-3 col-form-label">Kondisi
@@ -23,7 +21,7 @@
                                     <div class="col-sm-9">
                                         <input type="textKondisibarang" class="form-control" id="textKondisibarang"
                                             name="textKondisibarang" placeholder="Masukkan Nama Kondisi Barang"
-                                            value="{{$editDataKondisiBarang->kondisi_brg}}">
+                                            value="#">
                                     </div>
                                 </div>
 

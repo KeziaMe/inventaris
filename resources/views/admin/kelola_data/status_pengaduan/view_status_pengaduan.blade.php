@@ -5,28 +5,24 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="page-title">Data Status Pengaduan</h2>
-
+                <h2 class="page-title">Data Satus Pengaduan</h2>
                 <div class="row">
-                    <!-- simple table -->
                     <div class="col-md-6 my-4">
                         <div class="card shadow">
                             <div class="card-body">
-
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Status Pengaduan</th>
                                             <th>Aksi</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                         <tr>
                                             <td></td>
-                                            <td>Proses</td>
-
+                                            <td>ini</td>
 
                                             <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -39,15 +35,15 @@
                                             </td>
                                         </tr>
 
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div> <!-- simple table -->
 
-
+                </div> <!-- end section -->
 
 </main> <!-- main -->
+
 
 @endsection

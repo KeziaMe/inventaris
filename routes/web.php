@@ -106,6 +106,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/view', [StatusPengaduanController::class, 'statuspengaduanView'])->name('statuspengaduan.view');
         Route::post('/store', [StatusPengaduanController::class, 'statuspengaduanStore'])->name('statuspengaduan.store');
         Route::get('/tambah', [StatusPengaduanController::class, 'statuspengaduanTambah'])->name('statuspengaduan.tambah');
+        Route::get('/edit/{id}', [StatusPengaduanController::class, 'statuspengaduanEdit'])->name('statuspengaduan.edit');
+        Route::post('/update/{id}', [StatusPengaduanController::class, 'statuspengaduanUpdate'])->name('statuspengaduan.update');
+        Route::get('/hapus/{id}', [StatusPengaduanController::class, 'statuspengaduanHapus'])->name('statuspengaduan.hapus');
     });
 });
 

@@ -36,8 +36,10 @@
                                                         <span class="text-muted sr-only">Action</span>
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#">Edit</a>
-                                                        <a class="dropdown-item" id="delete" href="#">Hapus</a>
+                                                        <a class="dropdown-item"
+                                                            href="{{route('statuspengaduan.edit', $statuspengaduan->id)}}">Edit</a>
+                                                        <a class="dropdown-item" id="delete"
+                                                            href="{{route('statuspengaduan.hapus', $statuspengaduan->id)}}">Hapus</a>
                                                     </div>
                                                 </td>
                                             </tr>

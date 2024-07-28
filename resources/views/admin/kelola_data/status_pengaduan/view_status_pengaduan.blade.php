@@ -20,20 +20,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td>ini</td>
 
-                                            <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="text-muted sr-only">Action</span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" id="delete" href="#">Hapus</a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @foreach ($allDataStatusPengaduan as $key => $statuspengaduan)
+                                            <tr>
+                                                <td>{{$key + 1}}</td>
+                                                <td>{{$statuspengaduan->status_pengaduan}}</td>
+
+                                                <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted sr-only">Action</span>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" id="delete" href="#">Hapus</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
 
                                     </tbody>
                                 </table>

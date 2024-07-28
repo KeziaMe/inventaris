@@ -104,6 +104,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('statuspengaduan')->group(function () {
         Route::get('/view', [StatusPengaduanController::class, 'statuspengaduanView'])->name('statuspengaduan.view');
+        Route::post('/store', [StatusPengaduanController::class, 'statuspengaduanStore'])->name('statuspengaduan.store');
+        Route::get('/tambah', [StatusPengaduanController::class, 'statuspengaduanTambah'])->name('statuspengaduan.tambah');
     });
 });
 

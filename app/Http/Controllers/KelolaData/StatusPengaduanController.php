@@ -14,4 +14,24 @@ class StatusPengaduanController extends Controller
         $data['allDataStatusPengaduan'] = StatusPengaduan::all();
         return view("admin.kelola_data.status_pengaduan.view_status_pengaduan", $data);
     }
+
+    public function statuspengaduanTambah()
+    {
+        return view("admin.kelola_data.status_pengaduan.tambah_status_pengaduan");
+    }
+
+
+    public function statuspengaduanStore(Request $request)
+    {
+        $validateData = $request->validate([
+            'textStatuspengaduan' => 'required',
+
+        ]);
+
+        $data = new StatusPengaduan();
+        $data->status_pengaduan = $request->textStatuspengaduan;
+        $data->save();
+
+        return redirect()->route('statuspengaduan.view');
+    }
 }

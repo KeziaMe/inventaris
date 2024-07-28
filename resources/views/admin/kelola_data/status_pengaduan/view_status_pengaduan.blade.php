@@ -6,6 +6,11 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Data Satus Pengaduan</h2>
+                <div class="col text-end mb-3"> <!-- ada jarak dengan tabel -->
+                    <a href="{{route('statuspengaduan.tambah')}}" class="btn btn-success" style="color: white;">
+                        <i class="fe fe-plus"></i>Tambah
+                    </a>
+                </div>
                 <div class="row">
                     <div class="col-md-6 my-4">
                         <div class="card shadow">

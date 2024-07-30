@@ -6,6 +6,11 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Data Inventarisasi</h2>
+                <div class="col text-end">
+                    <a href="{{route('inventarisasi.tambah')}}" class="btn btn-success" style="color: white;">
+                        <i class="fe fe-plus"></i>Tambah
+                    </a>
+                </div>
                 <div class="row">
                     <!-- simple table -->
                     <div class="col-md-10 my-4">

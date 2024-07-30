@@ -82,7 +82,7 @@
       </li>
 
       <li class="nav-item w-100">
-        <a class="nav-link" href="{{route('nota.upload')}}">
+        <a class="nav-link" href="{{route('inventarisasi.view')}}">
           <i class="fe fe-list fe-16"></i>
           <span class="ml-3 item-text">Inventarisasi</span>
         </a>

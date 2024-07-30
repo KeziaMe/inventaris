@@ -8,6 +8,7 @@ use App\Http\Controllers\KelolaData\KondisiBarangController;
 use App\Http\Controllers\KelolaData\JenisBarangController;
 use App\Http\Controllers\KelolaData\PengaduanController;
 use App\Http\Controllers\KelolaData\StatusPengaduanController;
+use App\Http\Controllers\KelolaData\InventarisasiController;
 use App\Http\Controllers\KelolaData\PenggunaController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\upload\NotaController;
@@ -112,8 +113,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/kelola_data/pengguna/view', [PenggunaController::class, 'penggunaView'])->name('pengguna.view');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('statuspengaduan')->group(function () {
+        Route::get('/view', [StatusPengaduanController::class, 'statuspengaduanView'])->name('statuspengaduan.view');
+    });
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('inventarisasi')->group(function () {
+        Route::get('/view', [InventarisasiController::class, 'inventarisasiView'])->name('inventarisasi.view');
+    });
 });
 
 

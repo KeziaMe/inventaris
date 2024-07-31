@@ -126,6 +126,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/store', [InventarisasiController::class, 'inventarisasiStore'])->name('inventarisasi.store');
         Route::get('/Edit/{id}', [InventarisasiController::class, 'inventarisasiEdit'])->name('inventarisasi.edit');
         Route::post('/update/{id}', [InventarisasiController::class, 'inventarisasiUpdate'])->name('inventarisasi.update');
+        Route::get('/hapus/{id}', [InventarisasiController::class, 'inventarisasiHapus'])->name('inventarisasi.hapus');
     });
 });
 

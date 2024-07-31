@@ -59,4 +59,12 @@ class InventarisasiController extends Controller
 
         return redirect()->route('inventarisasi.view');
     }
+
+    public function inventarisasiHapus($id)
+    {
+        $hapusDataInventarisasi = Inventarisasi::find($id);
+        $hapusDataInventarisasi->delete();
+
+        return redirect()->route('inventarisasi.view');
+    }
 }

@@ -43,7 +43,8 @@
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item"
                                                             href="{{route('inventarisasi.edit', $inventarisasi->id)}}">Edit</a>
-                                                        <a class="dropdown-item" id="delete" href="#">Hapus</a>
+                                                        <a class="dropdown-item" id="delete"
+                                                            href="{{route('inventarisasi.hapus', $inventarisasi->id)}}">Hapus</a>
                                                     </div>
                                                 </td>
                                             </tr>

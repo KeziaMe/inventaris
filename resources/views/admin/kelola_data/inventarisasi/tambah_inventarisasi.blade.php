@@ -44,11 +44,24 @@
 
                                 <div class="form-group row">
                                     <label for="textStatus" class="col-sm-3 col-form-label">Status</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="textStatus" name="textStatus"
-                                            placeholder="Masukkan Nama Status">
-                                    </div>
-                                </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card shadow">
+                                            <div class="card-body">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="statusAktif" name="textstatus"
+                                                        class="custom-control-input" value="Aktif">
+                                                    <label class="custom-control-label" for="statusAktif">Aktif</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="statusNonAktif" name="textstatus"
+                                                        class="custom-control-input" value="Non-Aktif">
+                                                    <label class="custom-control-label"
+                                                        for="statusNonAktif">Non-Aktif</label>
+                                                </div>
+                                            </div> <!-- /.card-body -->
+                                        </div> <!-- /.card -->
+                                    </div> <!-- /.col -->
+                                </div> <!-- /.form-group -->
 
                                 <div class="form-group mb-2">
                                     <button type="submit" class="btn btn-primary">Simpan</button>

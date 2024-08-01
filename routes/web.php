@@ -59,6 +59,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('barang')->group(function () {
         Route::get('/view', [BarangController::class, 'barangView'])->name('barang.view');
         Route::get('/tambah', [BarangController::class, 'barangTambah'])->name('barang.tambah');
+
+        Route::get('/viewriwayat', [BarangController::class, 'riwayatbarangView'])->name('barang.viewriwayat');
+
         Route::get('/edit{id}', [BarangController::class, 'barangEdit'])->name('barang.edit');
         Route::post('/update/{id}', [BarangController::class, 'barangUpdate'])->name('barang.update');
         Route::get('/unduh', [BarangController::class, 'barangUnduh'])->name('barang.unduh');
@@ -110,12 +113,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/edit/{id}', [StatusPengaduanController::class, 'statuspengaduanEdit'])->name('statuspengaduan.edit');
         Route::post('/update/{id}', [StatusPengaduanController::class, 'statuspengaduanUpdate'])->name('statuspengaduan.update');
         Route::get('/hapus/{id}', [StatusPengaduanController::class, 'statuspengaduanHapus'])->name('statuspengaduan.hapus');
-    });
-});
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::prefix('statuspengaduan')->group(function () {
-        Route::get('/view', [StatusPengaduanController::class, 'statuspengaduanView'])->name('statuspengaduan.view');
     });
 });
 

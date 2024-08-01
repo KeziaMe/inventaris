@@ -20,18 +20,19 @@ class InventarisasiController extends Controller
     {
         $validateData = $request->validate([
             'textNamaRuangan' => 'required',
-
+            // Validasi lainnya sesuai kebutuhan
         ]);
 
         $data = new Inventarisasi();
         $data->nm_ruangan = $request->textNamaRuangan;
         $data->kd_brg = $request->textKodeBarang;
         $data->tgl_inventaris = $request->textTglInventaris;
-        $data->status = $request->textStatus;
+        $data->status = $request->textstatus; // Mengambil nilai dari radio button yang dipilih
         $data->save();
 
         return redirect()->route('inventarisasi.view');
     }
+
 
     public function inventarisasiTambah()
     {
@@ -54,7 +55,7 @@ class InventarisasiController extends Controller
         $data->nm_ruangan = $request->textNamaRuangan;
         $data->kd_brg = $request->textKodeBarang;
         $data->tgl_inventaris = $request->textTglInventaris;
-        $data->status = $request->textStatus;
+        $data->status = $request->text_status;
         $data->save();
 
         return redirect()->route('inventarisasi.view');

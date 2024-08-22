@@ -18,7 +18,7 @@
                                 @csrf
 
                                 <div class="form-group row">
-                                    <label for="textStatuspengaduan" class="col-sm-3 col-form-label">Tambah Status
+                                    <label for="textStatuspengaduan" class="col-sm-3 col-form-label">Status
                                         Pengaduan</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" id="textStatuspengaduan"

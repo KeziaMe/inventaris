@@ -13,8 +13,8 @@
                     <a href="{{route('barang.unduh')}}" class="btn btn-primary" style="color: white;">
                         <i class="fe fe-download"></i>Unduh
                     </a>
-                    <a href="{{route('barang.viewriwayat')}}" class="btn btn-primary" style="color: white;">
-                        <i class="fe fe-download"></i>Riwayat
+                    <a href="{{route('barang.viewriwayat')}}" class="btn btn-secondary" style="color: white;">
+                        <i class="fe fe-repeat"></i>Riwayat
                     </a>
                 </div>
 

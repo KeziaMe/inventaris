@@ -132,6 +132,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('role')->group(function () {
         Route::get('/view', [RoleController::class, 'roleView'])->name('role.view');
+        Route::get('/Tambah', [RoleController::class, 'roleTambah'])->name('role.tambah');
+        Route::post('/store', [RoleController::class, 'roleStore'])->name('role.store');
     });
 });
 

@@ -20,6 +20,7 @@
                                 <tr>
                                     <th>NO</th>
                                     <th>Role</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,6 +30,16 @@
                                     <tr>
                                         <td>{{$key + 1}}</td>
                                         <td>{{$role->role}}</td>
+
+                                        <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="text-muted sr-only">Action</span>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="{{route('role.edit', $role->id)}}">Edit</a>
+                                                <a class="dropdown-item" id="delete"
+                                                    href="{{route('role.hapus', $role->id)}}">Hapus</a>
+                                            </div>
                                     </tr>
 
                                 @endforeach

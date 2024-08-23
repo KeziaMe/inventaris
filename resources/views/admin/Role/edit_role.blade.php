@@ -13,12 +13,15 @@
                             <strong class="card-title">Edit Data </strong>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form method="post" action="{{route('role.update', $editDataRole->id)}}"
+                                enctype="multipart/form-data">
+                                @csrf
+
                                 <div class="form-group row">
-                                    <label for="inputEmail3" class="col-sm-3 col-form-label">Role</label>
+                                    <label for="textRole" class="col-sm-3 col-form-label">Role</label>
                                     <div class="col-sm-9">
-                                        <input type="email" class="form-control" id="inputEmail3"
-                                            placeholder="Masukkan Role">
+                                        <input type="text" name="textRole" class="form-control" id="textRole"
+                                            placeholder="Masukkan Role" value="{{$editDataRole->role}}">
                                     </div>
                                 </div>
                                 <div class="form-group mb-2">
@@ -27,6 +30,10 @@
                             </form>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main> <!-- main -->
 
 @endsection

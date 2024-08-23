@@ -133,7 +133,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('role')->group(function () {
         Route::get('/view', [RoleController::class, 'roleView'])->name('role.view');
         Route::get('/Tambah', [RoleController::class, 'roleTambah'])->name('role.tambah');
+        Route::get('/Edit/{id}', [RoleController::class, 'roleEdit'])->name('role.edit');
+        Route::post('/Update/{id}', [RoleController::class, 'roleUpdate'])->name('role.update');
         Route::post('/store', [RoleController::class, 'roleStore'])->name('role.store');
+        Route::get('/Hapus/{id}', [RoleController::class, 'roleHapus'])->name('role.hapus');
     });
 });
 

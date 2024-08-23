@@ -20,6 +20,12 @@ class RoleController extends Controller
         return view("admin.Role.tambah_role");
     }
 
+    public function roleEdit($id)
+    {
+        $editDataRole = Role::find($id);
+        return view("admin.Role.edit_role", compact('editDataRole'));
+    }
+
     public function roleStore(Request $request)
     {
         $validateData = $request->validate([
@@ -30,6 +36,27 @@ class RoleController extends Controller
         $data = new Role();
         $data->role = $request->textRole;
         $data->save();
+
+        return redirect()->route('role.view');
+    }
+
+    public function roleUpdate(Request $request, $id)
+    {
+        $validateData = $request->validate([
+            'textRole' => 'required',
+        ]);
+
+        $data = Role::find($id);
+        $data->role = $request->textRole;
+        $data->save();
+
+        return redirect()->route('role.view');
+    }
+
+    public function roleHapus($id)
+    {
+        $hapusDataRole = Role::find($id);
+        $hapusDataRole->delete();
 
         return redirect()->route('role.view');
     }

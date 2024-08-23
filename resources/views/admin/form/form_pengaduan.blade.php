@@ -56,9 +56,9 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="textInventarisai">Inventarisasi</label>
-                                        <input type="text" id="textInventarisai" class="form-control"
-                                            name="textInventarisai">
+                                        <label for="textInventarisasi">Inventarisasi</label>
+                                        <input type="text" id="textInventarisasi" class="form-control"
+                                            name="textInventarisasi">
                                     </div>
 
                                     <div class="form-group mb-2">

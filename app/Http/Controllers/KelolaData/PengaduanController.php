@@ -88,6 +88,7 @@ class PengaduanController extends Controller
         $data->tgl_masuk = $request->text_tgl_masuk;
         $data->tgl_update = $request->textTgl_update;
         $data->id_inventarisasi = $request->textInventarisasi;
+        $data->nm_status_pengaduan = $request->textStatus;
         $data->save();
 
         return redirect()->route('pengaduan.view');

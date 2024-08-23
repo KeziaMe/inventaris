@@ -41,37 +41,43 @@
                                         <label for="textKondisi_brg">Kondisi Barang</label>
                                         <select class="custom-select" id="textKondisi_brg" name="textKondisi_brg">
                                             <option disabled selected>Pilih Kondisi Barang</option>
-                                            <option value="Kurang Baik" {{($editDataPengaduan->id_kondisi_brg == "kurang baik" ? "selected" : "")}}>Kurang Baik</option>
-                                            <option value="Rusak Berat" {{($editDataPengaduan->id_kondisi_brg == "rusak berat" ? "selected" : "")}}>Rusak Berat</option>
+                                            <option value="Baik" {{($editDataPengaduan->id_kondisi_brg == "Baik" ? "selected" : "")}}>Baik</option>
+                                            <option value="Kurang Baik" {{($editDataPengaduan->id_kondisi_brg == "Kurang Baik" ? "selected" : "")}}>Kurang Baik</option>
+                                            <option value="Rusak Berat" {{($editDataPengaduan->id_kondisi_brg == "Rusak Berat" ? "selected" : "")}}>Rusak Berat</option>
                                         </select>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="inputEmail3" class="col-sm-3 col-form-label">Nama Status
+
+                                    <div class="form-group row align-items-center">
+                                        <label for="textStatus" class="col-sm-3 col-form-label">Nama Status
                                             Pengaduan</label>
                                         <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="inputEmail3"
-                                                placeholder="Nama Status Pengaduan"
-                                                {{$editDataPengaduan->nm_status_pengaduan}}>
+                                            <select class="custom-select" name="textStatus" id="textStatus">
+                                                <option selected disabled>Pilih Status Pengaduan</option>
+                                                <option value="Perbaikan"
+                                                    {{($editDataPengaduan->nm_status_pengaduan == "Perbaikan" ? "selected" : "")}}>Perbaikan</option>
+                                                <option value="Selesai"
+                                                    {{($editDataPengaduan->nm_status_pengaduan == "Selesai" ? "selected" : "")}}>Selesai</option>
+                                            </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group mb-3">
                                         <label for="text_tgl_masuk">Tanggal Masuk</label>
                                         <input class="form-control" id="text_tgl_masuk" type="date"
-                                            name="text_tgl_masuk" {{$editDataPengaduan->tgl_masuk}}>
+                                            name="text_tgl_masuk" value="{{$editDataPengaduan->tgl_masuk}}">
                                     </div>
 
                                     <div class="form-group mb-3">
                                         <label for="textTgl_update">Tanggal Update</label>
                                         <input class="form-control" id="textTgl_update" type="date"
-                                            name="textTgl_update" {{$editDataPengaduan->tgl_update}}>
+                                            name="textTgl_update" value="{{$editDataPengaduan->tgl_update}}">
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="textInventarisai">Inventarisasi</label>
-                                        <input type="text" id="textInventarisai" class="form-control"
-                                            name="textInventarisai" {{$editDataPengaduan->id_inventarisasi}}>
+                                        <label for="textInventarisasi">Inventarisasi</label>
+                                        <input type="text" id="textInventarisasi" class="form-control"
+                                            name="textInventarisasi" {{$editDataPengaduan->id_inventarisasi}}>
                                     </div>
 
                                     <div class="form-group mb-2">

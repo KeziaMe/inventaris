@@ -21,7 +21,8 @@
                                     <div class="form-group mb-3">
                                         <label for="textTglPengaduan">Tanggal Pengaduan</label>
                                         <input class="form-control" id="textTglPengaduan" type="date"
-                                            name="textTglPengaduan" value="{{$editDataPengaduan->tgl_pengaduan}}">
+                                            name="textTglPengaduan" value="{{$editDataPengaduan->tgl_pengaduan}}"
+                                            disabled>
                                     </div>
 
                                     <div class="form-group mb-3">
@@ -34,7 +35,7 @@
                                         <label for="textKeterangan">Keterangan</label>
                                         <input type="text" id="textKeterangan" name="textKeterangan"
                                             class="form-control" placeholder="Wajib diisi"
-                                            value="{{$editDataPengaduan->ket}}">
+                                            value="{{$editDataPengaduan->ket}}" disabled>
                                     </div>
 
                                     <div class="form-group mb-3">
@@ -65,7 +66,7 @@
                                     <div class="form-group mb-3">
                                         <label for="text_tgl_masuk">Tanggal Masuk</label>
                                         <input class="form-control" id="text_tgl_masuk" type="date"
-                                            name="text_tgl_masuk" value="{{$editDataPengaduan->tgl_masuk}}">
+                                            name="text_tgl_masuk" value="{{$editDataPengaduan->tgl_masuk}}" disabled>
                                     </div>
 
                                     <div class="form-group mb-3">
@@ -77,7 +78,8 @@
                                     <div class="form-group mb-3">
                                         <label for="textInventarisasi">Inventarisasi</label>
                                         <input type="text" id="textInventarisasi" class="form-control"
-                                            name="textInventarisasi" {{$editDataPengaduan->id_inventarisasi}}>
+                                            name="textInventarisasi" value="{{$editDataPengaduan->id_inventarisasi}}"
+                                            disabled>
                                     </div>
 
                                     <div class="form-group mb-2">

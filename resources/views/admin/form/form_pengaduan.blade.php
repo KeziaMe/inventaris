@@ -49,11 +49,6 @@
                                             name="text_tgl_masuk">
                                     </div>
 
-                                    <div class="form-group mb-3">
-                                        <label for="textTgl_update">Tanggal Update</label>
-                                        <input class="form-control" id="textTgl_update" type="date"
-                                            name="textTgl_update">
-                                    </div>
 
                                     <div class="form-group mb-3">
                                         <label for="textInventarisasi">Inventarisasi</label>

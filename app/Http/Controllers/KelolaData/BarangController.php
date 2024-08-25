@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\RiwayatBarang;
+use PDF;
 
 class BarangController extends Controller
 {
@@ -109,5 +110,16 @@ class BarangController extends Controller
         $hapusDataBarang->delete();
 
         return redirect()->route('barang.view');
+    }
+
+    public function unduhPdf()
+    {
+        $allDataBarang = Barang::all(); // Ambil data barang dari database
+
+        // Memuat view dengan data yang diperlukan
+        $pdf = PDF::loadView('admin.kelola_data.barang.unduh_barang', compact('allDataBarang'));
+
+        // Mengunduh PDF dengan nama file tertentu
+        return $pdf->download('laporan_barang.pdf');
     }
 }

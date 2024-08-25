@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class PengaduanController extends Controller
 {
@@ -69,7 +70,8 @@ class PengaduanController extends Controller
     {
         $validateData = $request->validate([
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // menambahkan validasi untuk file image
-            'textKeterangan' => 'required',
+            'textStatus' => 'required',
+            'textKondisi_brg' => 'required',
 
         ]);
 
@@ -91,8 +93,11 @@ class PengaduanController extends Controller
         $data->nm_status_pengaduan = $request->textStatus;
         $data->save();
 
+        \Log::info('Redirecting to pengaduan.view');
+
         return redirect()->route('pengaduan.view');
     }
+
     public function pengaduanHapus($id)
     {
         $deleteDataPengaduan = Pengaduan::find($id);
@@ -107,5 +112,16 @@ class PengaduanController extends Controller
 
             return redirect()->route('pengaduan.view');
         }
+    }
+
+    public function unduhPdf()
+    {
+        $allDataPengaduan = Pengaduan::all(); // Ambil data barang dari database
+
+        // Memuat view dengan data yang diperlukan
+        $pdf = PDF::loadView('admin.kelola_data.pengaduan.unduh_pengaduan', compact('allDataPengaduan'));
+
+        // Mengunduh PDF dengan nama file tertentu
+        return $pdf->download('laporan_pengaduan.pdf');
     }
 }

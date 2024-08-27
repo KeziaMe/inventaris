@@ -77,12 +77,15 @@ class PengaduanController extends Controller
 
         $data = Pengaduan::find($id);
         $data->tgl_pengaduan = $request->textTglPengaduan;
-
         if ($request->file('foto')) {
+            // Delete the old photo if exists
+            if ($data->foto && Storage::disk('public')->exists($data->foto)) {
+                Storage::disk('public')->delete($data->foto);
+            }
+
+            // Store the new photo
             $foto = $request->file('foto')->store('gambar_pengaduan/foto', 'public');
             $data->foto = $foto;
-        } else {
-            $data->foto = '';
         }
 
         $data->ket = $request->textKeterangan;

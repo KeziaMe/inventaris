@@ -26,7 +26,6 @@ class BarangController extends Controller
         return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang'));
     }
 
-
     public function riwayatbarangView()
     {
         $data['allDataRiwayatBarang'] = RiwayatBarang::orderBy('tgl_update', 'desc')->get();
@@ -122,4 +121,5 @@ class BarangController extends Controller
         // Mengunduh PDF dengan nama file tertentu
         return $pdf->download('laporan_barang.pdf');
     }
+
 }

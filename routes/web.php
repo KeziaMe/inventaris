@@ -104,9 +104,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/store', [PengaduanController::class, 'pengaduanStore'])->name('pengaduan.store');
         Route::post('/update/{id}', [PengaduanController::class, 'pengaduanUpdate'])->name('pengaduan.update');
         Route::get('/hapus/{id}', [PengaduanController::class, 'pengaduanHapus'])->name('pengaduan.hapus');
-
-
         Route::get('/pengaduan/unduh', [PengaduanController::class, 'unduhPdf'])->name('pengaduan.unduh');
+        Route::get('/pengaduan/unduh-bulan', [PengaduanController::class, 'unduhPerbulan'])->name('pengaduan.unduhBulan');
     });
 });
 

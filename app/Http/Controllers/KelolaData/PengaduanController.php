@@ -124,4 +124,10 @@ class PengaduanController extends Controller
         // Mengunduh PDF dengan nama file tertentu
         return $pdf->download('laporan_pengaduan.pdf');
     }
+
+    public function unduhPerbulan(Request $request)
+    {
+        return view('admin.kelola_data.pengaduan.halaman_unduh_pengaduan');
+    }
+
 }

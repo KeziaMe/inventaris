@@ -29,6 +29,12 @@
                                     </div>
 
                                     <div class="form-group mb-3">
+                                        <label for="foto">preview</label>
+                                        <!-- menambahkan kelas foto-preview pada gambar -->
+                                        <img id="previewFoto" src="#" alt="Preview Foto" class="foto-preview">
+                                    </div>
+
+                                    <div class="form-group mb-3">
                                         <label for="textKeterangan">Keterangan</label>
                                         <input type="text" id="textKeterangan" name="textKeterangan"
                                             class="form-control" placeholder="Wajib diisi">

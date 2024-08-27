@@ -338,6 +338,22 @@
       });
   </script>
 
+  <script>
+    const inputFoto = document.querySelector('#foto');
+    const previewFoto = document.querySelector('#previewFoto');
+
+    inputFoto.addEventListener('change', function () {
+      const file = inputFoto.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        previewFoto.src = e.target.result;
+      }
+
+      reader.readAsDataURL(file);
+    });
+  </script>
+
 </body>
 
 </html>

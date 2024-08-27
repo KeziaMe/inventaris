@@ -21,27 +21,29 @@
                                     <div class="form-group mb-3">
                                         <label for="textTglPengaduan">Tanggal Pengaduan</label>
                                         <input class="form-control" id="textTglPengaduan" type="date"
-                                            name="textTglPengaduan" value="{{$editDataPengaduan->tgl_pengaduan}}">
+                                            name="textTglPengaduan" value="{{$editDataPengaduan->tgl_pengaduan}}"
+                                            readonly>
                                     </div>
 
-                                    <div class="form-group mb-3">
+                                    <!-- <div class="form-group mb-3">
                                         <label for="foto">Foto</label>
                                         <input type="file" id="foto" class="form-control-file" name="foto"
                                             value="{{$editDataPengaduan->foto}}">
-                                    </div>
+                                    </div> -->
 
                                     <div class="form-group mb-3">
-                                        <label for="foto">preview</label>
-                                        <!-- menambahkan foto-preview -->
+                                        <label for="foto">Preview Foto</label>
+                                        <!-- Menampilkan preview foto -->
                                         <img id="previewFoto" src="{{asset('storage/' . $editDataPengaduan->foto)}}"
-                                            alt="Preview Foto" class="foto-preview">
+                                            alt="Preview Foto" class="foto-preview" style="width: 130px; height: auto;"
+                                            style="max-width: 100%; height: auto;">
                                     </div>
 
                                     <div class="form-group mb-3">
                                         <label for="textKeterangan">Keterangan</label>
                                         <input type="text" id="textKeterangan" name="textKeterangan"
                                             class="form-control" placeholder="Wajib diisi"
-                                            value="{{$editDataPengaduan->ket}}">
+                                            value="{{$editDataPengaduan->ket}}" readonly>
                                     </div>
 
                                     <div class="form-group mb-3">
@@ -72,7 +74,7 @@
                                     <div class="form-group mb-3">
                                         <label for="text_tgl_masuk">Tanggal Masuk</label>
                                         <input class="form-control" id="text_tgl_masuk" type="date"
-                                            name="text_tgl_masuk" value="{{$editDataPengaduan->tgl_masuk}}">
+                                            name="text_tgl_masuk" value="{{$editDataPengaduan->tgl_masuk}}" readonly>
                                     </div>
 
                                     <div class="form-group mb-3">
@@ -84,7 +86,8 @@
                                     <div class="form-group mb-3">
                                         <label for="textInventarisasi">Inventarisasi</label>
                                         <input type="text" id="textInventarisasi" class="form-control"
-                                            name="textInventarisasi" value="{{$editDataPengaduan->id_inventarisasi}}">
+                                            name="textInventarisasi" value="{{$editDataPengaduan->id_inventarisasi}}"
+                                            readonly>
                                     </div>
 
                                     <div class="form-group mb-2">

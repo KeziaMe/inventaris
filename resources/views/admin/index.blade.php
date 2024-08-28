@@ -9,47 +9,53 @@
           <div class="col">
             <h2 class="h5 page-title">Data Grafik</h2>
           </div>
-          <div class="col-12">
-            <div class="row">
-              <div class="col-md-6 col-xl-3 mb-4">
-                <div class="card shadow bg-primary text-white border-0">
-                </div>
-              </div>
-            </div> <!-- end section -->
+        </div>
 
-            <div class="row align-items-center my-2">
-              <div class="col-auto ml-auto">
-                <form class="form-inline">
-                  <div class="form-group">
-                    <label for="reportrange" class="sr-only">Date Ranges</label>
-                    <div id="reportrange" class="px-2 py-2 text-muted">
-                      <i class="fe fe-calendar fe-16 mx-2"></i>
-                      <span class="small"></span>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <button type="button" class="btn btn-sm"><span
-                        class="fe fe-refresh-ccw fe-12 text-muted"></span></button>
-                    <button type="button" class="btn btn-sm"><span
-                        class="fe fe-filter fe-12 text-muted"></span></button>
-                  </div>
-                </form>
+        <!-- Grafik -->
+        <div class="row my-4">
+          <div class="col-md-12">
+            <div class="card shadow">
+              <div class="card-body">
+                <h5 class="card-title">Grafik Barang Masuk per Bulan</h5>
+                <canvas id="barangChart"></canvas> <!-- Canvas untuk grafik -->
               </div>
             </div>
-            <!-- charts-->
-            <div class="row my-4">
-              <div class="col-md-12">
-                <div class="chart-box">
-                  <div id="columnChart"></div>
-                </div>
-              </div> <!-- .col -->
-            </div> <!-- end section -->
-            <!-- info small box -->
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        </div> <!-- end Grafik -->
 
+      </div> <!-- .col-12 -->
+    </div> <!-- .row -->
+  </div> <!-- .container-fluid -->
 </main> <!-- main -->
+
+<!-- Script Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var ctx = document.getElementById('barangChart').getContext('2d');
+    var barangChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: {!! json_encode($dataGrafik->pluck('bulan')) !!}, // Menampilkan bulan
+        datasets: [{
+          label: 'Jumlah Barang Masuk',
+          data: {!! json_encode($dataGrafik->pluck('jumlah')) !!}, // Menampilkan jumlah barang
+          backgroundColor: 'rgba(54, 162, 235, 0.5)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  });
+</script>
+
+
 @endsection

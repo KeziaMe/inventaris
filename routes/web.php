@@ -59,16 +59,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('barang')->group(function () {
         Route::get('/view', [BarangController::class, 'barangView'])->name('barang.view');
         Route::get('/tambah', [BarangController::class, 'barangTambah'])->name('barang.tambah');
-
         Route::get('/viewriwayat', [BarangController::class, 'riwayatbarangView'])->name('barang.viewriwayat');
-
         Route::get('/edit{id}', [BarangController::class, 'barangEdit'])->name('barang.edit');
         Route::post('/update/{id}', [BarangController::class, 'barangUpdate'])->name('barang.update');
         Route::get('/unduh', [BarangController::class, 'barangUnduh'])->name('barang.unduh');
         Route::post('/store', [BarangController::class, 'barangStore'])->name('barang.store');
         Route::get('/hapus/{id}', [BarangController::class, 'barangHapus'])->name('barang.hapus');
-
         Route::get('/barang/unduh', [BarangController::class, 'unduhPdf'])->name('barang.unduh');
+        Route::get('/grafik-barang', [BarangController::class, 'showGrafik'])->name('dashboard');
+
     });
 });
 

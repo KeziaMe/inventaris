@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\RiwayatBarang;
+use Carbon\Carbon; //untuk manipulasi tanggal
 use PDF;
 
 class BarangController extends Controller
@@ -120,6 +121,27 @@ class BarangController extends Controller
 
         // Mengunduh PDF dengan nama file tertentu
         return $pdf->download('laporan_barang.pdf');
+    }
+
+    // Menampilkan grafik data barang per bulan
+    public function showGrafik()
+    {
+        // Mengambil data barang per bulan
+        $barangPerBulan = Barang::selectRaw('MONTH(tgl_masuk) as bulan, COUNT(*) as jumlah')
+            ->groupBy('bulan')
+            ->orderBy('bulan', 'asc')
+            ->get();
+
+        // Mengubah data ke format yang sesuai untuk grafik
+        $dataGrafik = $barangPerBulan->map(function ($item) {
+            return [
+                'bulan' => Carbon::create()->month($item->bulan)->format('F'), // Mengubah angka bulan menjadi nama bulan
+                'jumlah' => $item->jumlah,
+            ];
+        });
+
+        // Mengirim data ke view grafik untuk menampilkan grafik
+        return view('admin.index', compact('dataGrafik'));
     }
 
 }

@@ -123,33 +123,49 @@ class BarangController extends Controller
         return $pdf->download('laporan_barang.pdf');
     }
 
-    // Menampilkan grafik data barang per bulan
-    public function showGrafik()
+    // Menampilkan grafik data barang perbulan
+    public function showGrafikKondisi()
     {
-        // Menyiapkan data yang dibutuhkan
-        $barangPerBulan = Barang::selectRaw('MONTH(tgl_masuk) as bulan, COUNT(*) as jumlah')
-            ->groupBy('bulan')
+        // Mengatur supaya menggunakan bahasa Indonesia
+        Carbon::setLocale('id');
+
+        // Mengambil data barang berdasar bulan dan kondisi
+        $barangPerKondisiDanBulan = Barang::selectRaw('MONTH(tgl_masuk) as bulan, kondisi_brg as kondisi, COUNT(*) as jumlah')
+            ->groupBy('bulan', 'kondisi')
             ->orderBy('bulan', 'asc')
             ->get();
 
-        // Mapping data untuk grafik
-        $dataGrafik = $barangPerBulan->map(function ($item) {
-            return [
-                'bulan' => Carbon::create()->month($item->bulan)->format('F'),
-                'jumlah' => $item->jumlah,
-            ];
+        // Inisialisasi array untuk setiap kondisi perbulan
+        $dataGrafik = [];
+        $kondisiLabels = ['Baik', 'Kurang Baik', 'Rusak Berat'];
+        $bulanLabels = collect(range(1, 12))->map(function ($month) {
+            // agar menjadi nama bulan dalam bahasa Indonesia
+            return Carbon::create()->month($month)->translatedFormat('F');
         });
 
-        // Memastikan dataGrafik tidak kosong
-        if ($dataGrafik->isEmpty()) {
-            $dataGrafik = collect([
-                ['bulan' => 'January', 'jumlah' => 0],
-                // Tambahkan default bulan lain jika perlu
-            ]);
+        // Loop untuk mengisi data grafik
+        foreach ($bulanLabels as $bulan) {
+            $data = [
+                'bulan' => $bulan,
+                'baik' => 0,
+                'kurang_baik' => 0,
+                'rusak_berat' => 0,
+            ];
+
+            foreach ($barangPerKondisiDanBulan as $barang) {
+                if (Carbon::create()->month($barang->bulan)->translatedFormat('F') == $bulan) {
+                    if (strtolower($barang->kondisi) == 'baik') {
+                        $data['baik'] = $barang->jumlah;
+                    } elseif (strtolower($barang->kondisi) == 'kurang baik') {
+                        $data['kurang_baik'] = $barang->jumlah;
+                    } elseif (strtolower($barang->kondisi) == 'rusak berat') {
+                        $data['rusak_berat'] = $barang->jumlah;
+                    }
+                }
+            }
+            $dataGrafik[] = $data;
         }
 
-        // Kirim data ke view
-        return view('admin.index', compact('dataGrafik'));
+        return view('admin.index', compact('dataGrafik', 'bulanLabels', 'kondisiLabels'));
     }
-
 }

@@ -37,7 +37,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     // Rute dashboard untuk mengarah ke BarangController showGrafik
-    Route::get('/dashboard', [BarangController::class, 'showGrafik'])->name('dashboard');
+    Route::get('/dashboard', [BarangController::class, 'showGrafikKondisi'])->name('dashboard');
 });
 
 Route::get('/admin/logout', [BerandaController::class, 'logout'])->name('admin.logout');

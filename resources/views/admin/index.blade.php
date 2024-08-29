@@ -33,28 +33,39 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var ctx = document.getElementById('kondisiChart').getContext('2d');
+    var dataGrafik = @json($dataGrafik);
+
+    var bulanLabels = dataGrafik.map(item => item.bulan);
+    var baikData = dataGrafik.map(item => item.baik);
+    var kurangBaikData = dataGrafik.map(item => item.kurang_baik);
+    var rusakBeratData = dataGrafik.map(item => item.rusak_berat);
+
+    // Menghitung nilai maxY dan stepSize
+    var maxY = Math.max(...baikData, ...kurangBaikData, ...rusakBeratData);
+    var stepSize = Math.ceil(maxY / 10); // Gunakan Math.ceil agar stepSize tepat
+
     var kondisiChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: {!! json_encode(array_column($dataGrafik, 'bulan')) !!}, // Menampilkan bulan
+        labels: bulanLabels,
         datasets: [
           {
             label: 'Baik',
-            data: {!! json_encode(array_column($dataGrafik, 'baik')) !!}, // Data kondisi baik
+            data: baikData,
             backgroundColor: 'rgba(54, 162, 235, 0.5)',
             borderColor: 'rgba(54, 162, 235, 1)',
             borderWidth: 1
           },
           {
             label: 'Kurang Baik',
-            data: {!! json_encode(array_column($dataGrafik, 'kurang_baik')) !!}, // Data kondisi kurang baik
+            data: kurangBaikData,
             backgroundColor: 'rgba(255, 206, 86, 0.5)',
             borderColor: 'rgba(255, 206, 86, 1)',
             borderWidth: 1
           },
           {
             label: 'Rusak Berat',
-            data: {!! json_encode(array_column($dataGrafik, 'rusak_berat')) !!}, // Data kondisi rusak berat
+            data: rusakBeratData,
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1
@@ -66,19 +77,39 @@
         scales: {
           y: {
             beginAtZero: true,
+            suggestedMin: 0,
+            suggestedMax: maxY,
             ticks: {
-              stepSize: 1, // Atur stepSize untuk bilangan bulat
-              callback: function (value, index, values) {
-                return Number.isInteger(value) ? value : ''; // Menampilkan hanya bilangan bulat
-              }
+              stepSize: stepSize, // Menentukan jarak antara ticks
+              callback: function (value) {
+                return Number.isInteger(value) ? value : ''; // Memastikan hanya bilangan bulat yang ditampilkan
+              },
+              precision: 0 // Menghindari angka desimal
+            },
+            grid: {
+              borderColor: '#dcdcdc',
+              borderWidth: 1,
+              color: '#dcdcdc',
+              drawBorder: true,
+              drawOnChartArea: true,
+              drawTicks: true
             }
           },
           x: {
-            stacked: true // Menampilkan diagram batang secara stack untuk per bulan
+            stacked: true
           }
         }
       }
     });
   });
 </script>
+
+
+
+
+
+
+
+
+
 @endsection

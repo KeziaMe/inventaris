@@ -166,6 +166,8 @@ class BarangController extends Controller
             $dataGrafik[] = $data;
         }
 
-        return view('admin.index', compact('dataGrafik', 'bulanLabels', 'kondisiLabels'));
+        // Mengirimkan data ke view
+        return view('admin.index', ['dataGrafik' => $dataGrafik, 'bulanLabels' => $bulanLabels, 'kondisiLabels' => $kondisiLabels]);
     }
+
 }

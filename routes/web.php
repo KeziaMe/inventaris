@@ -36,9 +36,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.index');
-    })->name('dashboard');
+    // Rute dashboard untuk mengarah ke BarangController showGrafik
+    Route::get('/dashboard', [BarangController::class, 'showGrafik'])->name('dashboard');
 });
 
 Route::get('/admin/logout', [BerandaController::class, 'logout'])->name('admin.logout');
@@ -66,8 +65,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/store', [BarangController::class, 'barangStore'])->name('barang.store');
         Route::get('/hapus/{id}', [BarangController::class, 'barangHapus'])->name('barang.hapus');
         Route::get('/barang/unduh', [BarangController::class, 'unduhPdf'])->name('barang.unduh');
-        Route::get('/grafik-barang', [BarangController::class, 'showGrafik'])->name('dashboard');
-
     });
 });
 

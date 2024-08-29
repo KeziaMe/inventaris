@@ -1,6 +1,6 @@
 @extends('admin.admin_master')
-@section('admin')
 
+@section('admin')
 <main role="main" class="main-content">
   <div class="container-fluid">
     <div class="row justify-content-center">
@@ -56,6 +56,4 @@
     });
   });
 </script>
-
-
 @endsection

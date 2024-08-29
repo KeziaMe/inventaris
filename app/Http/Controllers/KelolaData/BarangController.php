@@ -126,21 +126,29 @@ class BarangController extends Controller
     // Menampilkan grafik data barang per bulan
     public function showGrafik()
     {
-        // Mengambil data barang per bulan
+        // Menyiapkan data yang dibutuhkan
         $barangPerBulan = Barang::selectRaw('MONTH(tgl_masuk) as bulan, COUNT(*) as jumlah')
             ->groupBy('bulan')
             ->orderBy('bulan', 'asc')
             ->get();
 
-        // Mengubah data ke format yang sesuai untuk grafik
+        // Mapping data untuk grafik
         $dataGrafik = $barangPerBulan->map(function ($item) {
             return [
-                'bulan' => Carbon::create()->month($item->bulan)->format('F'), // Mengubah angka bulan menjadi nama bulan
+                'bulan' => Carbon::create()->month($item->bulan)->format('F'),
                 'jumlah' => $item->jumlah,
             ];
         });
 
-        // Mengirim data ke view grafik untuk menampilkan grafik
+        // Memastikan dataGrafik tidak kosong
+        if ($dataGrafik->isEmpty()) {
+            $dataGrafik = collect([
+                ['bulan' => 'January', 'jumlah' => 0],
+                // Tambahkan default bulan lain jika perlu
+            ]);
+        }
+
+        // Kirim data ke view
         return view('admin.index', compact('dataGrafik'));
     }
 

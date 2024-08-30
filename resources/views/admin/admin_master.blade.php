@@ -354,6 +354,22 @@
     });
   </script>
 
+  <script>
+    const inputNota = document.querySelector('#textNota');
+    const previewNota = document.querySelector('#previewNota');
+
+    inputNota.addEventListener('change', function () {
+      const file = inputNota.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        previewNota.src = e.target.result;
+      }
+
+      reader.readAsDataURL(file);
+    });
+  </script>
+
 </body>
 
 </html>

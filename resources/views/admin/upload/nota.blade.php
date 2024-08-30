@@ -21,6 +21,11 @@
                                     <input type="file" id="textNota" name="textNota" class="form-control-file">
                                 </div>
 
+                                <div class="form-group mb-3">
+                                        <label for="textNota">preview</label>
+                                        <!-- menambahkan kelas foto-preview pada gambar -->
+                                        <img id="previewNota" src="#" alt="Preview Nota" class="foto-preview">
+                                    </div>
 
                                 <div class="form-group row">
                                     <label for="textKeterangan" class="col-sm-3 col-form-label">Keterangan</label>

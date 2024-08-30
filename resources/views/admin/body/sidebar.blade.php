@@ -26,12 +26,14 @@
       <li class="nav-item w-100">
       </li>
 
+      @if (auth()->user()->role == "SARPRAS")
       <li class="nav-item w-100">
-        <a class="nav-link" href="{{route('form_pengaduan')}}">
-          <i class="fe fe-credit-card fe-16"></i>
-          <span class="ml-3 item-text">Form Pengaduan</span>
-        </a>
+      <a class="nav-link" href="{{route('form_pengaduan')}}">
+        <i class="fe fe-credit-card fe-16"></i>
+        <span class="ml-3 item-text">Form Pengaduan</span>
+      </a>
       </li>
+    @endif
 
       @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
       <li class="nav-item dropdown">
@@ -65,12 +67,14 @@
         </li>
       </ul>
 
+      @if (auth()->user()->role == "Admin")
       <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-        <li class="nav-item">
-        <a class="nav-link pl-3" href="{{route('jenisbarang.view')}}"><span class="ml-1 item-text">
-          Jenis Barang</span></a>
-        </li>
+      <li class="nav-item">
+      <a class="nav-link pl-3" href="{{route('jenisbarang.view')}}"><span class="ml-1 item-text">
+        Jenis Barang</span></a>
+      </li>
       </ul>
+    @endif
 
       @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
       <ul class="collapse list-unstyled pl-4 w-100" id="tables">
@@ -90,19 +94,23 @@
       </li>
     @endif
 
+      @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
       <li class="nav-item w-100">
-        <a class="nav-link" href="{{route('inventarisasi.view')}}">
-          <i class="fe fe-list fe-16"></i>
-          <span class="ml-3 item-text">Inventarisasi</span>
-        </a>
+      <a class="nav-link" href="{{route('inventarisasi.view')}}">
+        <i class="fe fe-list fe-16"></i>
+        <span class="ml-3 item-text">Inventarisasi</span>
+      </a>
       </li>
+    @endif
 
+      @if (auth()->user()->role == "Admin")
       <li class="nav-item w-100">
-        <a class="nav-link" href="{{route('nota.upload')}}">
-          <i class="fe fe-file fe-16"></i>
-          <span class="ml-3 item-text">Unggah Nota</span>
-        </a>
+      <a class="nav-link" href="{{route('nota.upload')}}">
+        <i class="fe fe-file fe-16"></i>
+        <span class="ml-3 item-text">Unggah Nota</span>
+      </a>
       </li>
+    @endif
 
       <li class="nav-item w-100">
         <a class="nav-link" href="{{route('nota.arsip')}}">
@@ -111,12 +119,14 @@
         </a>
       </li>
 
+      @if (auth()->user()->role == "Admin")
       <li class="nav-item w-100">
-        <a class="nav-link" href="{{route('role.view')}}">
-          <i class="fe fe-users fe-16"></i>
-          <span class="ml-3 item-text">Role</span>
-        </a>
+      <a class="nav-link" href="{{route('role.view')}}">
+        <i class="fe fe-users fe-16"></i>
+        <span class="ml-3 item-text">Role</span>
+      </a>
       </li>
+    @endif
 
       @if (auth()->user()->role == "Admin")
 

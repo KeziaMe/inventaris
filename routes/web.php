@@ -43,7 +43,7 @@ Route::middleware([
 Route::get('/admin/logout', [BerandaController::class, 'logout'])->name('admin.logout');
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(function () {
     Route::prefix('ruangan')->group(function () {
         Route::get('/view', [RuanganController::class, 'ruanganView'])->name('ruangan.view');
         Route::get('/tambah', [RuanganController::class, 'ruanganTambah'])->name('ruangan.tambah');
@@ -54,7 +54,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(function () {
     Route::prefix('barang')->group(function () {
         Route::get('/view', [BarangController::class, 'barangView'])->name('barang.view');
         Route::get('/tambah', [BarangController::class, 'barangTambah'])->name('barang.tambah');

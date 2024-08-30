@@ -49,12 +49,14 @@
       </ul>
     @endif
 
+      @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
       <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-        <li class="nav-item">
-        <a class="nav-link pl-3" href="{{route('barang.view')}}"><span class="ml-1 item-text">
-          Barang</span></a>
-        </li>
+      <li class="nav-item">
+      <a class="nav-link pl-3" href="{{route('barang.view')}}"><span class="ml-1 item-text">
+        Barang</span></a>
+      </li>
       </ul>
+    @endif
 
       <ul class="collapse list-unstyled pl-4 w-100" id="tables">
         <li class="nav-item">

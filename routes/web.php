@@ -90,7 +90,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(function () {
     Route::prefix('pengaduan')->group(function () {
         Route::get('/pengaduan/view', [PengaduanController::class, 'pengaduanView'])->name('pengaduan.view');
         Route::get('/form_pengaduan', [PengaduanController::class, 'form_pengaduan'])->name('form_pengaduan');
@@ -141,7 +141,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 // Semua route untuk user
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/view', [UserController::class, 'userView'])->name('user.view');
         Route::get('/Tambah', [UserController::class, 'userTambah'])->name('user.tambah');

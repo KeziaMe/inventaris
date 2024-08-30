@@ -33,53 +33,60 @@
         </a>
       </li>
 
+      @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
       <li class="nav-item dropdown">
-        <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-          <i class="fe fe-grid fe-16"></i>
-          <span class="ml-3 item-text">Kelola Data</span>
-        </a>
-        <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-          <li class="nav-item">
-            <a class="nav-link pl-3" href="{{route('ruangan.view')}}"><span class="ml-1 item-text">
-                Ruangan</span></a>
-          </li>
-        </ul>
+      <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+        <i class="fe fe-grid fe-16"></i>
+        <span class="ml-3 item-text">Kelola Data</span>
+      </a>
 
-        <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-          <li class="nav-item">
-            <a class="nav-link pl-3" href="{{route('barang.view')}}"><span class="ml-1 item-text">
-                Barang</span></a>
-          </li>
-        </ul>
-
-        <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-          <li class="nav-item">
-            <a class="nav-link pl-3" href="{{route('kondisibarang.view')}}"><span class="ml-1 item-text">
-                Kondisi Barang</span></a>
-          </li>
-        </ul>
-
-        <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-          <li class="nav-item">
-            <a class="nav-link pl-3" href="{{route('jenisbarang.view')}}"><span class="ml-1 item-text">
-                Jenis Barang</span></a>
-          </li>
-        </ul>
-
-        <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-          <li class="nav-item">
-            <a class="nav-link pl-3" href="{{route('pengaduan.view')}}"><span class="ml-1 item-text">
-                Pengaduan</span></a>
-          </li>
-        </ul>
-
-        <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-          <li class="nav-item">
-            <a class="nav-link pl-3" href="{{route('statuspengaduan.view')}}"><span class="ml-1 item-text">Status
-                Pengaduan</span></a>
-          </li>
-        </ul>
+      @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
+      <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+      <li class="nav-item">
+      <a class="nav-link pl-3" href="{{route('ruangan.view')}}"><span class="ml-1 item-text">
+        Ruangan</span></a>
       </li>
+      </ul>
+    @endif
+
+      <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+        <li class="nav-item">
+        <a class="nav-link pl-3" href="{{route('barang.view')}}"><span class="ml-1 item-text">
+          Barang</span></a>
+        </li>
+      </ul>
+
+      <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+        <li class="nav-item">
+        <a class="nav-link pl-3" href="{{route('kondisibarang.view')}}"><span class="ml-1 item-text">
+          Kondisi Barang</span></a>
+        </li>
+      </ul>
+
+      <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+        <li class="nav-item">
+        <a class="nav-link pl-3" href="{{route('jenisbarang.view')}}"><span class="ml-1 item-text">
+          Jenis Barang</span></a>
+        </li>
+      </ul>
+
+      @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
+      <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+      <li class="nav-item">
+      <a class="nav-link pl-3" href="{{route('pengaduan.view')}}"><span class="ml-1 item-text">
+        Pengaduan</span></a>
+      </li>
+      </ul>
+    @endif
+
+      <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+        <li class="nav-item">
+        <a class="nav-link pl-3" href="{{route('statuspengaduan.view')}}"><span class="ml-1 item-text">Status
+          Pengaduan</span></a>
+        </li>
+      </ul>
+      </li>
+    @endif
 
       <li class="nav-item w-100">
         <a class="nav-link" href="{{route('inventarisasi.view')}}">
@@ -109,13 +116,16 @@
         </a>
       </li>
 
+      @if (auth()->user()->role == "Admin")
+
       <li class="nav-item w-100">
-        <a class="nav-link" href="{{route('user.view')}}">
-          <i class="fe fe-user fe-16"></i>
-          <span class="ml-3 item-text">User</span>
-        </a>
+      <a class="nav-link" href="{{route('user.view')}}">
+        <i class="fe fe-user fe-16"></i>
+        <span class="ml-3 item-text">User</span>
+      </a>
       </li>
 
+    @endif
 
 
 

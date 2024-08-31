@@ -33,6 +33,8 @@
                                         @endif
 
                                         <td>{{$nota->keterangan}}</td>
+
+
                                         <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <span class="text-muted sr-only">Action</span>
@@ -43,6 +45,7 @@
                                                 <a class="dropdown-item" href="{{route('nota.hapus', $nota->id)}}">Hapus</a>
                                             </div>
                                         </td>
+
                                     </tr>
                                 @endforeach
 

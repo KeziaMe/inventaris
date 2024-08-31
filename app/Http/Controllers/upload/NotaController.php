@@ -33,8 +33,10 @@ class NotaController extends Controller
         $data->keterangan = $request->textKeterangan;
         $data->save();
 
-        return redirect()->route('nota.arsip')->with('message', 'berhasil tambah nota');
+        return response()->json(['message' => 'berhasil tambah nota']);
     }
+
+
     public function arsipNota()
     {
         $data['allDataNota'] = Nota::all();

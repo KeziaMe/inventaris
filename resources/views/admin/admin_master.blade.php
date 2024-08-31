@@ -370,6 +370,31 @@
     });
   </script>
 
+  <script>
+    $(document).ready(function () {
+      $('#notaForm').on('submit', function (e) {
+        e.preventDefault(); // Mencegah form submit default
+
+        var formData = new FormData(this); // Ambil data dari form
+
+        $.ajax({
+          type: 'POST',
+          url: "{{ route('nota.store') }}", // Route untuk menyimpan data
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function (response) {
+            $('#responseMessage').html('<div class="alert alert-success">Berhasil tambah nota.</div>');
+            $('#notaForm')[0].reset(); // Reset form setelah submit berhasil
+          },
+          error: function (response) {
+            $('#responseMessage').html('<div class="alert alert-danger">Gagal tambah nota. Cek inputan Anda.</div>');
+          }
+        });
+      });
+    });
+  </script>
+
 </body>
 
 </html>

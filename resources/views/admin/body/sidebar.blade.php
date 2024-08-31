@@ -35,7 +35,7 @@
       </li>
     @endif
 
-      @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
+      @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS" || auth()->user()->role == "Kepala Sekolah")
       <li class="nav-item dropdown">
       <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
         <i class="fe fe-grid fe-16"></i>
@@ -51,7 +51,7 @@
       </ul>
     @endif
 
-      @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
+      @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS" || auth()->user()->role == "Kepala Sekolah")
       <ul class="collapse list-unstyled pl-4 w-100" id="tables">
       <li class="nav-item">
       <a class="nav-link pl-3" href="{{route('barang.view')}}"><span class="ml-1 item-text">
@@ -60,12 +60,14 @@
       </ul>
     @endif
 
+      @if (auth()->user()->role == "Admin")
       <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-        <li class="nav-item">
-        <a class="nav-link pl-3" href="{{route('kondisibarang.view')}}"><span class="ml-1 item-text">
-          Kondisi Barang</span></a>
-        </li>
+      <li class="nav-item">
+      <a class="nav-link pl-3" href="{{route('kondisibarang.view')}}"><span class="ml-1 item-text">
+        Kondisi Barang</span></a>
+      </li>
       </ul>
+    @endif
 
       @if (auth()->user()->role == "Admin")
       <ul class="collapse list-unstyled pl-4 w-100" id="tables">
@@ -85,22 +87,25 @@
       </ul>
     @endif
 
+      @if (auth()->user()->role == "Admin")
       <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-        <li class="nav-item">
-        <a class="nav-link pl-3" href="{{route('statuspengaduan.view')}}"><span class="ml-1 item-text">Status
-          Pengaduan</span></a>
-        </li>
+      <li class="nav-item">
+      <a class="nav-link pl-3" href="{{route('statuspengaduan.view')}}"><span class="ml-1 item-text">Status
+        Pengaduan</span></a>
+      </li>
       </ul>
       </li>
     @endif
 
+
       @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
       <li class="nav-item w-100">
       <a class="nav-link" href="{{route('inventarisasi.view')}}">
-        <i class="fe fe-list fe-16"></i>
-        <span class="ml-3 item-text">Inventarisasi</span>
+      <i class="fe fe-list fe-16"></i>
+      <span class="ml-3 item-text">Inventarisasi</span>
       </a>
       </li>
+    @endif
     @endif
 
       @if (auth()->user()->role == "Admin")
@@ -112,12 +117,14 @@
       </li>
     @endif
 
+      @if (auth()->user()->role == "Bendahara")
       <li class="nav-item w-100">
-        <a class="nav-link" href="{{route('nota.arsip')}}">
-          <i class="fe fe-book fe-16"></i>
-          <span class="ml-3 item-text">Arsip Nota</span>
-        </a>
+      <a class="nav-link" href="{{route('nota.arsip')}}">
+        <i class="fe fe-book fe-16"></i>
+        <span class="ml-3 item-text">Arsip Nota</span>
+      </a>
       </li>
+    @endif
 
       @if (auth()->user()->role == "Admin")
       <li class="nav-item w-100">
@@ -129,18 +136,13 @@
     @endif
 
       @if (auth()->user()->role == "Admin")
-
       <li class="nav-item w-100">
       <a class="nav-link" href="{{route('user.view')}}">
         <i class="fe fe-user fe-16"></i>
         <span class="ml-3 item-text">User</span>
       </a>
       </li>
-
     @endif
-
-
-
 
     </ul>
   </nav>

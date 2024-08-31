@@ -42,7 +42,6 @@ Route::middleware([
 
 Route::get('/admin/logout', [BerandaController::class, 'logout'])->name('admin.logout');
 
-
 Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(function () {
     Route::prefix('ruangan')->group(function () {
         Route::get('/view', [RuanganController::class, 'ruanganView'])->name('ruangan.view');
@@ -54,7 +53,7 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(functio
     });
 });
 
-Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(function () {
+Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS,Kepala Sekolah'])->group(function () {
     Route::prefix('barang')->group(function () {
         Route::get('/view', [BarangController::class, 'barangView'])->name('barang.view');
         Route::get('/tambah', [BarangController::class, 'barangTambah'])->name('barang.tambah');
@@ -68,7 +67,7 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(functio
     });
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
     Route::prefix('kondisibarang')->group(function () {
         Route::get('/view', [KondisiBarangController::class, 'kondisibarangView'])->name('kondisibarang.view');
         Route::get('/tambah', [KondisiBarangController::class, 'kondisibarangTambah'])->name('kondisibarang.tambah');
@@ -105,7 +104,7 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(functio
     });
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
     Route::prefix('statuspengaduan')->group(function () {
         Route::get('/view', [StatusPengaduanController::class, 'statuspengaduanView'])->name('statuspengaduan.view');
         Route::post('/store', [StatusPengaduanController::class, 'statuspengaduanStore'])->name('statuspengaduan.store');
@@ -126,7 +125,6 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(functio
         Route::get('/hapus/{id}', [InventarisasiController::class, 'inventarisasiHapus'])->name('inventarisasi.hapus');
     });
 });
-
 
 // Semua route untuk user
 Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
@@ -152,8 +150,7 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
     });
 });
 
-
-Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
+Route::middleware(['auth', 'verified', 'CekLevel:Admin,Bendahara'])->group(function () {
     Route::prefix('nota')->group(function () {
         Route::get('/upload', [NotaController::class, 'notaUpload'])->name('nota.upload');
         Route::get('/arsip', [NotaController::class, 'arsipNota'])->name('nota.arsip');

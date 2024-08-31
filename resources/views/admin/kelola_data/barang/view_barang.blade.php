@@ -6,17 +6,19 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Data Barang</h2>
-                <div class="col text-end">
-                    <a href="{{route('barang.tambah')}}" class="btn btn-success" style="color: white;">
-                        <i class="fe fe-plus"></i>Tambah
-                    </a>
-                    <a href="{{route('barang.unduh')}}" class="btn btn-primary" style="color: white;">
-                        <i class="fe fe-download"></i>Unduh
-                    </a>
-                    <a href="{{route('barang.viewriwayat')}}" class="btn btn-secondary" style="color: white;">
-                        <i class="fe fe-repeat"></i>Riwayat
-                    </a>
-                </div>
+                @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
+                    <div class="col text-end">
+                        <a href="{{route('barang.tambah')}}" class="btn btn-success" style="color: white;">
+                            <i class="fe fe-plus"></i>Tambah
+                        </a>
+                        <a href="{{route('barang.unduh')}}" class="btn btn-primary" style="color: white;">
+                            <i class="fe fe-download"></i>Unduh
+                        </a>
+                        <a href="{{route('barang.viewriwayat')}}" class="btn btn-secondary" style="color: white;">
+                            <i class="fe fe-repeat"></i>Riwayat
+                        </a>
+                    </div>
+                @endif
 
                 <div class="row">
                     <!-- simple table -->
@@ -34,7 +36,9 @@
                                             <th>Tanggal Masuk</th>
                                             <th>Tanggal Update</th>
                                             <th>Jenis Barang</th>
-                                            <th>Aksi</th>
+                                            @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
+                                                <th>Aksi</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -49,18 +53,20 @@
                                                 <td>{{$barang->tgl_update}}</td>
                                                 <td>{{$barang->jenis_brg}}</td>
 
-                                                <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <span class="text-muted sr-only">Action</span>
-                                                    </button>
+                                                @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
+                                                    <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <span class="text-muted sr-only">Action</span>
+                                                        </button>
 
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item"
-                                                            href="{{route('barang.edit', $barang->id)}}">Edit</a>
-                                                        <a class="dropdown-item" id="delete"
-                                                            href="{{route('barang.hapus', $barang->id)}}">Hapus</a>
-                                                    </div>
-                                                </td>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item"
+                                                                href="{{route('barang.edit', $barang->id)}}">Edit</a>
+                                                            <a class="dropdown-item" id="delete"
+                                                                href="{{route('barang.hapus', $barang->id)}}">Hapus</a>
+                                                        </div>
+                                                    </td>
+                                                @endif
                                             </tr>
                                         @endforeach
 

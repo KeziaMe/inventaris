@@ -33,10 +33,6 @@ class PengaduanController extends Controller
         $detailData_pengaduan = Pengaduan::find($id);
         return view("admin.kelola_data.pengaduan.detail_pengaduan", compact('detailData_pengaduan'));
     }
-    public function pengaduanUnduh()
-    {
-        return view("admin.kelola_data.pengaduan.unduh_pengaduan");
-    }
 
     public function pengaduanStore(Request $request)
     {
@@ -130,7 +126,18 @@ class PengaduanController extends Controller
 
     public function unduhPerbulan(Request $request)
     {
-        return view('admin.kelola_data.pengaduan.halaman_unduh_pengaduan');
+        // Mengambil daftar bulan dan tahun yang memiliki data pengaduan
+        $dataPengaduan = Pengaduan::selectRaw('MONTH(tgl_pengaduan) as bulan, YEAR(tgl_pengaduan) as tahun')
+            ->distinct()
+            ->get();
+
+        // Mengelompokkan data berdasarkan bulan
+        $bulanDenganPengaduan = $dataPengaduan->groupBy('bulan')->map(function ($item) {
+            return $item->pluck('tahun')->toArray();
+        });
+
+        // Mengirim variabel ke view
+        return view("admin.kelola_data.pengaduan.halaman_unduh_pengaduan", compact('bulanDenganPengaduan'));
     }
 
 }

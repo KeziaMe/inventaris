@@ -28,14 +28,14 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="tahun" class="mr-2">Pilih Tahun:</label>
                             <select name="tahun" id="tahun" class="form-control mr-2">
                                 @for ($i = 2020; $i <= date('Y'); $i++)
                                     <option value="{{ $i }}">{{ $i }}</option>
                                 @endfor
                             </select>
-                        </div>
+                        </div> -->
 
                         <button type="submit" class="btn btn-primary">
                             <i class="fe fe-download"></i> Unduh Laporan

@@ -9,7 +9,7 @@
                 <div class="col text-end">
 
                     <!-- Form untuk Memilih Bulan dan Tahun -->
-                    <form action="{{ route('pengaduan.unduhBulan') }}" method="GET" class="form-inline mt-3">
+                    <form action="{{ route('pengaduan.unduhBulan.pdf') }}" method="GET" class="form-inline mt-3">
                         <div class="form-group">
                             <label for="bulan" class="mr-2">Pilih Bulan:</label>
                             <select name="bulan" id="bulan" class="form-control mr-2">

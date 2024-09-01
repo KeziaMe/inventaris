@@ -49,13 +49,13 @@
         <tbody>
             @foreach ($allDataPengaduan as $key => $pengaduan)
                 <tr>
-                    <td>{{$key + 1}}</td>
-                    <td>{{$pengaduan->tgl_pengaduan}}</td>
-                    <td>{{$pengaduan->id_kondisi_brg}}</td>
-                    <td>{{$pengaduan->nm_status_pengaduan}}</td>
-                    <td>{{$pengaduan->tgl_masuk}}</td>
-                    <td>{{$pengaduan->tgl_update}}</td>
-                    <td>{{$pengaduan->id_inventarisasi}}</td>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $pengaduan->tgl_pengaduan }}</td>
+                    <td>{{ $pengaduan->id_kondisi_brg }}</td>
+                    <td>{{ $pengaduan->nm_status_pengaduan }}</td>
+                    <td>{{ $pengaduan->tgl_masuk }}</td>
+                    <td>{{ $pengaduan->tgl_update }}</td>
+                    <td>{{ $pengaduan->id_inventarisasi }}</td>
                 </tr>
             @endforeach
         </tbody>

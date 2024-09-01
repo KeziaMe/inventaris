@@ -113,17 +113,6 @@ class PengaduanController extends Controller
         }
     }
 
-    public function unduhPdf()
-    {
-        $allDataPengaduan = Pengaduan::all(); // Ambil data barang dari database
-
-        // Memuat view dengan data yang diperlukan
-        $pdf = PDF::loadView('admin.kelola_data.pengaduan.unduh_pengaduan', compact('allDataPengaduan'));
-
-        // Mengunduh PDF dengan nama file tertentu
-        return $pdf->download('laporan_pengaduan.pdf');
-    }
-
     public function unduhPerbulan(Request $request)
     {
         // Mengambil daftar bulan dan tahun yang memiliki data pengaduan
@@ -138,6 +127,35 @@ class PengaduanController extends Controller
 
         // Mengirim variabel ke view
         return view("admin.kelola_data.pengaduan.halaman_unduh_pengaduan", compact('bulanDenganPengaduan'));
+    }
+
+    public function unduhPerbulanPDF(Request $request)
+    {
+        // Validasi input bulan dan tahun
+        $request->validate([
+            'bulan' => 'required|numeric|min:1|max:12',
+            'tahun' => 'required|numeric|min:2000|max:' . date('Y'),
+        ]);
+
+        $bulan = $request->input('bulan');
+        $tahun = $request->input('tahun');
+
+        // Ambil data pengaduan yang sesuai dengan bulan dan tahun yang dipilih
+        $dataPengaduan = Pengaduan::whereMonth('tgl_pengaduan', $bulan)
+            ->whereYear('tgl_pengaduan', $tahun)
+            ->get();
+
+        if ($dataPengaduan->isEmpty()) {
+            return redirect()->back()->with('error', 'Tidak ada data pengaduan untuk bulan dan tahun yang dipilih.');
+        }
+
+        // Memuat view dengan data yang diperlukan untuk PDF
+        $pdf = PDF::loadView('admin.kelola_data.pengaduan.unduhbuat unduh _pengaduan', [
+            'allDataPengaduan' => $dataPengaduan
+        ]);
+
+        // Mengunduh PDF dengan nama file tertentu
+        return $pdf->download("laporan_pengaduan_{$bulan}_{$tahun}.pdf");
     }
 
 }

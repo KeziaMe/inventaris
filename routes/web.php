@@ -95,12 +95,11 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(functio
         Route::get('/form_pengaduan', [PengaduanController::class, 'form_pengaduan'])->name('form_pengaduan');
         Route::get('/edit/{id}', [PengaduanController::class, 'pengaduanEdit'])->name('pengaduan.edit');
         Route::get('/detail/{id}', [PengaduanController::class, 'pengaduanDetail'])->name('pengaduan.detail');
-        Route::get('/unduh', [PengaduanController::class, 'pengaduanUnduh'])->name('pengaduan.unduh');
         Route::post('/store', [PengaduanController::class, 'pengaduanStore'])->name('pengaduan.store');
         Route::post('/update/{id}', [PengaduanController::class, 'pengaduanUpdate'])->name('pengaduan.update');
         Route::get('/hapus/{id}', [PengaduanController::class, 'pengaduanHapus'])->name('pengaduan.hapus');
-        Route::get('/pengaduan/unduh', [PengaduanController::class, 'unduhPdf'])->name('pengaduan.unduh');
-        Route::get('/pengaduan/unduh-bulan', [PengaduanController::class, 'unduhPerbulan'])->name('pengaduan.unduhBulan');
+        Route::get('/unduh-perbulan', [PengaduanController::class, 'unduhPerbulan'])->name('pengaduan.unduhBulan');
+        Route::get('/unduh', [PengaduanController::class, 'unduhPerbulanPDF'])->name('pengaduan.unduhBulan.pdf');
     });
 });
 

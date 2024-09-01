@@ -150,7 +150,7 @@ class PengaduanController extends Controller
         }
 
         // Memuat view dengan data yang diperlukan untuk PDF
-        $pdf = PDF::loadView('admin.kelola_data.pengaduan.unduhbuat unduh _pengaduan', [
+        $pdf = PDF::loadView('admin.kelola_data.pengaduan.unduh_pengaduan', [
             'allDataPengaduan' => $dataPengaduan
         ]);
 

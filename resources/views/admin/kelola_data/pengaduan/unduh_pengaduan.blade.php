@@ -3,38 +3,11 @@
 
 <head>
     <title>Laporan Pengaduan</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        h2 {
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
-    <h2>Laporan Data Pengaduan</h2>
-    <table>
+    <h2>Laporan Data Pengaduan Bulan {{ $bulan }} Tahun {{ $tahun }}</h2>
+    <table border="1" cellpadding="5" cellspacing="0">
         <thead>
             <tr>
                 <th>NO</th>

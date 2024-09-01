@@ -99,7 +99,7 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(functio
         Route::post('/update/{id}', [PengaduanController::class, 'pengaduanUpdate'])->name('pengaduan.update');
         Route::get('/hapus/{id}', [PengaduanController::class, 'pengaduanHapus'])->name('pengaduan.hapus');
         Route::get('/unduh-perbulan', [PengaduanController::class, 'unduhPerbulan'])->name('pengaduan.unduhBulan');
-        Route::get('/unduh', [PengaduanController::class, 'unduhPerbulanPDF'])->name('pengaduan.unduhBulan.pdf');
+        Route::post('/unduh', [PengaduanController::class, 'unduhPerbulanPDF'])->name('pengaduan.unduhBulan.pdf');
     });
 });
 

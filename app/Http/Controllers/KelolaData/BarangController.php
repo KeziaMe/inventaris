@@ -112,6 +112,22 @@ class BarangController extends Controller
         return redirect()->route('barang.view');
     }
 
+    public function unduhPerbulan(Request $request)
+    {
+        // Mengambil daftar bulan dan tahun yang memiliki data pengaduan
+        $dataBarang = Barang::selectRaw('MONTH(tgl_masuk) as bulan, YEAR(tgl_masuk) as tahun')
+            ->distinct()
+            ->get();
+
+        // Mengelompokkan data berdasarkan bulan
+        $bulanDenganBarang = $dataBarang->groupBy('bulan')->map(function ($item) {
+            return $item->pluck('tahun')->toArray();
+        });
+
+        // Mengirim variabel ke view
+        return view("admin.kelola_data.barang.halaman_unduh_barang", compact('bulanDenganBarang'));
+    }
+
     public function unduhPdf()
     {
         $allDataBarang = Barang::all(); // Ambil data barang dari database

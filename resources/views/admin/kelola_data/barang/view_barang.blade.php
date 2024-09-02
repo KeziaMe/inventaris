@@ -11,7 +11,7 @@
                         <a href="{{route('barang.tambah')}}" class="btn btn-success" style="color: white;">
                             <i class="fe fe-plus"></i>Tambah
                         </a>
-                        <a href="{{route('barang.unduh')}}" class="btn btn-primary" style="color: white;">
+                        <a href="{{route('unduh.perbulan')}}" class="btn btn-primary" style="color: white;">
                             <i class="fe fe-download"></i>Unduh
                         </a>
                         <a href="{{route('barang.viewriwayat')}}" class="btn btn-secondary" style="color: white;">

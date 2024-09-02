@@ -39,33 +39,34 @@
         </div> <!-- .row -->
     </div> <!-- .container-fluid -->
 
-    <script>
-        const bulanDenganPengaduan = @json($bulanDenganPengaduan);
-
-        document.getElementById('bulan').addEventListener('change', function () {
-            const bulanDipilih = this.value;
-            const tahunSelect = document.getElementById('tahun');
-
-            // Kosongkan opsi tahun terlebih dahulu
-            tahunSelect.innerHTML = '';
-
-            // Pastikan bulan dipilih menggunakan format yang sesuai dengan kunci di bulanDenganPengaduan
-            const bulanFormatted = parseInt(bulanDipilih, 10).toString();
-
-            // Tambahkan opsi tahun yang sesuai dengan bulan yang dipilih
-            if (bulanDenganPengaduan[bulanFormatted]) {
-                bulanDenganPengaduan[bulanFormatted].forEach(function (tahun) {
-                    const option = document.createElement('option');
-                    option.value = tahun;
-                    option.text = tahun;
-                    tahunSelect.appendChild(option);
-                });
-            }
-        });
-
-        // Memicu perubahan pertama kali untuk mengatur default
-        document.getElementById('bulan').dispatchEvent(new Event('change'));
-    </script>
 </main> <!-- main -->
+
+<script>
+    const bulanDenganPengaduan = @json($bulanDenganPengaduan);
+
+    document.getElementById('bulan').addEventListener('change', function () {
+        const bulanDipilih = this.value;
+        const tahunSelect = document.getElementById('tahun');
+
+        // Kosongkan opsi tahun terlebih dahulu
+        tahunSelect.innerHTML = '';
+
+        // Pastikan bulan dipilih menggunakan format yang sesuai dengan kunci di bulanDenganPengaduan
+        const bulanFormatted = parseInt(bulanDipilih, 10).toString();
+
+        // Tambahkan opsi tahun yang sesuai dengan bulan yang dipilih
+        if (bulanDenganPengaduan[bulanFormatted]) {
+            bulanDenganPengaduan[bulanFormatted].forEach(function (tahun) {
+                const option = document.createElement('option');
+                option.value = tahun;
+                option.text = tahun;
+                tahunSelect.appendChild(option);
+            });
+        }
+    });
+
+    // Memicu perubahan pertama kali untuk mengatur default
+    document.getElementById('bulan').dispatchEvent(new Event('change'));
+</script>
 
 @endsection

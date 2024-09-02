@@ -63,7 +63,8 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS,Kepala Sekolah'])
         Route::get('/unduh', [BarangController::class, 'barangUnduh'])->name('barang.unduh');
         Route::post('/store', [BarangController::class, 'barangStore'])->name('barang.store');
         Route::get('/hapus/{id}', [BarangController::class, 'barangHapus'])->name('barang.hapus');
-        Route::get('/barang/unduh', [BarangController::class, 'unduhPdf'])->name('barang.unduh');
+        Route::get('/barang/unduh', [BarangController::class, 'unduhPerbulan'])->name('unduh.perbulan');
+        Route::post('/unduh', [BarangController::class, 'unduhPDF'])->name('barang.unduhBulan.pdf');
     });
 });
 

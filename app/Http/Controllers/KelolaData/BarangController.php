@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\RiwayatBarang;
 use Carbon\Carbon; //untuk manipulasi tanggal
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BarangController extends Controller
 {
@@ -128,16 +128,29 @@ class BarangController extends Controller
         return view("admin.kelola_data.barang.halaman_unduh_barang", compact('bulanDenganBarang'));
     }
 
-    public function unduhPdf()
+    public function unduhPdf(Request $request)
     {
-        $allDataBarang = Barang::all(); // Ambil data barang dari database
 
-        // Memuat view dengan data yang diperlukan
-        $pdf = PDF::loadView('admin.kelola_data.barang.unduh_barang', compact('allDataBarang'));
+        $bulan = $request->input('bulan');
+        $tahun = $request->input('tahun');
 
-        // Mengunduh PDF dengan nama file tertentu
-        return $pdf->download('laporan_barang.pdf');
+        $dataBarang = Barang::whereMonth('tgl_masuk', $bulan)
+            ->whereYear('tgl_masuk', $tahun)
+            ->get();
+
+        if ($dataBarang->isEmpty()) {
+            return redirect()->back()->with('error', 'Tidak ada data pengaduan untuk bulan dan tahun yang dipilih.');
+        }
+
+        $pdf = PDF::loadView('admin.kelola_data.barang.unduh_barang', [
+            'allDataBarang' => $dataBarang,
+            'bulan' => $bulan,
+            'tahun' => $tahun
+        ]);
+
+        return $pdf->download("laporan_barang_{$bulan}_{$tahun}.pdf");
     }
+
 
     // Menampilkan grafik data barang perbulan
     public function showGrafikKondisi()

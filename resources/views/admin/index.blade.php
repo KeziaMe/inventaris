@@ -27,4 +27,65 @@
   </div> <!-- .container-fluid -->
 </main> <!-- main -->
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Mengambil data dari controller
+    var dataGrafik = @json($dataGrafik);
+    var bulanLabels = @json($bulanLabels);
+    var kondisiLabels = @json($kondisiLabels);
+
+    // Memetakan data untuk Chart.js
+    var datasets = kondisiLabels.map(function (label) {
+      var warna = ''; // Tentukan warna berbeda untuk setiap kondisi
+      if (label === 'Baik') {
+        warna = 'rgba(75, 192, 192, 0.2)'; // Warna hijau transparan
+      } else if (label === 'Kurang Baik') {
+        warna = 'rgba(255, 206, 86, 0.2)'; // Warna kuning transparan
+      } else if (label === 'Rusak Berat') {
+        warna = 'rgba(255, 99, 132, 0.2)'; // Warna merah transparan
+      }
+
+      return {
+        label: label,
+        data: dataGrafik.map(function (d) {
+          if (label === 'Baik') return d.baik;
+          if (label === 'Kurang Baik') return d.kurang_baik;
+          if (label === 'Rusak Berat') return d.rusak_berat;
+        }),
+        backgroundColor: warna,
+        borderColor: warna.replace('0.2', '1'), // Warna border yang lebih solid
+        borderWidth: 1
+      };
+    });
+
+    var ctx = document.getElementById('kondisiChart').getContext('2d');
+
+    var myChart = new Chart(ctx, {
+      type: 'bar', // Gunakan tipe grafik yang sesuai
+      data: {
+        labels: bulanLabels, // Ganti dengan label data Anda
+        datasets: datasets // Data yang telah dipetakan
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            beginAtZero: true,
+          },
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1, // Interval ke 1 untuk menampilkan bilangan bulat
+              precision: 0 // Menampilkan hanya bilangan bulat
+            },
+            // Anda bisa mencoba menambahkan opsi ini jika masalah tetap ada
+            // min: 0, // Menetapkan nilai minimum sumbu Y
+            // max: 10 // Menetapkan nilai maksimum sumbu Y, sesuaikan sesuai data Anda
+          }
+        }
+      }
+    });
+  });
+</script>
+
 @endsection

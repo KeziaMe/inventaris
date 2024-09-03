@@ -19,9 +19,9 @@
                   <div class="form-group">
                     <label for="year">Pilih Tahun:</label>
                     <select name="year" id="year" class="form-control" onchange="this.form.submit()">
-                      @for ($i = 2020; $i <= 2025; $i++)
-              <option value="{{ $i }}" {{ $i == $selectedYear ? 'selected' : '' }}>{{ $i }}</option>
-            @endfor
+                      @foreach ($availableYears as $year)
+              <option value="{{ $year }}" {{ $year == $selectedYear ? 'selected' : '' }}>{{ $year }}</option>
+            @endforeach
                     </select>
                   </div>
                 </form>
@@ -97,10 +97,7 @@
             ticks: {
               stepSize: 1, // Interval ke 1 untuk menampilkan bilangan bulat
               precision: 0 // Menampilkan hanya bilangan bulat
-            },
-            // Anda bisa mencoba menambahkan opsi ini jika masalah tetap ada
-            // min: 0, // Menetapkan nilai minimum sumbu Y
-            // max: 10 // Menetapkan nilai maksimum sumbu Y, sesuaikan sesuai data Anda
+            }
           }
         }
       }

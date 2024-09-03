@@ -161,6 +161,13 @@ class BarangController extends Controller
         // Ambil tahun dari input, default tahun sekarang
         $selectedYear = $request->input('year', date('Y'));
 
+        // Mengambil daftar tahun yang tersedia dari data barang
+        $availableYears = Barang::selectRaw('YEAR(tgl_masuk) as tahun')
+            ->distinct()
+            ->orderBy('tahun', 'desc')
+            ->pluck('tahun')
+            ->toArray();
+
         // Mengambil data barang berdasar bulan, kondisi, dan tahun
         $barangPerKondisiDanBulan = Barang::selectRaw('MONTH(tgl_masuk) as bulan, kondisi_brg as kondisi, COUNT(*) as jumlah')
             ->whereYear('tgl_masuk', $selectedYear)
@@ -204,7 +211,8 @@ class BarangController extends Controller
             'dataGrafik' => $dataGrafik,
             'bulanLabels' => $bulanLabels,
             'kondisiLabels' => $kondisiLabels,
-            'selectedYear' => $selectedYear
+            'selectedYear' => $selectedYear,
+            'availableYears' => $availableYears // Kirim daftar tahun yang tersedia
         ]);
     }
 

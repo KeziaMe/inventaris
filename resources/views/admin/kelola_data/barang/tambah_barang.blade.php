@@ -37,9 +37,13 @@
                                     <div class="col-sm-9">
                                         <select class="custom-select" name="textKondisibrg" id="textKondisibrg">
                                             <option selected disabled>Pilih Kondisi Barang</option>
-                                            <option value="Baik">Baik</option>
-                                            <option value="Kurang Baik">Kurang Baik</option>
-                                            <option value="Rusak Berat">Rusak Berat</option>
+
+                                            @foreach ($KondisiBarangs as $KondisiBarang)
+                                                <option value="{{$KondisiBarang->kondisi_brg}}">
+                                                    {{$KondisiBarang->kondisi_brg}}
+                                                </option>
+                                            @endforeach
+
                                         </select>
                                     </div>
                                 </div>

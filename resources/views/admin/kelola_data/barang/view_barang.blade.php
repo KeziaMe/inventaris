@@ -47,7 +47,7 @@
                                                 <td>{{$key + 1}}</td>
                                                 <td>{{$barang->kd_brg}}</td>
                                                 <td>{{$barang->nm_brg}}</td>
-                                                <td>{{$barang->kondisi_brg}}</td>
+                                                <td>{{ $barang->kondisi_brg }}</td>
                                                 <td>{{$barang->ket}}</td>
                                                 <td>{{$barang->tgl_masuk}}</td>
                                                 <td>{{$barang->tgl_update}}</td>

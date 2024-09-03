@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\KelolaData;
 
 use App\Http\Controllers\Controller;
+use App\Models\KondisiBarang;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\RiwayatBarang;
@@ -14,12 +15,13 @@ class BarangController extends Controller
     //
     public function barangView()
     {
-        $data['allDataBarang'] = Barang::all();
+        $data['allDataBarang'] = Barang::with('KondisiBarang')->get();
         return view("admin.kelola_data.barang.view_barang", $data);
     }
     public function barangTambah()
     {
-        return view("admin.kelola_data.barang.tambah_barang");
+        $KondisiBarangs = KondisiBarang::all();
+        return view("admin.kelola_data.barang.tambah_barang", compact('KondisiBarangs'));
     }
     public function barangEdit($id)
     {

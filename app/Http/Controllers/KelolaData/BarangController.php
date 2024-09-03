@@ -163,10 +163,10 @@ class BarangController extends Controller
 
         // Mengambil daftar tahun yang tersedia dari data barang
         $availableYears = Barang::selectRaw('YEAR(tgl_masuk) as tahun')
-            ->distinct()
-            ->orderBy('tahun', 'desc')
-            ->pluck('tahun')
-            ->toArray();
+            ->distinct()//mengambil tahun yang ada datanya saja
+            ->orderBy('tahun', 'desc')//mengurutkan tahun-tahun yang diambil dalam urutan dari yang terbaru ke yang paling lama
+            ->pluck('tahun')//Mengambil nilai dari kolom tahun dan mengembalikannya sebagai koleksi
+            ->toArray();//mengubah koleksi menjadi array
 
         // Mengambil data barang berdasar bulan, kondisi, dan tahun
         $barangPerKondisiDanBulan = Barang::selectRaw('MONTH(tgl_masuk) as bulan, kondisi_brg as kondisi, COUNT(*) as jumlah')

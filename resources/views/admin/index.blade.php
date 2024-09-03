@@ -1,5 +1,4 @@
 @extends('admin.admin_master')
-
 @section('admin')
 <main role="main" class="main-content">
   <div class="container-fluid">

@@ -399,71 +399,58 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var ctx = document.getElementById('kondisiChart').getContext('2d');
+      // Mengambil data dari controller
       var dataGrafik = @json($dataGrafik);
+      var bulanLabels = @json($bulanLabels);
+      var kondisiLabels = @json($kondisiLabels);
 
-      var bulanLabels = dataGrafik.map(item => item.bulan);
-      var baikData = dataGrafik.map(item => item.baik);
-      var kurangBaikData = dataGrafik.map(item => item.kurang_baik);
-      var rusakBeratData = dataGrafik.map(item => item.rusak_berat);
+      // Memetakan data untuk Chart.js
+      var datasets = kondisiLabels.map(function (label) {
+        var warna = ''; // Tentukan warna berbeda untuk setiap kondisi
+        if (label === 'Baik') {
+          warna = 'rgba(75, 192, 192, 0.2)'; // Warna hijau transparan
+        } else if (label === 'Kurang Baik') {
+          warna = 'rgba(255, 206, 86, 0.2)'; // Warna kuning transparan
+        } else if (label === 'Rusak Berat') {
+          warna = 'rgba(255, 99, 132, 0.2)'; // Warna merah transparan
+        }
 
-      // Menghitung nilai maxY dan stepSize
-      var maxY = Math.max(...baikData, ...kurangBaikData, ...rusakBeratData);
-      var stepSize = Math.ceil(maxY / 10); // Gunakan Math.ceil agar stepSize tepat
+        return {
+          label: label,
+          data: dataGrafik.map(function (d) {
+            if (label === 'Baik') return d.baik;
+            if (label === 'Kurang Baik') return d.kurang_baik;
+            if (label === 'Rusak Berat') return d.rusak_berat;
+          }),
+          backgroundColor: warna,
+          borderColor: warna.replace('0.2', '1'), // Warna border yang lebih solid
+          borderWidth: 1
+        };
+      });
 
-      var kondisiChart = new Chart(ctx, {
-        type: 'bar',
+      var ctx = document.getElementById('kondisiChart').getContext('2d');
+
+      var myChart = new Chart(ctx, {
+        type: 'bar', // Gunakan tipe grafik yang sesuai
         data: {
-          labels: bulanLabels,
-          datasets: [
-            {
-              label: 'Baik',
-              data: baikData,
-              backgroundColor: 'rgba(54, 162, 235, 0.5)',
-              borderColor: 'rgba(54, 162, 235, 1)',
-              borderWidth: 1
-            },
-            {
-              label: 'Kurang Baik',
-              data: kurangBaikData,
-              backgroundColor: 'rgba(255, 206, 86, 0.5)',
-              borderColor: 'rgba(255, 206, 86, 1)',
-              borderWidth: 1
-            },
-            {
-              label: 'Rusak Berat',
-              data: rusakBeratData,
-              backgroundColor: 'rgba(255, 99, 132, 0.5)',
-              borderColor: 'rgba(255, 99, 132, 1)',
-              borderWidth: 1
-            }
-          ]
+          labels: bulanLabels, // Ganti dengan label data Anda
+          datasets: datasets // Data yang telah dipetakan
         },
         options: {
           responsive: true,
           scales: {
+            x: {
+              beginAtZero: true,
+            },
             y: {
               beginAtZero: true,
-              suggestedMin: 0,
-              suggestedMax: maxY,
               ticks: {
-                stepSize: stepSize, // Menentukan jarak antara ticks
-                callback: function (value) {
-                  return Number.isInteger(value) ? value : ''; // Memastikan hanya bilangan bulat yang ditampilkan
-                },
-                precision: 0 // Menghindari angka desimal
+                stepSize: 1, // Interval ke 1 untuk menampilkan bilangan bulat
+                precision: 0 // Menampilkan hanya bilangan bulat
               },
-              grid: {
-                borderColor: '#dcdcdc',
-                borderWidth: 1,
-                color: '#dcdcdc',
-                drawBorder: true,
-                drawOnChartArea: true,
-                drawTicks: true
-              }
-            },
-            x: {
-              stacked: true
+              // Anda bisa mencoba menambahkan opsi ini jika masalah tetap ada
+              // min: 0, // Menetapkan nilai minimum sumbu Y
+              // max: 10 // Menetapkan nilai maksimum sumbu Y, sesuaikan sesuai data Anda
             }
           }
         }

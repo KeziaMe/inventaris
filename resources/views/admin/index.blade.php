@@ -10,6 +10,26 @@
           </div>
         </div>
 
+        <!-- Filter Tahun -->
+        <div class="row mb-4">
+          <div class="col-md-12">
+            <div class="card shadow">
+              <div class="card-body">
+                <form method="GET" action="{{ route('dashboard') }}">
+                  <div class="form-group">
+                    <label for="year">Pilih Tahun:</label>
+                    <select name="year" id="year" class="form-control" onchange="this.form.submit()">
+                      @for ($i = 2020; $i <= 2025; $i++)
+              <option value="{{ $i }}" {{ $i == $selectedYear ? 'selected' : '' }}>{{ $i }}</option>
+            @endfor
+                    </select>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Grafik -->
         <div class="row my-4">
           <div class="col-md-12">

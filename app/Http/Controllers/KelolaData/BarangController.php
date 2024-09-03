@@ -153,13 +153,17 @@ class BarangController extends Controller
 
 
     // Menampilkan grafik data barang perbulan
-    public function showGrafikKondisi()
+    public function showGrafikKondisi(Request $request)
     {
         // Mengatur supaya menggunakan bahasa Indonesia
         Carbon::setLocale('id');
 
-        // Mengambil data barang berdasar bulan dan kondisi
+        // Ambil tahun dari input, default tahun sekarang
+        $selectedYear = $request->input('year', date('Y'));
+
+        // Mengambil data barang berdasar bulan, kondisi, dan tahun
         $barangPerKondisiDanBulan = Barang::selectRaw('MONTH(tgl_masuk) as bulan, kondisi_brg as kondisi, COUNT(*) as jumlah')
+            ->whereYear('tgl_masuk', $selectedYear)
             ->groupBy('bulan', 'kondisi')
             ->orderBy('bulan', 'asc')
             ->get();
@@ -196,7 +200,12 @@ class BarangController extends Controller
         }
 
         // Mengirimkan data ke view
-        return view('admin.index', ['dataGrafik' => $dataGrafik, 'bulanLabels' => $bulanLabels, 'kondisiLabels' => $kondisiLabels]);
+        return view('admin.index', [
+            'dataGrafik' => $dataGrafik,
+            'bulanLabels' => $bulanLabels,
+            'kondisiLabels' => $kondisiLabels,
+            'selectedYear' => $selectedYear
+        ]);
     }
 
 }

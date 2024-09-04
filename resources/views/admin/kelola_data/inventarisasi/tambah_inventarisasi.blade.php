@@ -16,11 +16,15 @@
                             <form method="post" action="{{route('inventarisasi.store')}}" enctype="multipart/form-data">
                                 @csrf
 
-                                <div class="form-group row">
+                                <div class="form-group row align-items-center">
                                     <label for="textNamaRuangan" class="col-sm-3 col-form-label">Nama Ruangan</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="textNamaRuangan"
-                                            name="textNamaRuangan" placeholder="Masukkan Nama Ruangan">
+                                        <select class="custom-select" name="textNamaRuangan" id="textNamaRuangan">
+                                            <option selected disabled>Pilih Nama Ruangan</option>
+
+
+
+                                        </select>
                                     </div>
                                 </div>
 

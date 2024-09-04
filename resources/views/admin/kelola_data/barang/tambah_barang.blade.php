@@ -38,7 +38,7 @@
                                         <select class="custom-select" name="textKondisibrg" id="textKondisibrg">
                                             <option selected disabled>Pilih Kondisi Barang</option>
 
-                                            @foreach ($KondisiBarangs as $KondisiBarang)
+                                            @foreach ($kondisi_barang as $KondisiBarang)
                                                 <option value="{{$KondisiBarang->kondisi_brg}}">
                                                     {{$KondisiBarang->kondisi_brg}}
                                                 </option>

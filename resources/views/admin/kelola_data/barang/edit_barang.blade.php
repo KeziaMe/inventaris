@@ -36,11 +36,13 @@
                                 <div class="form-group row align-items-center">
                                     <label for="textKondisibrg" class="col-sm-3 col-form-label">Kondisi Barang</label>
                                     <div class="col-sm-9">
-                                        <select class="custom-select" name="textKondisibrg" id="textKondisibrg">
+                                        <select class="custom-select" name="textKondisibrg" id="textKondisibrg" value="{{$editDataBarang->kondisi_brg}}">
                                             <option selected disabled>Pilih Kondisi Barang</option>
-                                            <option value="Baik" {{($editDataBarang->kondisi_brg == "Baik" ? "selected" : "")}}>Baik</option>
-                                            <option value="Kurang Baik" {{($editDataBarang->kondisi_brg == "Kurang Baik" ? "selected" : "")}}>Kurang Baik</option>
-                                            <option value="Rusak Berat" {{($editDataBarang->kondisi_brg == "Rusak Berat" ? "selected" : "")}}>Rusak Berat</option>
+
+                                            @foreach ( $kondisi_barang as $KondisiBarang)
+                                            <option value="{{$KondisiBarang->kondisi_brg}}" {{($editDataBarang->kondisi_brg == "$KondisiBarang->kondisi_brg" ? "selected" : "")}}>{{$KondisiBarang->kondisi_brg}}</option>
+                                            @endforeach
+
                                         </select>
                                     </div>
                                 </div>

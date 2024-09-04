@@ -20,13 +20,15 @@ class BarangController extends Controller
     }
     public function barangTambah()
     {
-        $KondisiBarangs = KondisiBarang::all();
-        return view("admin.kelola_data.barang.tambah_barang", compact('KondisiBarangs'));
+        $kondisi_barang = KondisiBarang::all();
+        return view("admin.kelola_data.barang.tambah_barang", compact('kondisi_barang'));
     }
     public function barangEdit($id)
     {
+        $kondisi_barang = KondisiBarang::all();
+
         $editDataBarang = Barang::find($id);
-        return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang'));
+        return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang', 'kondisi_barang'));
     }
 
     public function riwayatbarangView()

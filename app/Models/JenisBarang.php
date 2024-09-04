@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class JenisBarang extends Model
 {
     use HasFactory;
+
+    public function JenisBarang()
+    {
+        return $this->hasMany(JenisBarang::class);
+    }
 }

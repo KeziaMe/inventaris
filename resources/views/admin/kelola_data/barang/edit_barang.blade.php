@@ -74,16 +74,11 @@
                                     <div class="col-sm-9">
                                         <select class="custom-select" name="textJenisBrg" id="custom-select">
                                             <option selected disabled>Pilih Jenis Barang</option>
-                                            <option value="Alat Elekronik" {{($editDataBarang->jenis_brg == "Alat Elekronik" ? "selected" : "")}}>Alat Elekronik</option>
-                                            <option value="Mebel" {{($editDataBarang->jenis_brg == "Mebel" ? "selected" : "")}}>Mebel</option>
-                                            <option value="Alat Masak" {{($editDataBarang->jenis_brg == "Alat Masak" ? "selected" : "")}}>Alat Masak</option>
-                                            <option value="Alat Kebersihan" {{($editDataBarang->jenis_brg == "Alat Kebersihan" ? "selected" : "")}}>Alat Kebersihan</option>
-                                            <option value="Alat Pembelajaran" {{($editDataBarang->jenis_brg == "Alat Pembelajaran" ? "selected" : "")}}>Alat Pembelajaran</option>
-                                            <option value="Peralatan Olahraga" {{($editDataBarang->jenis_brg == "Peralatan Olahraga" ? "selected" : "")}}>Peralatan Olahraga</option>
-                                            <option value="Peralatan UKS" {{($editDataBarang->jenis_brg == "Peralatan UKS" ? "selected" : "")}}>Peralatan UKS</option>
-                                            <option value="Penghargaan" {{($editDataBarang->jenis_brg == "Penghargaan" ? "selected" : "")}}>Penghargaan</option>
-                                            <option value="Peralatan Lab.IPA" {{($editDataBarang->jenis_brg == "Peralatan Lab.IPA" ? "selected" : "")}}>Peralatan Lab.IPA</option>
-                                            <option value="Buku" {{($editDataBarang->jenis_brg == "Buku" ? "selected" : "")}}>Buku</option>
+
+                                            @foreach ( $jenis_barang as $JenisBarang)
+                                            <option value="{{$JenisBarang->jns_brg}}" {{($editDataBarang->jenis_brg == "$JenisBarang->jns_brg" ? "selected" : "")}}>{{$JenisBarang->jns_brg}}</option>
+                                            @endforeach
+
                                         </select>
                                     </div>
                                 </div>

@@ -73,18 +73,14 @@
                                 <div class="form-group row align-items-center">
                                     <label for="textJenisBrg" class="col-sm-3 col-form-label">Jenis Barang</label>
                                     <div class="col-sm-9">
-                                        <select class="custom-select" name="textJenisBrg" id="custom-select">
+                                        <select class="custom-select" name="textJenisBrg" id="textJenisBrg">
                                             <option selected disabled>Pilih Jenis Barang</option>
-                                            <option value="Alat Elekronik">Alat Elekronik</option>
-                                            <option value="Mebel">Mebel</option>
-                                            <option value="Alat Masak">Alat Masak</option>
-                                            <option value="Alat Kebersihan">Alat Kebersihan</option>
-                                            <option value="Alat Pembelajaran">Alat Pembelajaran</option>
-                                            <option value="Peralatan Olahraga">Peralatan Olahraga</option>
-                                            <option value="Peralatan UKS">Peralatan UKS</option>
-                                            <option value="Penghargaan">Penghargaan</option>
-                                            <option value="Peralatan Lab.IPA">Peralatan Lab.IPA</option>
-                                            <option value="Buku">Buku</option>
+                                            @foreach ($jenis_barang as $JenisBarang)
+                                                <option value="{{ $JenisBarang->jns_brg}}">
+                                                    {{$JenisBarang->jns_brg}}
+                                                </option>
+                                            @endforeach
+
                                         </select>
                                     </div>
                                 </div>

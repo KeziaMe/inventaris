@@ -9,8 +9,8 @@ class JenisBarang extends Model
 {
     use HasFactory;
 
-    public function JenisBarang()
+    public function Barang()
     {
-        return $this->hasMany(JenisBarang::class);
+        return $this->hasMany(Barang::class);
     }
 }

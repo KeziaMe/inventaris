@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\KelolaData;
 
 use App\Http\Controllers\Controller;
+use App\Models\StatusPengaduan;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Storage;
@@ -24,8 +25,9 @@ class PengaduanController extends Controller
 
     public function pengaduanEdit($id)
     {
+        $pengaduan = StatusPengaduan::all();
         $editDataPengaduan = Pengaduan::find($id);
-        return view("admin.kelola_data.pengaduan.edit_pengaduan", compact('editDataPengaduan'));
+        return view("admin.kelola_data.pengaduan.edit_pengaduan", compact('editDataPengaduan', 'pengaduan'));
     }
 
     public function pengaduanDetail($id)

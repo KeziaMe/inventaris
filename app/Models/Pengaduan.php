@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Pengaduan extends Model
 {
     use HasFactory;
+
+    public function StatusPengaduan()
+    {
+        return $this->belongsTo(StatusPengaduan::class);
+    }
 }

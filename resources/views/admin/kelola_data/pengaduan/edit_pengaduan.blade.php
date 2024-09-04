@@ -61,12 +61,15 @@
                                         <label for="textStatus" class="col-sm-3 col-form-label">Nama Status
                                             Pengaduan</label>
                                         <div class="col-sm-9">
-                                            <select class="custom-select" name="textStatus" id="textStatus">
+                                            <select class="custom-select" name="textStatus" id="textStatus"
+                                                value="{{$editDataPengaduan->nm_status_pengaduan}}">
                                                 <option selected disabled>Pilih Status Pengaduan</option>
-                                                <option value="Perbaikan"
-                                                    {{($editDataPengaduan->nm_status_pengaduan == "Perbaikan" ? "selected" : "")}}>Perbaikan</option>
-                                                <option value="Selesai"
-                                                    {{($editDataPengaduan->nm_status_pengaduan == "Selesai" ? "selected" : "")}}>Selesai</option>
+
+                                                @foreach ($pengaduan as $Pengaduan)
+                                                    <option value="{{$Pengaduan->status_pengaduan}}"
+                                                        {{$editDataPengaduan->nm_status_pengaduan == "$Pengaduan->status_pengaduan" ? "selected" : ""}}>{{$Pengaduan->status_pengaduan}}</option>
+                                                @endforeach
+
                                             </select>
                                         </div>
                                     </div>

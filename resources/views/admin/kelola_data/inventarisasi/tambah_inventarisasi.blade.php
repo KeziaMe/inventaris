@@ -22,7 +22,11 @@
                                         <select class="custom-select" name="textNamaRuangan" id="textNamaRuangan">
                                             <option selected disabled>Pilih Nama Ruangan</option>
 
-
+                                            @foreach ($ruangan as $Ruangan)
+                                                <option value="{{$Ruangan->nm_ruangan}}">
+                                                    {{$Ruangan->nm_ruangan}}
+                                                </option>
+                                            @endforeach
 
                                         </select>
                                     </div>

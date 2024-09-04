@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Inventarisasi extends Model
 {
     use HasFactory;
+
+    public function Ruangan()
+    {
+        return $this->belongsTo(Ruangan::class);
+    }
 }

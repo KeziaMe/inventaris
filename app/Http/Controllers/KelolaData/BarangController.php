@@ -16,7 +16,7 @@ class BarangController extends Controller
     //
     public function barangView()
     {
-        $data['allDataBarang'] = Barang::with('KondisiBarang')->get();
+        $data['allDataBarang'] = Barang::all();
         return view("admin.kelola_data.barang.view_barang", $data);
     }
     public function barangTambah()

@@ -53,12 +53,26 @@
 
                                 <div class="form-group row">
                                     <label for="textStatus" class="col-sm-3 col-form-label">Status</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="textStatus" name="textStatus"
-                                            placeholder="Masukkan Nama Status"
-                                            value="{{$editDataInventarisasi->status}}">
-                                    </div>
-                                </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card shadow">
+                                            <div class="card-body">
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="textstatus1" name="textstatus"
+                                                        class="custom-control-input" value="Aktif"
+                                                        @if($editDataInventarisasi->status == 'Aktif') checked @endif>
+                                                    <label class="custom-control-label" for="textstatus1">Aktif</label>
+                                                </div>
+                                                <div class="custom-control custom-radio">
+                                                    <input type="radio" id="textstatus2" name="textstatus"
+                                                        class="custom-control-input" value="Non-Aktif"
+                                                        @if($editDataInventarisasi->status == 'Non-Aktif') checked @endif>
+                                                    <label class="custom-control-label"
+                                                        for="textstatus2">Non-Aktif</label>
+                                                </div>
+                                            </div> <!-- /.card-body -->
+                                        </div> <!-- /.card -->
+                                    </div> <!-- /.col -->
+                                </div> <!-- /.form-group -->
 
                                 <div class="form-group mb-2">
                                     <button type="submit" class="btn btn-primary">Simpan</button>

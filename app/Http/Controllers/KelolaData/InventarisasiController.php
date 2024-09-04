@@ -21,7 +21,7 @@ class InventarisasiController extends Controller
     {
         $validateData = $request->validate([
             'textNamaRuangan' => 'required',
-            // Validasi lainnya sesuai kebutuhan
+
         ]);
 
         $data = new Inventarisasi();
@@ -58,7 +58,7 @@ class InventarisasiController extends Controller
         $data->nm_ruangan = $request->textNamaRuangan;
         $data->kd_brg = $request->textKodeBarang;
         $data->tgl_inventaris = $request->textTglInventaris;
-        $data->status = $request->text_status;
+        $data->status = $request->textstatus;
         $data->save();
 
         return redirect()->route('inventarisasi.view');

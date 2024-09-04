@@ -56,15 +56,15 @@
                                         <div class="card shadow">
                                             <div class="card-body">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" id="statusAktif" name="textstatus"
+                                                    <input type="radio" id="textstatus" name="textstatus"
                                                         class="custom-control-input" value="Aktif">
-                                                    <label class="custom-control-label" for="statusAktif">Aktif</label>
+                                                    <label class="custom-control-label" for="textstatus">Aktif</label>
                                                 </div>
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" id="statusNonAktif" name="textstatus"
+                                                    <input type="radio" id="textstatus" name="textstatus"
                                                         class="custom-control-input" value="Non-Aktif">
                                                     <label class="custom-control-label"
-                                                        for="statusNonAktif">Non-Aktif</label>
+                                                        for="textstatus">Non-Aktif</label>
                                                 </div>
                                             </div> <!-- /.card-body -->
                                         </div> <!-- /.card -->

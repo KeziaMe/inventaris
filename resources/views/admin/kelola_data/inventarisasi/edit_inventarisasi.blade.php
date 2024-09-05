@@ -41,7 +41,7 @@
 
                                             @foreach ($barangs as $barang)
                                                 <option value="{{$barang->kd_brg}}"
-                                                    {{($editDataInventarisasi->kd_brg == "$barang->kd_brg" ? "selected" : "")}}>{{$barang->kd_brg}} ({{$barang->nm_brg}})</option>
+                                                    {{($editDataInventarisasi->kd_brg == "$barang->kd_brg" ? "selected" : "")}}>{{$barang->kd_brg}} - ({{$barang->nm_brg}})</option>
                                             @endforeach
 
                                         </select>

@@ -40,7 +40,7 @@
 
                                             @foreach ($barangs as $barang)
                                                 <option value="{{$barang->kd_brg}}">
-                                                    {{$Ruangan->kd_brg}}({{$Ruangan->nm_brg}})
+                                                    {{$barang->kd_brg}} - ({{$barang->nm_brg}})
                                                 </option>
                                             @endforeach
 

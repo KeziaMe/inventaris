@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Inventarisasi;
 use App\Models\Ruangan;
+use App\Models\Barang;
 
 class InventarisasiController extends Controller
 {
@@ -38,14 +39,16 @@ class InventarisasiController extends Controller
     public function inventarisasiTambah()
     {
         $ruangan = Ruangan::all();
-        return view("admin.kelola_data.inventarisasi.tambah_inventarisasi", compact('ruangan'));
+        $barangs = Barang::all();
+        return view("admin.kelola_data.inventarisasi.tambah_inventarisasi", compact('ruangan', 'barangs'));
     }
 
     public function inventarisasiEdit($id)
     {
         $ruangan = Ruangan::all();
+        $barangs = Barang::all();
         $editDataInventarisasi = Inventarisasi::find($id);
-        return view("admin.kelola_data.inventarisasi.Edit_inventarisasi", compact('editDataInventarisasi', 'ruangan'));
+        return view("admin.kelola_data.inventarisasi.Edit_inventarisasi", compact('editDataInventarisasi', 'ruangan', 'barangs'));
     }
 
     public function inventarisasiUpdate(Request $request, $id)

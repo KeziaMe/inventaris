@@ -33,12 +33,18 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <div class="form-group row align-items-center">
                                     <label for="textKodeBarang" class="col-sm-3 col-form-label">Kode Barang</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="textKodeBarang"
-                                            name="textKodeBarang" placeholder="Masukkan Kode Barang"
-                                            value="{{$editDataInventarisasi->kd_brg}}">
+                                        <select class="custom-select" name="textKodeBarang" id="textKodeBarang">
+                                            <option selected disabled>Pilih Kode Barang</option>
+
+                                            @foreach ($barangs as $barang)
+                                                <option value="{{$barang->kd_brg}}"
+                                                    {{($editDataInventarisasi->kd_brg == "$barang->kd_brg" ? "selected" : "")}}>{{$barang->kd_brg}} ({{$barang->nm_brg}})</option>
+                                            @endforeach
+
+                                        </select>
                                     </div>
                                 </div>
 

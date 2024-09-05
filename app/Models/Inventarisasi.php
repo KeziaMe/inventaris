@@ -18,4 +18,9 @@ class Inventarisasi extends Model
     {
         return $this->hasMany(Pengaduan::class);
     }
+
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class, 'kd_brg', 'kd_brg');
+    }
 }

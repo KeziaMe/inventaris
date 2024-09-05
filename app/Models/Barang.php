@@ -18,4 +18,14 @@ class Barang extends Model
     {
         return $this->belongsTo(JenisBarang::class);
     }
+
+    public function pengaduan()
+    {
+        return $this->hasMany(Pengaduan::class);
+    }
+
+    public function inventarisasi()
+    {
+        return $this->hasMany(Inventarisasi::class);
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\StatusPengaduan;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
+use App\Models\Barang;
 use App\Models\Inventarisasi;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;

@@ -18,4 +18,9 @@ class Pengaduan extends Model
     {
         return $this->belongsTo(Inventarisasi::class);
     }
+
+    public function barang()
+    {
+        return $this->belongsTo(Barang::class);
+    }
 }

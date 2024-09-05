@@ -55,11 +55,18 @@
                                             name="text_tgl_masuk">
                                     </div>
 
-
                                     <div class="form-group mb-3">
                                         <label for="textInventarisasi">Inventarisasi</label>
-                                        <input type="text" id="textInventarisasi" class="form-control"
-                                            name="textInventarisasi">
+                                        <select class="custom-select" id="textInventarisasi" name="textInventarisasi">
+                                            <option disabled selected>Pilih Inventarisasi</option>
+
+                                            @foreach ($inventarisasi as $Inventarisasi)
+                                                <option value="{{$Inventarisasi->kd_brg}}">
+                                                    {{$Inventarisasi->kd_brg}}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
                                     </div>
 
                                     <div class="form-group mb-2">

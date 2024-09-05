@@ -13,4 +13,9 @@ class Inventarisasi extends Model
     {
         return $this->belongsTo(Ruangan::class);
     }
+
+    public function pengaduan()
+    {
+        return $this->hasMany(Pengaduan::class);
+    }
 }

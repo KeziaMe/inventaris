@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\StatusPengaduan;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
+use App\Models\Inventarisasi;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -20,7 +21,8 @@ class PengaduanController extends Controller
 
     public function form_pengaduan()
     {
-        return view("admin.form.form_pengaduan");
+        $inventarisasi = Inventarisasi::all();
+        return view("admin.form.form_pengaduan", compact('inventarisasi'));
     }
 
     public function pengaduanEdit($id)

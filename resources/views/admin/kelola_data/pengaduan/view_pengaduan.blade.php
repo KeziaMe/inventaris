@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Data Pengaduan</h2>
-                @if (auth()->user()->role == "Admin")
+                @if (auth()->user()->role == "Admin" || auth()->user()->role == "Kepala Sekolah")
                     <div class="col text-end">
                         <a href="{{route('pengaduan.unduhBulan')}}" class="btn btn-primary" style="color: white;">
                             <i class="fe fe-download"></i>Unduh
@@ -31,7 +31,7 @@
                                             <th>Tanggal Update</th>
                                             <th>Inventarisasi</th>
 
-                                            @if (auth()->user()->role == "Admin")
+                                            @if (auth()->user()->role == "Admin" || auth()->user()->role == "Kepala Sekolah")
                                                 <th>Aksi</th>
                                             @endif
                                         </tr>
@@ -47,21 +47,29 @@
                                                 <td>{{$pengaduan->tgl_update}}</td>
                                                 <td>{{$pengaduan->id_inventarisasi}}</td>
 
-                                                @if (auth()->user()->role == "Admin")
+                                                @if (auth()->user()->role == "Admin" || auth()->user()->role == "Kepala Sekolah")
                                                     <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <span class="text-muted sr-only">Action</span>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item"
-                                                                href="{{route('pengaduan.detail', $pengaduan->id)}}">Detail</a>
-                                                            <a class="dropdown-item"
-                                                                href="{{route('pengaduan.edit', $pengaduan->id)}}">Edit</a>
-                                                            <a class="dropdown-item" id="delete"
-                                                                href="{{route('pengaduan.hapus', $pengaduan->id)}}">Hapus</a>
+                                                            @if (auth()->user()->role == "Admin")
+                                                                <a class="dropdown-item"
+                                                                    href="{{route('pengaduan.detail', $pengaduan->id)}}">Detail</a>
+                                                                <a class="dropdown-item"
+                                                                    href="{{route('pengaduan.edit', $pengaduan->id)}}">Edit</a>
+                                                                <a class="dropdown-item" id="delete"
+                                                                    href="{{route('pengaduan.hapus', $pengaduan->id)}}">Hapus</a>
+                                                            @endif
+                                                            @if (auth()->user()->role == "Kepala Sekolah")
+                                                                <a class="dropdown-item"
+                                                                    href="{{route('pengaduan.detail', $pengaduan->id)}}">Detail</a>
+                                                            @endif
                                                         </div>
                                                     </td>
                                                 @endif
+
+
                                             </tr>
                                         @endforeach
 

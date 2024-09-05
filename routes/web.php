@@ -90,7 +90,7 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
     });
 });
 
-Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(function () {
+Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS,Kepala Sekolah'])->group(function () {
     Route::prefix('pengaduan')->group(function () {
         Route::get('/pengaduan/view', [PengaduanController::class, 'pengaduanView'])->name('pengaduan.view');
         Route::get('/form_pengaduan', [PengaduanController::class, 'form_pengaduan'])->name('form_pengaduan');

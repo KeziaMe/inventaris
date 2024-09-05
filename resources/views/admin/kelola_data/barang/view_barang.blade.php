@@ -6,19 +6,35 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Data Barang</h2>
-                @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
-                    <div class="col text-end">
+                <div class="col text-end">
+
+                    @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
                         <a href="{{route('barang.tambah')}}" class="btn btn-success" style="color: white;">
                             <i class="fe fe-plus"></i>Tambah
                         </a>
+
                         <a href="{{route('unduh.perbulan')}}" class="btn btn-primary" style="color: white;">
                             <i class="fe fe-download"></i>Unduh
+
                         </a>
                         <a href="{{route('barang.viewriwayat')}}" class="btn btn-secondary" style="color: white;">
                             <i class="fe fe-repeat"></i>Riwayat
                         </a>
-                    </div>
-                @endif
+                    @endif
+
+                    <!-- supaya muncul di role kepsek tanpa tambah -->
+                    @if(auth()->user()->role == "Kepala Sekolah")
+                        <a href="{{route('unduh.perbulan')}}" class="btn btn-primary" style="color: white;">
+                            <i class="fe fe-download"></i>Unduh
+
+                        </a>
+                        <a href="{{route('barang.viewriwayat')}}" class="btn btn-secondary" style="color: white;">
+                            <i class="fe fe-repeat"></i>Riwayat
+                        </a>
+                    @endif
+
+                </div>
+
 
                 <div class="row">
                     <!-- simple table -->

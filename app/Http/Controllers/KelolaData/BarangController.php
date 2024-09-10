@@ -120,28 +120,33 @@ class BarangController extends Controller
 
     public function unduhPerbulan(Request $request)
     {
-        // Mengambil daftar bulan dan tahun yang memiliki data pengaduan
-        $dataBarang = Barang::selectRaw('MONTH(tgl_masuk) as bulan, YEAR(tgl_masuk) as tahun')
-            ->distinct()
+        // Mengambil data bulan dan tahun yang ada barang (berdasarkan tgl_masuk) secara distinct
+        $dataBarang = Barang::selectRaw('MONTH(tgl_update) as bulan, YEAR(tgl_update) as tahun')
+            ->whereNotNull('tgl_update') // Pastikan tgl_masuk tidak null
+            ->groupBy('bulan', 'tahun') // Kelompokkan berdasarkan bulan dan tahun
+            ->orderBy('bulan') // Urutkan berdasarkan bulan
             ->get();
 
         // Mengelompokkan data berdasarkan bulan
         $bulanDenganBarang = $dataBarang->groupBy('bulan')->map(function ($item) {
-            return $item->pluck('tahun')->toArray();
+            return $item->pluck('tahun')->toArray(); // Ambil hanya tahun untuk setiap bulan
         });
 
         // Mengirim variabel ke view
         return view("admin.kelola_data.barang.halaman_unduh_barang", compact('bulanDenganBarang'));
     }
 
+
     public function unduhPdf(Request $request)
     {
-
         $bulan = $request->input('bulan');
         $tahun = $request->input('tahun');
 
-        $dataBarang = Barang::whereMonth('tgl_masuk', $bulan)
-            ->whereYear('tgl_masuk', $tahun)
+        // Ubah angka bulan menjadi nama bulan dalam bahasa Indonesia
+        $namaBulan = Carbon::create()->month($bulan)->translatedFormat('F');
+
+        $dataBarang = Barang::whereMonth('tgl_update', $bulan)
+            ->whereYear('tgl_update', $tahun)
             ->get();
 
         if ($dataBarang->isEmpty()) {
@@ -150,12 +155,13 @@ class BarangController extends Controller
 
         $pdf = PDF::loadView('admin.kelola_data.barang.unduh_barang', [
             'allDataBarang' => $dataBarang,
-            'bulan' => $bulan,
+            'bulan' => $namaBulan,  // Kirim nama bulan yang sudah diubah
             'tahun' => $tahun
         ]);
 
         return $pdf->download("laporan_barang_{$bulan}_{$tahun}.pdf");
     }
+
 
 
     // Menampilkan grafik data barang perbulan

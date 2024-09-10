@@ -33,7 +33,7 @@
 </head>
 
 <body>
-    <h2>Laporan Data Barang</h2>
+    <h2>Laporan Data Barang Bulan {{ $bulan }} Tahun {{ $tahun }}</h2>
     <table>
         <thead>
             <tr>

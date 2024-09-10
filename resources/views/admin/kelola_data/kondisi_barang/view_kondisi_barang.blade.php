@@ -14,10 +14,10 @@
 
                 <div class="row">
                     <!-- simple table -->
-                    <div class="col-md-6 my-4">
+                    <div class="col-md-8 my-4">
                         <div class="card shadow">
                             <div class="card-body">
-                                <table class="table table-hover">
+                                <table class="table dataTables" id="dataTable-1">
                                     <thead>
                                         <tr>
                                             <th>ID</th>

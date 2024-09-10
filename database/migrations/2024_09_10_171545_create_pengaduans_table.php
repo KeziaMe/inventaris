@@ -17,7 +17,6 @@ return new class extends Migration {
             $table->string('ket')->nullable();
             $table->string('id_kondisi_brg')->nullable();
             $table->string('nm_status_pengaduan')->nullable();
-            $table->string('tgl_masuk')->nullable();
             $table->string('tgl_update')->nullable();
             $table->string('id_inventarisasi')->nullable();
             $table->timestamps();

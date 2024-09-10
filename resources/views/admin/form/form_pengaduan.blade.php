@@ -50,12 +50,6 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="text_tgl_masuk">Tanggal Masuk</label>
-                                        <input class="form-control" id="text_tgl_masuk" type="date"
-                                            name="text_tgl_masuk">
-                                    </div>
-
-                                    <div class="form-group mb-3">
                                         <label for="textInventarisasi">Inventarisasi</label>
                                         <select class="custom-select" id="textInventarisasi" name="textInventarisasi">
                                             <option disabled selected>Pilih Inventarisasi</option>

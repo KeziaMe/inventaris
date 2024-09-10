@@ -90,7 +90,6 @@ class PengaduanController extends Controller
 
         $data->ket = $request->textKeterangan;
         $data->id_kondisi_brg = $request->textKondisi_brg;
-        $data->tgl_masuk = $request->text_tgl_masuk;
         $data->tgl_update = $request->textTgl_update;
         $data->id_inventarisasi = $request->textInventarisasi;
         $data->nm_status_pengaduan = $request->textStatus;

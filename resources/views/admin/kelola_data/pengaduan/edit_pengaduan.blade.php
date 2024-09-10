@@ -75,12 +75,6 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="text_tgl_masuk">Tanggal Masuk</label>
-                                        <input class="form-control" id="text_tgl_masuk" type="date"
-                                            name="text_tgl_masuk" value="{{$editDataPengaduan->tgl_masuk}}" readonly>
-                                    </div>
-
-                                    <div class="form-group mb-3">
                                         <label for="textTgl_update">Tanggal Update</label>
                                         <input class="form-control" id="textTgl_update" type="date"
                                             name="textTgl_update" value="{{$editDataPengaduan->tgl_update}}">

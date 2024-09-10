@@ -62,10 +62,15 @@
 
                                             @foreach ($inventarisasi as $Inventarisasi)
                                                 <option value="{{$Inventarisasi->kd_brg}}">
-                                                    {{$Inventarisasi->kd_brg}} - {{$Inventarisasi->barang->nm_brg}} -
-                                                    ({{$Inventarisasi->nm_ruangan}})
+                                                    {{$Inventarisasi->kd_brg}}
+                                                    <!-- mencegah error ketika properti barang bernilai null -->
+                                                    @if($Inventarisasi->barang)
+                                                        - {{$Inventarisasi->barang->nm_brg}}
+                                                    @endif
+                                                    - ({{$Inventarisasi->nm_ruangan}})
                                                 </option>
                                             @endforeach
+
 
                                         </select>
                                     </div>

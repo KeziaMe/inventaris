@@ -150,7 +150,7 @@ class BarangController extends Controller
             ->get();
 
         if ($dataBarang->isEmpty()) {
-            return redirect()->back()->with('error', 'Tidak ada data pengaduan untuk bulan dan tahun yang dipilih.');
+            return redirect()->back()->with('error', 'Tidak ada data barang untuk bulan dan tahun yang dipilih.');
         }
 
         $pdf = PDF::loadView('admin.kelola_data.barang.unduh_barang', [

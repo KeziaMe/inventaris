@@ -14,7 +14,6 @@
                 <th>Tanggal Pengaduan</th>
                 <th>Kondisi Barang</th>
                 <th>Nama Status Pengaduan</th>
-                <th>Tanggal Masuk</th>
                 <th>Tanggal Update</th>
                 <th>Inventarisasi</th>
             </tr>
@@ -26,7 +25,6 @@
                     <td>{{ $pengaduan->tgl_pengaduan }}</td>
                     <td>{{ $pengaduan->id_kondisi_brg }}</td>
                     <td>{{ $pengaduan->nm_status_pengaduan }}</td>
-                    <td>{{ $pengaduan->tgl_masuk }}</td>
                     <td>{{ $pengaduan->tgl_update }}</td>
                     <td>{{ $pengaduan->id_inventarisasi }}</td>
                 </tr>

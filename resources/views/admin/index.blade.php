@@ -36,16 +36,16 @@
             <div class="card shadow">
               <div class="card-body">
                 <h5 class="card-title">Grafik Jumlah Barang Berdasarkan Kondisi per Bulan</h5>
-                <canvas id="kondisiChart"></canvas> <!-- Canvas untuk grafik -->
+                <canvas id="kondisiChart"></canvas>
               </div>
             </div>
           </div>
         </div> <!-- end Grafik -->
 
-      </div> <!-- .col-12 -->
-    </div> <!-- .row -->
-  </div> <!-- .container-fluid -->
-</main> <!-- main -->
+      </div>
+    </div>
+  </div>
+</main>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -56,13 +56,13 @@
 
     // Memetakan data untuk Chart.js
     var datasets = kondisiLabels.map(function (label) {
-      var warna = ''; // Tentukan warna berbeda untuk setiap kondisi
+      var warna = ''; // Mengatur warna yang berbeda untuk setiap kondisi
       if (label === 'Baik') {
-        warna = 'rgba(75, 192, 192, 0.2)'; // Warna hijau transparan
+        warna = 'rgba(75, 192, 192, 0.2)'; // hijau
       } else if (label === 'Kurang Baik') {
-        warna = 'rgba(255, 206, 86, 0.2)'; // Warna kuning transparan
+        warna = 'rgba(255, 206, 86, 0.2)'; // kuning 
       } else if (label === 'Rusak Berat') {
-        warna = 'rgba(255, 99, 132, 0.2)'; // Warna merah transparan
+        warna = 'rgba(255, 99, 132, 0.2)'; // merah 
       }
 
       return {
@@ -73,7 +73,7 @@
           if (label === 'Rusak Berat') return d.rusak_berat;
         }),
         backgroundColor: warna,
-        borderColor: warna.replace('0.2', '1'), // Warna border yang lebih solid
+        borderColor: warna.replace('0.2', '1'), // Warna border 
         borderWidth: 1
       };
     });
@@ -81,10 +81,10 @@
     var ctx = document.getElementById('kondisiChart').getContext('2d');
 
     var myChart = new Chart(ctx, {
-      type: 'bar', // Gunakan tipe grafik yang sesuai
+      type: 'bar',
       data: {
-        labels: bulanLabels, // Ganti dengan label data Anda
-        datasets: datasets // Data yang telah dipetakan
+        labels: bulanLabels,
+        datasets: datasets
       },
       options: {
         responsive: true,
@@ -95,8 +95,8 @@
           y: {
             beginAtZero: true,
             ticks: {
-              stepSize: 1, // Interval ke 1 untuk menampilkan bilangan bulat
-              precision: 0 // Menampilkan hanya bilangan bulat
+              stepSize: 1, // untuk menampilkan bilangan bulat
+              precision: 0 // menampilkan hanya bilangan bulat
             }
           }
         }

@@ -10,6 +10,7 @@ use App\Models\Barang;
 use App\Models\Inventarisasi;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class PengaduanController extends Controller
 {
@@ -137,6 +138,9 @@ class PengaduanController extends Controller
         $bulan = $request->input('bulan');
         $tahun = $request->input('tahun');
 
+        // Ubah angka bulan menjadi nama bulan dalam bahasa Indonesia
+        $namaBulan = Carbon::create()->month($bulan)->translatedFormat('F');
+
         $dataPengaduan = Pengaduan::whereMonth('tgl_pengaduan', $bulan)
             ->whereYear('tgl_pengaduan', $tahun)
             ->get();
@@ -147,7 +151,7 @@ class PengaduanController extends Controller
 
         $pdf = PDF::loadView('admin.kelola_data.pengaduan.unduh_pengaduan', [
             'allDataPengaduan' => $dataPengaduan,
-            'bulan' => $bulan,
+            'bulan' => $namaBulan,  // Kirim nama bulan yang sudah diubah
             'tahun' => $tahun
         ]);
 

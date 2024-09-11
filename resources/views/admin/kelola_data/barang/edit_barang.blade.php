@@ -76,7 +76,8 @@
                                             <option selected disabled>Pilih Jenis Barang</option>
 
                                             @foreach ( $jenis_barang as $JenisBarang)
-                                            <option value="{{$JenisBarang->jns_brg}}" {{($editDataBarang->jenis_brg == "$JenisBarang->jns_brg" ? "selected" : "")}}>{{$JenisBarang->jns_brg}}</option>
+                                           <option value="{{$JenisBarang->jns_brg}}" {{($editDataBarang->jenis_brg == $JenisBarang->jns_brg ? "selected" : "")}}>{{$JenisBarang->jns_brg}}</option>
+
                                             @endforeach
 
                                         </select>

@@ -53,16 +53,18 @@
         // Kosongkan opsi tahun terlebih dahulu
         tahunSelect.innerHTML = '';
 
-        // Pastikan bulan dipilih menggunakan format yang sesuai dengan kunci di bulanDenganPengaduan
+        // Pastikan bulan dipilih menggunakan format yang sesuai dengan kunci di bulanDenganBarang
         const bulanFormatted = parseInt(bulanDipilih, 10).toString();
 
         // Tambahkan opsi tahun yang sesuai dengan bulan yang dipilih
         if (bulanDenganBarang[bulanFormatted]) {
             bulanDenganBarang[bulanFormatted].forEach(function (tahun) {
-                const option = document.createElement('option');
-                option.value = tahun;
-                option.text = tahun;
-                tahunSelect.appendChild(option);
+                if (tahun >= 1000) { // Pastikan hanya tahun dengan 4 digit
+                    const option = document.createElement('option');
+                    option.value = tahun;
+                    option.text = tahun;
+                    tahunSelect.appendChild(option);
+                }
             });
         }
     });
@@ -70,5 +72,6 @@
     // Memicu perubahan pertama kali untuk mengatur default
     document.getElementById('bulan').dispatchEvent(new Event('change'));
 </script>
+
 
 @endsection

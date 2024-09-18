@@ -120,16 +120,16 @@ class BarangController extends Controller
 
     public function unduhPerbulan(Request $request)
     {
-        // Mengambil data bulan dan tahun yang ada barang (berdasarkan tgl_masuk) secara distinct
+        // Mengambil data bulan dan tahun yang ada barangnya (berdasarkan tgl_update) 
         $dataBarang = Barang::selectRaw('MONTH(tgl_update) as bulan, YEAR(tgl_update) as tahun')
-            ->whereNotNull('tgl_update') // Pastikan tgl_masuk tidak null
-            ->groupBy('bulan', 'tahun') // Kelompokkan berdasarkan bulan dan tahun
-            ->orderBy('bulan') // Urutkan berdasarkan bulan
+            ->whereNotNull('tgl_update') // Memastikan tgl_update tidak null
+            ->groupBy('bulan', 'tahun') // Pengelompokan berdasar bulan dan tahun
+            ->orderBy('bulan') //Mengurutkan
             ->get();
 
         // Mengelompokkan data berdasarkan bulan
         $bulanDenganBarang = $dataBarang->groupBy('bulan')->map(function ($item) {
-            return $item->pluck('tahun')->toArray(); // Ambil hanya tahun untuk setiap bulan
+            return $item->pluck('tahun')->toArray();
         });
 
         // Mengirim variabel ke view

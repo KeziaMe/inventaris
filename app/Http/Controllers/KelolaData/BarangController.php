@@ -16,7 +16,11 @@ class BarangController extends Controller
     //
     public function barangView()
     {
-        $data['allDataBarang'] = Barang::all();
+        $data['allDataBarang'] = Barang::all()->map(function ($barang) {
+            $barang->tgl_masuk = Carbon::parse($barang->tgl_masuk)->format('Y-m-d'); // atau format lain yang Anda inginkan
+            $barang->tgl_update = Carbon::parse($barang->tgl_update)->format('Y-m-d'); // atau format lain yang Anda inginkan
+            return $barang;
+        });
         return view("admin.kelola_data.barang.view_barang", $data);
     }
     public function barangTambah()
@@ -125,10 +129,17 @@ class BarangController extends Controller
 
         $dataBarang = Barang::whereMonth('tgl_update', $bulan)
             ->whereYear('tgl_update', $tahun)
-            ->get();
+            ->get()
+            ->map(function ($barang) {
+                // Format ulang tanggal sebelum dikirim ke frontend
+                $barang->tgl_masuk = Carbon::parse($barang->tgl_masuk)->format('d-m-Y');
+                $barang->tgl_update = Carbon::parse($barang->tgl_update)->format('d-m-Y');
+                return $barang;
+            });
 
         return response()->json($dataBarang);
     }
+
 
     public function unduhPerbulan(Request $request)
     {
@@ -178,10 +189,6 @@ class BarangController extends Controller
 
         return $pdf->download("laporan_barang_{$bulan}_{$tahun}.pdf");
     }
-
-
-
-
 
     // Menampilkan grafik data barang perbulan
     public function showGrafikKondisi(Request $request)

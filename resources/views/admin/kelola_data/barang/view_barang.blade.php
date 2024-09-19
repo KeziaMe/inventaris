@@ -65,8 +65,9 @@
                                                 <td>{{$barang->nm_brg}}</td>
                                                 <td>{{ $barang->kondisi_brg }}</td>
                                                 <td>{{$barang->ket}}</td>
-                                                <td>{{$barang->tgl_masuk}}</td>
-                                                <td>{{$barang->tgl_update}}</td>
+                                                <td>{{ \Carbon\Carbon::parse($barang->tgl_masuk)->format('Y-m-d') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($barang->tgl_update)->format('Y-m-d') }}</td>
+
                                                 <td>{{$barang->jenis_brg}}</td>
 
                                                 @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")

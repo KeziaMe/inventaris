@@ -112,21 +112,26 @@
                     tableBody.innerHTML = '';
 
                     data.forEach(barang => {
+                        // Gunakan slice untuk mengambil bagian tanggal (YYYY-MM-DD)
+                        const tglMasuk = barang.tgl_masuk.slice(0, 10);
+                        const tglUpdate = barang.tgl_update.slice(0, 10);
+
                         const row = document.createElement('tr');
                         row.innerHTML = `
-                            <td>${barang.kd_brg}</td>
-                            <td>${barang.nm_brg}</td>
-                            <td>${barang.kondisi_brg}</td>
-                            <td>${barang.ket}</td>
-                            <td>${new Date(barang.tgl_masuk).toLocaleDateString()}</td>
-                            <td>${new Date(barang.tgl_update).toLocaleDateString()}</td>
-                            <td>${barang.jenis_brg}</td>
-                        `;
+                        <td>${barang.kd_brg}</td>
+                        <td>${barang.nm_brg}</td>
+                        <td>${barang.kondisi_brg}</td>
+                        <td>${barang.ket}</td>
+                        <td>${tglMasuk}</td>
+                        <td>${tglUpdate}</td>
+                        <td>${barang.jenis_brg}</td>
+                    `;
                         tableBody.appendChild(row);
                     });
                 });
         }
     }
+
 
     // Memicu perubahan pertama kali untuk mengatur default
     document.getElementById('bulan').dispatchEvent(new Event('change'));

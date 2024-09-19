@@ -118,6 +118,18 @@ class BarangController extends Controller
         return redirect()->route('barang.view');
     }
 
+    public function getDataBarang(Request $request)
+    {
+        $bulan = $request->input('bulan');
+        $tahun = $request->input('tahun');
+
+        $dataBarang = Barang::whereMonth('tgl_update', $bulan)
+            ->whereYear('tgl_update', $tahun)
+            ->get();
+
+        return response()->json($dataBarang);
+    }
+
     public function unduhPerbulan(Request $request)
     {
         // Mengambil data bulan dan tahun yang ada barangnya (berdasarkan tgl_update) 
@@ -136,7 +148,6 @@ class BarangController extends Controller
         return view("admin.kelola_data.barang.halaman_unduh_barang", compact('bulanDenganBarang'));
     }
 
-
     public function unduhPdf(Request $request)
     {
         $bulan = $request->input('bulan');
@@ -154,8 +165,8 @@ class BarangController extends Controller
         }
 
         $pdf = PDF::loadView('admin.kelola_data.barang.unduh_barang', [
-            'allDataBarang' => $dataBarang,
-            'bulan' => $namaBulan,  // Kirim nama bulan yang sudah diubah
+            'dataBarang' => $dataBarang,
+            'bulan' => $namaBulan,
             'tahun' => $tahun
         ]);
 

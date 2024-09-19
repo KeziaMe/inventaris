@@ -65,6 +65,7 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS,Kepala Sekolah'])
         Route::get('/hapus/{id}', [BarangController::class, 'barangHapus'])->name('barang.hapus');
         Route::get('/barang/unduh', [BarangController::class, 'unduhPerbulan'])->name('unduh.perbulan');
         Route::post('/unduh', [BarangController::class, 'unduhPDF'])->name('barang.unduhBulan.pdf');
+        Route::get('/api/data-barang', [BarangController::class, 'getDataBarang'])->name('api.dataBarang');
     });
 });
 

@@ -42,8 +42,21 @@
                     <td>{{ $barang->nm_brg }}</td>
                     <td>{{ $barang->kondisi_brg }}</td>
                     <td>{{ $barang->ket }}</td>
-                    <td>{{ $barang->tgl_masuk->format('d-m-Y') }}</td>
-                    <td>{{ $barang->tgl_update->format('d-m-Y') }}</td>
+                    <td>
+                        @if($barang->tgl_masuk instanceof \Carbon\Carbon)
+                            {{ $barang->tgl_masuk->format('d-m-Y') }}
+                        @else
+                            {{ $barang->tgl_masuk }}
+                        @endif
+                    </td>
+                    <td>
+                        @if($barang->tgl_update instanceof \Carbon\Carbon)
+                            {{ $barang->tgl_update->format('d-m-Y') }}
+                        @else
+                            {{ $barang->tgl_update }}
+                        @endif
+                    </td>
+
                     <td>{{ $barang->jenis_brg }}</td>
                 </tr>
             @endforeach

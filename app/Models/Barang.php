@@ -4,10 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Barang extends Model
 {
     use HasFactory;
+
+    public function getTglMasukAttribute($value)
+    {
+        return Carbon::parse($value);
+    }
+
+    // Accessor untuk tgl_update
+    public function getTglUpdateAttribute($value)
+    {
+        return Carbon::parse($value);
+    }
 
     public function KondisiBarang()
     {

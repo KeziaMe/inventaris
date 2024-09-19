@@ -153,12 +153,18 @@ class BarangController extends Controller
         $bulan = $request->input('bulan');
         $tahun = $request->input('tahun');
 
-        // Ubah angka bulan menjadi nama bulan dalam bahasa Indonesia
         $namaBulan = Carbon::create()->month($bulan)->translatedFormat('F');
 
+        // Ambil data barang
         $dataBarang = Barang::whereMonth('tgl_update', $bulan)
             ->whereYear('tgl_update', $tahun)
-            ->get();
+            ->get()
+            ->map(function ($barang) {
+                // Mengubah format tgl_masuk dan tgl_update menjadi objek Carbon
+                $barang->tgl_masuk = Carbon::parse($barang->tgl_masuk);
+                $barang->tgl_update = Carbon::parse($barang->tgl_update);
+                return $barang;
+            });
 
         if ($dataBarang->isEmpty()) {
             return redirect()->back()->with('error', 'Tidak ada data barang untuk bulan dan tahun yang dipilih.');
@@ -172,6 +178,8 @@ class BarangController extends Controller
 
         return $pdf->download("laporan_barang_{$bulan}_{$tahun}.pdf");
     }
+
+
 
 
 

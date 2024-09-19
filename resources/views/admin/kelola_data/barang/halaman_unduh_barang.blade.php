@@ -7,7 +7,8 @@
             <div class="col-12">
                 <h2 class="page-title">Unduh Laporan</h2>
                 <div class="col text-end">
-                    <form id="filter-form" action="{{ route('barang.unduhBulan.pdf') }}" class="form-inline mt-3">
+                    <form id="filter-form" action="{{ route('barang.unduhBulan.pdf') }}" method="POST"
+                        class="form-inline mt-3">
                         @csrf
                         <div class="form-group">
                             <label for="bulan" class="mr-2">Pilih Bulan:</label>
@@ -27,10 +28,11 @@
                             </select>
                         </div>
 
-                        <button type="button" id="btn-unduh" class="btn btn-primary mt-3">
+                        <button type="submit" class="btn btn-primary mt-3">
                             <i class="fe fe-download"></i> Unduh Laporan
                         </button>
                     </form>
+
                 </div>
 
                 <h3 class="page-title mt-4">Preview Data Barang</h3>

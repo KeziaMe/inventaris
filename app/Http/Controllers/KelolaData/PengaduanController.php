@@ -158,4 +158,24 @@ class PengaduanController extends Controller
         return $pdf->download("laporan_pengaduan_{$bulan}_{$tahun}.pdf");
     }
 
+    public function getDataPengaduan(Request $request)
+    {
+        $bulan = $request->input('bulan');
+        $tahun = $request->input('tahun');
+
+        $dataPengaduan = Pengaduan::whereMonth('tgl_pengaduan', $bulan)
+            ->whereYear('tgl_pengaduan', $tahun)
+            ->with('StatusPengaduan') // Pastikan untuk mengambil relasi
+            ->get()
+            ->map(function ($pengaduan) {
+                // Format ulang tanggal sebelum dikirim ke frontend
+                $pengaduan->tgl_pengaduan = Carbon::parse($pengaduan->tgl_pengaduan)->format('d-m-Y');
+                $pengaduan->tgl_update = Carbon::parse($pengaduan->tgl_update)->format('d-m-Y');
+                return $pengaduan;
+            });
+
+        return response()->json($dataPengaduan);
+    }
+
+
 }

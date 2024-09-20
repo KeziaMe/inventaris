@@ -102,6 +102,8 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS,Kepala Sekolah'])
         Route::get('/hapus/{id}', [PengaduanController::class, 'pengaduanHapus'])->name('pengaduan.hapus');
         Route::get('/unduh-perbulan', [PengaduanController::class, 'unduhPerbulan'])->name('pengaduan.unduhBulan');
         Route::post('/unduh', [PengaduanController::class, 'unduhPerbulanPDF'])->name('pengaduan.unduhBulan.pdf');
+        Route::get('/api/dataPengaduan', [PengaduanController::class, 'getDataPengaduan'])->name('api.dataPengaduan');
+
     });
 });
 

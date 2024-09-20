@@ -116,6 +116,7 @@
                         const tglMasuk = barang.tgl_masuk.slice(0, 10);
                         const tglUpdate = barang.tgl_update.slice(0, 10);
 
+                        //memanggil data sesuai bulan untuk preview
                         const row = document.createElement('tr');
                         row.innerHTML = `
                         <td>${barang.kd_brg}</td>

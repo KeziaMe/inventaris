@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Data Riwayat Pengaduan</h2>
-                <div class="col text-end mb-3">
+                <div class="col text-end mb-2"> <!-- Mengurangi margin bawah di sini -->
                     <a href="#" class="btn btn-success" style="color: white;">
                         <i class="fe fe-door"></i>Kembali
                     </a>
@@ -17,20 +17,16 @@
                     <div class="col-md-12 my-4">
                         <div class="card shadow">
                             <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="mr-3">
+                                        <strong>Total Barang Diperbaiki:</strong> {{ $totalPerbaikan }}
+                                    </div>
+                                    <div>
+                                        <strong>Total Barang Selesai:</strong> {{ $totalSelesai }}
+                                    </div>
+                                </div>
                                 <table class="table dataTables" id="dataTable-1">
-
                                     <thead>
-                                        <!-- Baris Total Barang Diperbaiki dan Total Barang Selesai -->
-                                        <tr>
-                                            <td colspan="4" class="text-right"><strong>Total Barang Diperbaiki:</strong>
-                                            </td>
-                                            <td colspan="3">{{ $totalPerbaikan }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" class="text-right"><strong>Total Barang Selesai:</strong>
-                                            </td>
-                                            <td colspan="3">{{ $totalSelesai }}</td>
-                                        </tr>
                                         <tr>
                                             <th>NO</th>
                                             <th>Tanggal Pengaduan</th>
@@ -40,7 +36,6 @@
                                             <th>Tanggal Update</th>
                                             <th>Inventarisasi</th>
                                         </tr>
-
                                     </thead>
                                     <tbody>
                                         <!-- Data Riwayat Pengaduan -->

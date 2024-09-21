@@ -30,10 +30,6 @@
                     </p>
                 </div>
                 <div class="col-md-5">
-                    <p class="small text-muted text-uppercase mb-2">Tanggal Masuk</p>
-                    <p class="mb-4">
-                        <strong>{{$detailData_pengaduan->tgl_masuk}}</strong>
-                    </p>
                     <p>
                         <small class="small text-muted text-uppercase">Tanggal Update</small><br />
                         <strong>{{$detailData_pengaduan->tgl_update}}</strong>

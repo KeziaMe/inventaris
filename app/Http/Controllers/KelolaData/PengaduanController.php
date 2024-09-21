@@ -11,6 +11,7 @@ use App\Models\Inventarisasi;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use DB; // Tambahkan ini untuk menggunakan DB facade
 
 class PengaduanController extends Controller
 {
@@ -175,6 +176,18 @@ class PengaduanController extends Controller
             });
 
         return response()->json($dataPengaduan);
+    }
+
+    public function riwayatPengaduan()
+    {
+        // Mengambil semua data riwayat pengaduan dari view pengaduan
+        $allDataRiwayatPengaduan = DB::table('pengaduans')->get();
+
+        // Menghitung total jumlah perbaikan (misalnya kondisi 'Perbaikan')
+        $totalPerbaikan = $allDataRiwayatPengaduan->where('nm_status_pengaduan', 'Perbaikan')->count();
+
+        // Mengirim data ke view
+        return view('admin.kelola_data.pengaduan.riwayat_pengaduan', compact('allDataRiwayatPengaduan', 'totalPerbaikan'));
     }
 
 

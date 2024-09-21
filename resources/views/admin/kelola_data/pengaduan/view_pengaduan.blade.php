@@ -11,9 +11,11 @@
                         <a href="{{route('pengaduan.unduhBulan')}}" class="btn btn-primary" style="color: white;">
                             <i class="fe fe-download"></i>Unduh
                         </a>
+                        <a href="{{route('pengaduan.riwayat')}}" class="btn btn-secondary" style="color: white;">
+                            <i class="fe fe-repeat"></i>Riwayat
+                        </a>
                     </div>
                 @endif
-
 
                 <div class="row">
                     <!-- simple table -->

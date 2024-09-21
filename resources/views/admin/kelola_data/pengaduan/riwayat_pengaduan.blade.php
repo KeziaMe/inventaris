@@ -6,20 +6,10 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Data Riwayat Pengaduan</h2>
-                <div class="col text-end">
+                <div class="col text-end mb-3">
                     <a href="#" class="btn btn-success" style="color: white;">
                         <i class="fe fe-door"></i>Kembali
                     </a>
-                </div>
-
-                <div class="row mb-4">
-                    <!-- Display total perbaikan and total selesai -->
-                    <div class="col-md-6">
-                        <h5>Total Barang Diperbaiki: {{ $totalPerbaikan }}</h5>
-                    </div>
-                    <div class="col-md-6">
-                        <h5>Total Barang Selesai: {{ $totalSelesai }}</h5>
-                    </div>
                 </div>
 
                 <div class="row">
@@ -28,7 +18,19 @@
                         <div class="card shadow">
                             <div class="card-body">
                                 <table class="table dataTables" id="dataTable-1">
+
                                     <thead>
+                                        <!-- Baris Total Barang Diperbaiki dan Total Barang Selesai -->
+                                        <tr>
+                                            <td colspan="4" class="text-right"><strong>Total Barang Diperbaiki:</strong>
+                                            </td>
+                                            <td colspan="3">{{ $totalPerbaikan }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" class="text-right"><strong>Total Barang Selesai:</strong>
+                                            </td>
+                                            <td colspan="3">{{ $totalSelesai }}</td>
+                                        </tr>
                                         <tr>
                                             <th>NO</th>
                                             <th>Tanggal Pengaduan</th>
@@ -38,8 +40,10 @@
                                             <th>Tanggal Update</th>
                                             <th>Inventarisasi</th>
                                         </tr>
+
                                     </thead>
                                     <tbody>
+                                        <!-- Data Riwayat Pengaduan -->
                                         @foreach ($allDataRiwayatPengaduan as $key => $pengaduan)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>

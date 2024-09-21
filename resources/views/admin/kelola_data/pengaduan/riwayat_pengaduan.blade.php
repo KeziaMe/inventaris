@@ -12,14 +12,21 @@
                     </a>
                 </div>
 
+                <div class="row mb-4">
+                    <!-- Display total perbaikan and total selesai -->
+                    <div class="col-md-6">
+                        <h5>Total Barang Diperbaiki: {{ $totalPerbaikan }}</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Total Barang Selesai: {{ $totalSelesai }}</h5>
+                    </div>
+                </div>
+
                 <div class="row">
                     <!-- simple table -->
                     <div class="col-md-12 my-4">
                         <div class="card shadow">
                             <div class="card-body">
-                                <!-- Menampilkan total jumlah perbaikan -->
-                                <h4>Total Perbaikan: {{ $totalPerbaikan }}</h4>
-
                                 <table class="table dataTables" id="dataTable-1">
                                     <thead>
                                         <tr>

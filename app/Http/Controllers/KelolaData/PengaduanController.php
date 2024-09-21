@@ -180,15 +180,19 @@ class PengaduanController extends Controller
 
     public function riwayatPengaduan()
     {
-        // Mengambil semua data riwayat pengaduan dari view pengaduan
+        // Mengambil semua data riwayat pengaduan dari tabel pengaduans
         $allDataRiwayatPengaduan = DB::table('pengaduans')->get();
 
         // Menghitung total jumlah perbaikan (misalnya kondisi 'Perbaikan')
         $totalPerbaikan = $allDataRiwayatPengaduan->where('nm_status_pengaduan', 'Perbaikan')->count();
 
+        // Menghitung total jumlah barang yang selesai (misalnya kondisi 'Selesai')
+        $totalSelesai = $allDataRiwayatPengaduan->where('nm_status_pengaduan', 'Selesai')->count();
+
         // Mengirim data ke view
-        return view('admin.kelola_data.pengaduan.riwayat_pengaduan', compact('allDataRiwayatPengaduan', 'totalPerbaikan'));
+        return view('admin.kelola_data.pengaduan.riwayat_pengaduan', compact('allDataRiwayatPengaduan', 'totalPerbaikan', 'totalSelesai'));
     }
+
 
 
 }

@@ -78,6 +78,8 @@
 
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <a class="dropdown-item"
+                                                                href="{{route('barang.detail', $barang->id)}}">Detail</a>
+                                                            <a class="dropdown-item"
                                                                 href="{{route('barang.edit', $barang->id)}}">Edit</a>
                                                             <a class="dropdown-item" id="delete"
                                                                 href="{{route('barang.hapus', $barang->id)}}">Hapus</a>

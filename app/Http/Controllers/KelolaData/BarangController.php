@@ -29,6 +29,13 @@ class BarangController extends Controller
         $jenis_barang = JenisBarang::all();
         return view("admin.kelola_data.barang.tambah_barang", compact('kondisi_barang', 'jenis_barang'));
     }
+
+    public function barangDetail($id)
+    {
+        $detailData_barang = Barang::find($id);
+        return view("admin.kelola_data.barang.detail_barang", compact('detailData_barang'));
+    }
+
     public function barangEdit($id)
     {
         $kondisi_barang = KondisiBarang::all();

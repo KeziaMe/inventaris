@@ -33,15 +33,20 @@ class BarangController extends Controller
 
     public function barangDetail($id)
     {
-        $detailData_barang = Barang::find($id);
+        $detailData_barang = Barang::with('pengaduan')->find($id);
 
-        // Menghitung jumlah pengaduan dengan status perbaikan untuk barang ini
-        $jumlahPerbaikan = Pengaduan::where('id_inventarisasi', $detailData_barang->kd_brg)
-            ->where('nm_status_pengaduan', 'Perbaikan') // Kondisi berdasarkan status perbaikan
-            ->count();
+        // Cek jika barang ditemukan
+        if (!$detailData_barang) {
+            return redirect()->back()->with('error', 'Barang tidak ditemukan.');
+        }
+
+
+        // Menghitung jumlah total perbaikan untuk barang ini
+        $jumlahPerbaikan = $detailData_barang->pengaduan->sum('jumlah_perbaikan');
 
         return view("admin.kelola_data.barang.detail_barang", compact('detailData_barang', 'jumlahPerbaikan'));
     }
+
 
 
     public function barangEdit($id)

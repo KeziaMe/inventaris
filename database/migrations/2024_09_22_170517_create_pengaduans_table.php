@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('nm_status_pengaduan')->nullable();
             $table->string('tgl_update')->nullable();
             $table->string('id_inventarisasi')->nullable();
+            $table->string('jumlah_perbaikan')->nullable();
             $table->timestamps();
         });
     }

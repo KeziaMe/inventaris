@@ -33,7 +33,7 @@ class Barang extends Model
 
     public function pengaduan()
     {
-        return $this->hasMany(Pengaduan::class);
+        return $this->hasMany(Pengaduan::class, 'id_inventarisasi', 'kd_brg');
     }
 
     public function inventarisasi()

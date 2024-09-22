@@ -70,22 +70,25 @@ class PengaduanController extends Controller
 
     public function pengaduanUpdate(Request $request, $id)
     {
+        // Validasi input
         $validateData = $request->validate([
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // menambahkan validasi untuk file image
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'textStatus' => 'required',
             'textKondisi_brg' => 'required',
-
         ]);
 
         $data = Pengaduan::find($id);
+        $oldStatus = $data->nm_status_pengaduan; // Simpan status lama
+
         $data->tgl_pengaduan = $request->textTglPengaduan;
+
+        // Mengganti foto jika ada
         if ($request->file('foto')) {
-            // Delete the old photo if exists
+            // Hapus foto lama
             if ($data->foto && Storage::disk('public')->exists($data->foto)) {
                 Storage::disk('public')->delete($data->foto);
             }
-
-            // Store the new photo
+            // Simpan foto baru
             $foto = $request->file('foto')->store('gambar_pengaduan/foto', 'public');
             $data->foto = $foto;
         }
@@ -95,9 +98,18 @@ class PengaduanController extends Controller
         $data->tgl_update = $request->textTgl_update;
         $data->id_inventarisasi = $request->textInventarisasi;
         $data->nm_status_pengaduan = $request->textStatus;
-        $data->save();
 
-        \Log::info('Redirecting to pengaduan.view');
+        // Tambahkan logika untuk jumlah perbaikan
+        if ($oldStatus === null && $data->nm_status_pengaduan === 'Perbaikan') {
+            $data->jumlah_perbaikan = 1; // Set jumlah perbaikan menjadi 1
+        } elseif ($oldStatus !== $data->nm_status_pengaduan) {
+            if ($data->nm_status_pengaduan === 'Perbaikan') {
+                $data->jumlah_perbaikan += 1; // Tambah jika status baru adalah 'Perbaikan'
+            }
+            // Jangan ubah jumlah perbaikan jika status lama adalah 'Perbaikan' dan status baru adalah 'Selesai'
+        }
+
+        $data->save();
 
         return redirect()->route('pengaduan.view');
     }
@@ -192,7 +204,5 @@ class PengaduanController extends Controller
         // Mengirim data ke view
         return view('admin.kelola_data.pengaduan.riwayat_pengaduan', compact('allDataRiwayatPengaduan', 'totalPerbaikan', 'totalSelesai'));
     }
-
-
 
 }

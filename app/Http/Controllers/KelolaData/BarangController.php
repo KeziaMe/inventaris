@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\RiwayatBarang;
 use App\Models\JenisBarang;
+use App\Models\Pengaduan;
 use Carbon\Carbon; //untuk manipulasi tanggal
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -33,8 +34,15 @@ class BarangController extends Controller
     public function barangDetail($id)
     {
         $detailData_barang = Barang::find($id);
-        return view("admin.kelola_data.barang.detail_barang", compact('detailData_barang'));
+
+        // Menghitung jumlah pengaduan dengan status perbaikan untuk barang ini
+        $jumlahPerbaikan = Pengaduan::where('id_inventarisasi', $detailData_barang->kd_brg)
+            ->where('nm_status_pengaduan', 'Perbaikan') // Kondisi berdasarkan status perbaikan
+            ->count();
+
+        return view("admin.kelola_data.barang.detail_barang", compact('detailData_barang', 'jumlahPerbaikan'));
     }
+
 
     public function barangEdit($id)
     {

@@ -43,6 +43,7 @@
                     </p>
                     <p>
                         <small class="small text-muted text-uppercase">Jumlah Perbaikan</small><br />
+                        <strong>{{ $jumlahPerbaikan }}</strong>
                     </p>
                 </div>
             </div> <!-- /.row -->

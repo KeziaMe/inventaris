@@ -11,16 +11,20 @@
                         class="navbar-brand-img brand-sm mx-auto mb-4" alt="">
                 </div>
 
-
                 <div class="col-md-5">
-                    <p class="small text-muted text-uppercase mb-2">Keterangan</p>
+                    <p class="small text-muted text-uppercase mb-2">Tanggal</p>
+                    <!-- Menggunakan Carbon untuk memformat tanggal -->
+                    <strong>{{ \Carbon\Carbon::parse($viewNota->tgl_nota)->translatedFormat('d F Y') }}</strong>
 
-                    <strong>{{$viewNota->keterangan}}</strong>
+                    <div class="col-md-16">
+                        <p class="small text-muted text-uppercase mb-2">Keterangan</p>
 
-                </div>
-            </div> <!-- /.row -->
-        </div> <!-- /.card-body -->
-    </div> <!-- /.card -->
+                        <strong>{{$viewNota->keterangan}}</strong>
+
+                    </div>
+                </div> <!-- /.row -->
+            </div> <!-- /.card-body -->
+        </div> <!-- /.card -->
 </main>
 
 @endsection

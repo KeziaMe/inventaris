@@ -14,7 +14,7 @@
                             <thead>
                                 <tr>
                                     <th>NO</th>
-                                    <th>Foto</th>
+                                    <th>Tanggal</th>
                                     <th>Keterangan</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -25,13 +25,7 @@
 
                                     <tr>
                                         <td>{{$key + 1}}</td>
-                                        <td>@if($nota->foto_nota)
-                                                <img src="{{asset('storage/' . $nota->foto_nota)}}" alt=""
-                                                    title="{{$nota->foto_nota}}" class="card-img-top"
-                                                    style="width: 100px; display: block;">
-                                            </td>
-                                        @endif
-
+                                        <td>{{$nota->tgl_nota}}</td>
                                         <td>{{$nota->keterangan}}</td>
 
 

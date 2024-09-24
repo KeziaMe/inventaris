@@ -30,6 +30,7 @@ class NotaController extends Controller
             $data->foto_nota = '';
         }
 
+        $data->tgl_nota = $request->textTglNota;
         $data->keterangan = $request->textKeterangan;
         $data->save();
 

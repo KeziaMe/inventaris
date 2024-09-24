@@ -16,11 +16,10 @@
                     <!-- Menggunakan Carbon untuk memformat tanggal -->
                     <strong>{{ \Carbon\Carbon::parse($viewNota->tgl_nota)->translatedFormat('d F Y') }}</strong>
 
-                    <div class="col-md-16">
+                    <!-- Memberi jarak antara tanggal dan keterangan dengan margin-top -->
+                    <div class="col-md-16 mt-4">
                         <p class="small text-muted text-uppercase mb-2">Keterangan</p>
-
-                        <strong>{{$viewNota->keterangan}}</strong>
-
+                        <strong>{{ $viewNota->keterangan }}</strong>
                     </div>
                 </div> <!-- /.row -->
             </div> <!-- /.card-body -->

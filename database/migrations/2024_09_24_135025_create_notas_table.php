@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('notas', function (Blueprint $table) {
             $table->id();
+            $table->string('tgl_nota')->nullable();
             $table->string('foto_nota')->nullable();
             $table->string('keterangan')->nullable();
             $table->timestamps();

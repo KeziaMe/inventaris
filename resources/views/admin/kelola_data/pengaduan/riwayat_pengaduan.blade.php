@@ -7,7 +7,7 @@
             <div class="col-12">
                 <h2 class="page-title">Data Riwayat Pengaduan</h2>
                 <div class="col text-end mb-2"> <!-- Mengurangi margin bawah di sini -->
-                    <a href="#" class="btn btn-success" style="color: white;">
+                    <a href="{{route('pengaduan.view')}}" class="btn btn-success" style="color: white;">
                         <i class="fe fe-door"></i>Kembali
                     </a>
                 </div>

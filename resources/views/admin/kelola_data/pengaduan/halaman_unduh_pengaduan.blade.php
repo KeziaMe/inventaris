@@ -28,7 +28,7 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary mt-3">
+                        <button type="submit" class="btn btn-primary">
                             <i class="fe fe-download"></i> Unduh Laporan
                         </button>
                     </form>

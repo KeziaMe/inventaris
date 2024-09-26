@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="page-title">Unduh Laporan</h2>
+                <h2 class="page-title">Unduh Laporan Barang</h2>
                 <div class="col text-end">
                     <form id="filter-form" action="{{ route('barang.unduhBulan.pdf') }}" method="POST"
                         class="form-inline mt-3">
@@ -28,21 +28,19 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-primary mt-3">
+                        <button type="submit" class="btn btn-primary">
                             <i class="fe fe-download"></i> Unduh Laporan
                         </button>
                     </form>
-
                 </div>
 
                 <h3 class="page-title mt-4">Preview Data Barang</h3>
                 <table class="table" id="data-table">
                     <thead>
                         <tr>
-                            <th>Kode Barang</th>
+                            <th>No</th>
                             <th>Nama Barang</th>
                             <th>Kondisi Barang</th>
-                            <th>Keterangan</th>
                             <th>Tanggal Masuk</th>
                             <th>Tanggal Update</th>
                             <th>Jenis Barang</th>
@@ -67,17 +65,6 @@
 
     document.getElementById('tahun').addEventListener('change', function () {
         fetchData();
-    });
-
-    document.getElementById('btn-unduh').addEventListener('click', function () {
-        const bulan = document.getElementById('bulan').value;
-        const tahun = document.getElementById('tahun').value;
-
-        if (bulan && tahun) {
-            window.location.href = `{{ route('barang.unduhBulan.pdf') }}?bulan=${bulan}&tahun=${tahun}`;
-        } else {
-            alert('Pilih bulan dan tahun terlebih dahulu.');
-        }
     });
 
     function updateTahun() {
@@ -111,25 +98,28 @@
                     const tableBody = document.getElementById('data-table').querySelector('tbody');
                     tableBody.innerHTML = '';
 
-                    data.forEach(barang => {
-                        // Gunakan slice untuk mengambil bagian tanggal (YYYY-MM-DD)
-                        const tglMasuk = barang.tgl_masuk.slice(0, 10);
-                        const tglUpdate = barang.tgl_update.slice(0, 10);
-
-                        //memanggil data sesuai bulan untuk preview
+                    data.forEach((barang, index) => {
                         const row = document.createElement('tr');
+
+                        // Format tanggal menjadi YYYY-MM-DD
+                        const tglMasuk = new Date(barang.tgl_masuk);
+                        const tglUpdate = new Date(barang.tgl_update);
+
+                        const formattedTglMasuk = tglMasuk.toISOString().split('T')[0]; // Mengambil bagian tanggal
+                        const formattedTglUpdate = tglUpdate.toISOString().split('T')[0]; // Mengambil bagian tanggal
+
                         row.innerHTML = `
-                        <td>${barang.kd_brg}</td>
+                        <td>${index + 1}</td>
                         <td>${barang.nm_brg}</td>
                         <td>${barang.kondisi_brg}</td>
-                        <td>${barang.ket}</td>
-                        <td>${tglMasuk}</td>
-                        <td>${tglUpdate}</td>
+                        <td>${formattedTglMasuk}</td>
+                        <td>${formattedTglUpdate}</td>
                         <td>${barang.jenis_brg}</td>
                     `;
                         tableBody.appendChild(row);
                     });
-                });
+                })
+                .catch(error => console.error('Error fetching data:', error));
         }
     }
 

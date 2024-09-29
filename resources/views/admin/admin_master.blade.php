@@ -401,17 +401,26 @@
     $(document).ready(function () {
       var table = $('#dataTable-1').DataTable();
       table.destroy(); // Hancurkan instance DataTables sebelumnya
+
       $('#dataTable-1').DataTable({
         language: {
           search: "Cari:",
+          lengthMenu: "Tampilkan _MENU_ entri",
+          info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
           paginate: {
-            previous: "Sebelumnya",  // Ganti teks Previous
-            next: "Berikutnya"       // Ganti teks Next
-          }
+            first: "Pertama",
+            last: "Terakhir",
+            next: "Berikutnya",
+            previous: "Sebelumnya"
+          },
+          zeroRecords: "Tidak ditemukan data yang cocok",
+          infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+          infoFiltered: "(difilter dari total _MAX_ entri)"
         }
       });
     });
   </script>
+
 
 
 </body>

@@ -397,6 +397,21 @@
     });
   </script>
 
+  <script>
+    $(document).ready(function () {
+      var table = $('#dataTable-1').DataTable();
+      table.destroy(); // Hancurkan instance DataTables sebelumnya
+      $('#dataTable-1').DataTable({
+        language: {
+          search: "Cari:",
+          paginate: {
+            previous: "Sebelumnya",  // Ganti teks Previous
+            next: "Berikutnya"       // Ganti teks Next
+          }
+        }
+      });
+    });
+  </script>
 
 
 </body>

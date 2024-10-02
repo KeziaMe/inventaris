@@ -7,34 +7,54 @@
             <div class="col-12">
                 <h2 class="page-title">Data Barang</h2>
                 <div class="col text-end">
-
                     @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
                         <a href="{{route('barang.tambah')}}" class="btn btn-success" style="color: white;">
                             <i class="fe fe-plus"></i>Tambah
                         </a>
-
                         <a href="{{route('unduh.perbulan')}}" class="btn btn-primary" style="color: white;">
                             <i class="fe fe-download"></i>Unduh
-
                         </a>
                         <a href="{{route('barang.viewriwayat')}}" class="btn btn-secondary" style="color: white;">
                             <i class="fe fe-repeat"></i>Riwayat
                         </a>
                     @endif
 
-                    <!-- supaya muncul di role kepsek tanpa tambah -->
                     @if(auth()->user()->role == "Kepala Sekolah")
                         <a href="{{route('unduh.perbulan')}}" class="btn btn-primary" style="color: white;">
                             <i class="fe fe-download"></i>Unduh
-
                         </a>
                         <a href="{{route('barang.viewriwayat')}}" class="btn btn-secondary" style="color: white;">
                             <i class="fe fe-repeat"></i>Riwayat
                         </a>
                     @endif
-
                 </div>
 
+                <!-- Filter Bulan dan Tahun -->
+                <form id="filterForm" method="GET" action="{{ route('barang.view') }}">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select class="form-control" id="filterBulan" name="bulan">
+                                <option value="">Pilih Bulan</option>
+                                @foreach ($bulanTahun as $item)
+                                    <option value="{{ $item->bulan }}">
+                                        {{ \Carbon\Carbon::create()->month($item->bulan)->isoFormat('MMMM') }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="filterTahun" name="tahun">
+                                <option value="">Pilih Tahun</option>
+                                @foreach ($bulanTahun->pluck('tahun')->unique() as $tahun) <!-- Gunakan pluck untuk mengambil hanya tahun -->
+                                    <option value="{{ $tahun }}">{{ $tahun }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary">Filter</button>
+                        </div>
+                    </div>
+                </form>
 
                 <div class="row">
                     <!-- simple table -->
@@ -79,15 +99,14 @@
                                                 <td>{{$barang->ket}}</td>
                                                 <td>{{ \Carbon\Carbon::parse($barang->tgl_masuk)->format('Y-m-d') }}</td>
                                                 <td>{{ \Carbon\Carbon::parse($barang->tgl_update)->format('Y-m-d') }}</td>
-
                                                 <td>{{$barang->jenis_brg}}</td>
 
                                                 @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
-                                                    <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                    <td>
+                                                        <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <span class="text-muted sr-only">Action</span>
                                                         </button>
-
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <a class="dropdown-item"
                                                                 href="{{route('barang.detail', $barang->id)}}">Detail</a>
@@ -100,7 +119,6 @@
                                                 @endif
                                             </tr>
                                         @endforeach
-
                                     </tbody>
                                 </table>
                             </div>
@@ -113,7 +131,6 @@
             </div> <!-- .col-12 -->
         </div> <!-- .row -->
     </div> <!-- .container-fluid -->
-
 </main> <!-- main -->
 
 @endsection

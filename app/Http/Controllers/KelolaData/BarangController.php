@@ -11,13 +11,30 @@ use App\Models\JenisBarang;
 use App\Models\Pengaduan;
 use Carbon\Carbon; //untuk manipulasi tanggal
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class BarangController extends Controller
 {
     //
-    public function barangView()
+    public function barangView(Request $request)
     {
-        $data['allDataBarang'] = Barang::all()->map(function ($barang) {
+        // Ambil bulan dan tahun yang unik dari tgl_update
+        $bulanTahun = DB::table('barangs')
+            ->select(DB::raw('DISTINCT YEAR(tgl_update) as tahun, MONTH(tgl_update) as bulan'))
+            ->orderBy('tahun', 'desc')
+            ->get();
+        // Filter berdasarkan bulan dan tahun jika ada input
+        $query = Barang::query();
+
+        if ($request->has('bulan') && $request->bulan != '') {
+            $query->whereMonth('tgl_update', $request->bulan);
+        }
+
+        if ($request->has('tahun') && $request->tahun != '') {
+            $query->whereYear('tgl_update', $request->tahun);
+        }
+
+        $data['allDataBarang'] = $query->get()->map(function ($barang) {
             $barang->tgl_masuk = Carbon::parse($barang->tgl_masuk)->format('Y-m-d');
             $barang->tgl_update = Carbon::parse($barang->tgl_update)->format('Y-m-d');
             return $barang;
@@ -28,8 +45,13 @@ class BarangController extends Controller
         $data['totalKurangBaik'] = Barang::where('kondisi_brg', 'Kurang Baik')->count();
         $data['totalRusakBerat'] = Barang::where('kondisi_brg', 'Rusak Berat')->count();
 
+        // Kirim data bulan dan tahun untuk filter ke view
+        $data['bulanTahun'] = $bulanTahun;
+
         return view("admin.kelola_data.barang.view_barang", $data);
     }
+
+
     public function barangTambah()
     {
         $kondisi_barang = KondisiBarang::all();

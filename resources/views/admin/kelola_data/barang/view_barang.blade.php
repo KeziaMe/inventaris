@@ -52,6 +52,8 @@
                         </div>
                         <div class="col-md-3">
                             <button type="submit" class="btn btn-primary">Filter</button>
+                            <button type="button" class="btn btn-secondary" id="resetButton">Reset Filter</button>
+                            <!-- Tombol Reset -->
                         </div>
                     </div>
                 </form>
@@ -132,5 +134,16 @@
         </div> <!-- .row -->
     </div> <!-- .container-fluid -->
 </main> <!-- main -->
+
+<script>
+    document.getElementById('resetButton').addEventListener('click', function () {
+        // Menghapus pilihan di dropdown
+        document.getElementById('filterBulan').selectedIndex = 0; // Reset dropdown bulan
+        document.getElementById('filterTahun').selectedIndex = 0; // Reset dropdown tahun
+
+        // Mengarahkan ke URL tanpa parameter filter
+        window.location.href = "{{ route('barang.view') }}";
+    });
+</script>m
 
 @endsection

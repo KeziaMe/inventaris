@@ -18,10 +18,16 @@ class BarangController extends Controller
     public function barangView()
     {
         $data['allDataBarang'] = Barang::all()->map(function ($barang) {
-            $barang->tgl_masuk = Carbon::parse($barang->tgl_masuk)->format('Y-m-d'); // atau format lain yang Anda inginkan
-            $barang->tgl_update = Carbon::parse($barang->tgl_update)->format('Y-m-d'); // atau format lain yang Anda inginkan
+            $barang->tgl_masuk = Carbon::parse($barang->tgl_masuk)->format('Y-m-d');
+            $barang->tgl_update = Carbon::parse($barang->tgl_update)->format('Y-m-d');
             return $barang;
         });
+
+        // Hitung total barang berdasarkan kondisi
+        $data['totalBaik'] = Barang::where('kondisi_brg', 'Baik')->count();
+        $data['totalKurangBaik'] = Barang::where('kondisi_brg', 'Kurang Baik')->count();
+        $data['totalRusakBerat'] = Barang::where('kondisi_brg', 'Rusak Berat')->count();
+
         return view("admin.kelola_data.barang.view_barang", $data);
     }
     public function barangTambah()

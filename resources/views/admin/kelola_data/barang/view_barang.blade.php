@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Data Barang</h2>
-                <div class="col text-end">
+                <div class="col text-end mb-3"> <!-- Menambahkan margin bawah pada kolom tombol "Tambah" -->
                     @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
                         <a href="{{route('barang.tambah')}}" class="btn btn-success" style="color: white;">
                             <i class="fe fe-plus"></i>Tambah
@@ -30,7 +30,8 @@
                 </div>
 
                 <!-- Filter Bulan dan Tahun -->
-                <form id="filterForm" method="GET" action="{{ route('barang.view') }}">
+                <form id="filterForm" method="GET" action="{{ route('barang.view') }}" class="mb-4">
+                    <!-- Menambahkan margin bawah pada form filter -->
                     <div class="row">
                         <div class="col-md-3">
                             <select class="form-control" id="filterBulan" name="bulan">
@@ -57,6 +58,7 @@
                         </div>
                     </div>
                 </form>
+
 
                 <div class="row">
                     <!-- simple table -->

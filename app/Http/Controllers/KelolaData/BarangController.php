@@ -23,7 +23,11 @@ class BarangController extends Controller
             ->select(DB::raw('DISTINCT YEAR(tgl_update) as tahun, MONTH(tgl_update) as bulan'))
             ->orderBy('tahun', 'desc')
             ->get();
-        // Filter berdasarkan bulan dan tahun jika ada input
+
+        // Ambil kondisi barang yang unik untuk filter
+        $kondisiBarang = Barang::select('kondisi_brg')->distinct()->get();
+
+        // Filter berdasarkan bulan, tahun, dan kondisi barang jika ada input
         $query = Barang::query();
 
         if ($request->has('bulan') && $request->bulan != '') {
@@ -32,6 +36,10 @@ class BarangController extends Controller
 
         if ($request->has('tahun') && $request->tahun != '') {
             $query->whereYear('tgl_update', $request->tahun);
+        }
+
+        if ($request->has('kondisi') && $request->kondisi != '') {
+            $query->where('kondisi_brg', $request->kondisi);
         }
 
         $data['allDataBarang'] = $query->get()->map(function ($barang) {
@@ -45,11 +53,13 @@ class BarangController extends Controller
         $data['totalKurangBaik'] = Barang::where('kondisi_brg', 'Kurang Baik')->count();
         $data['totalRusakBerat'] = Barang::where('kondisi_brg', 'Rusak Berat')->count();
 
-        // Kirim data bulan dan tahun untuk filter ke view
+        // Kirim data bulan, tahun, dan kondisi barang untuk filter ke view
         $data['bulanTahun'] = $bulanTahun;
+        $data['kondisiBarang'] = $kondisiBarang;
 
         return view("admin.kelola_data.barang.view_barang", $data);
     }
+
 
 
     public function barangTambah()

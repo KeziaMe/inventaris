@@ -30,8 +30,8 @@
                 </div>
 
                 <!-- Filter Bulan dan Tahun -->
+                <!-- Filter Bulan, Tahun, dan Kondisi -->
                 <form id="filterForm" method="GET" action="{{ route('barang.view') }}" class="mb-4">
-                    <!-- Menambahkan margin bawah pada form filter -->
                     <div class="row">
                         <div class="col-md-3">
                             <select class="form-control" id="filterBulan" name="bulan">
@@ -46,19 +46,25 @@
                         <div class="col-md-3">
                             <select class="form-control" id="filterTahun" name="tahun">
                                 <option value="">Pilih Tahun</option>
-                                @foreach ($bulanTahun->pluck('tahun')->unique() as $tahun) <!-- Gunakan pluck untuk mengambil hanya tahun -->
+                                @foreach ($bulanTahun->pluck('tahun')->unique() as $tahun)
                                     <option value="{{ $tahun }}">{{ $tahun }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="filterKondisi" name="kondisi">
+                                <option value="">Pilih Kondisi</option>
+                                @foreach ($kondisiBarang as $kondisi)
+                                    <option value="{{ $kondisi->kondisi_brg }}">{{ $kondisi->kondisi_brg }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-md-3">
                             <button type="submit" class="btn btn-primary">Filter</button>
                             <button type="button" class="btn btn-secondary" id="resetButton">Reset Filter</button>
-                            <!-- Tombol Reset -->
                         </div>
                     </div>
                 </form>
-
 
                 <div class="row">
                     <!-- simple table -->

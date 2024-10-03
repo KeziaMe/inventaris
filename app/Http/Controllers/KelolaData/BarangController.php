@@ -42,25 +42,34 @@ class BarangController extends Controller
             $query->where('kondisi_brg', $request->kondisi);
         }
 
+        // Ambil data barang yang sudah difilter
         $data['allDataBarang'] = $query->get()->map(function ($barang) {
             $barang->tgl_masuk = Carbon::parse($barang->tgl_masuk)->format('Y-m-d');
             $barang->tgl_update = Carbon::parse($barang->tgl_update)->format('Y-m-d');
             return $barang;
         });
 
+        // Clone query untuk menghitung total barang berdasarkan kondisi setelah difilter
+        $queryBaik = clone $query;
+        $queryKurangBaik = clone $query;
+        $queryRusakBerat = clone $query;
+
         // Hitung total barang berdasarkan kondisi
-        $data['totalBaik'] = Barang::where('kondisi_brg', 'Baik')->count();
-        $data['totalKurangBaik'] = Barang::where('kondisi_brg', 'Kurang Baik')->count();
-        $data['totalRusakBerat'] = Barang::where('kondisi_brg', 'Rusak Berat')->count();
+        $data['totalBaik'] = $queryBaik->where('kondisi_brg', 'Baik')->count();
+        $data['totalKurangBaik'] = $queryKurangBaik->where('kondisi_brg', 'Kurang Baik')->count();
+        $data['totalRusakBerat'] = $queryRusakBerat->where('kondisi_brg', 'Rusak Berat')->count();
 
         // Kirim data bulan, tahun, dan kondisi barang untuk filter ke view
         $data['bulanTahun'] = $bulanTahun;
         $data['kondisiBarang'] = $kondisiBarang;
 
+        // Tambahkan nilai yang dipilih ke view
+        $data['selectedBulan'] = $request->bulan;
+        $data['selectedTahun'] = $request->tahun;
+        $data['selectedKondisi'] = $request->kondisi;
+
         return view("admin.kelola_data.barang.view_barang", $data);
     }
-
-
 
     public function barangTambah()
     {

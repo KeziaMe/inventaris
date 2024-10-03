@@ -29,42 +29,61 @@
                     @endif
                 </div>
 
-                <!-- Filter Bulan dan Tahun -->
                 <!-- Filter Bulan, Tahun, dan Kondisi -->
                 <form id="filterForm" method="GET" action="{{ route('barang.view') }}" class="mb-4">
                     <div class="row">
+                        <!-- Dropdown Bulan -->
                         <div class="col-md-3">
                             <select class="form-control" id="filterBulan" name="bulan">
                                 <option value="">Pilih Bulan</option>
                                 @foreach ($bulanTahun as $item)
-                                    <option value="{{ $item->bulan }}">
+                                    <option value="{{ $item->bulan }}" {{ request('bulan') == $item->bulan ? 'selected' : '' }}>
                                         {{ \Carbon\Carbon::create()->month($item->bulan)->isoFormat('MMMM') }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
+
+                        <!-- Dropdown Tahun -->
                         <div class="col-md-3">
                             <select class="form-control" id="filterTahun" name="tahun">
                                 <option value="">Pilih Tahun</option>
                                 @foreach ($bulanTahun->pluck('tahun')->unique() as $tahun)
-                                    <option value="{{ $tahun }}">{{ $tahun }}</option>
+                                    <option value="{{ $tahun }}" {{ request('tahun') == $tahun ? 'selected' : '' }}>
+                                        {{ $tahun }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
+
+                        <!-- Dropdown Kondisi -->
                         <div class="col-md-3">
                             <select class="form-control" id="filterKondisi" name="kondisi">
                                 <option value="">Pilih Kondisi</option>
                                 @foreach ($kondisiBarang as $kondisi)
-                                    <option value="{{ $kondisi->kondisi_brg }}">{{ $kondisi->kondisi_brg }}</option>
+                                    <option value="{{ $kondisi->kondisi_brg }}" {{ request('kondisi') == $kondisi->kondisi_brg ? 'selected' : '' }}>
+                                        {{ $kondisi->kondisi_brg }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
+
+                        <!-- Tombol Filter dan Reset -->
                         <div class="col-md-3">
                             <button type="submit" class="btn btn-primary">Filter</button>
                             <button type="button" class="btn btn-secondary" id="resetButton">Reset Filter</button>
                         </div>
                     </div>
                 </form>
+
+                <!-- Script untuk tombol Reset -->
+                <script>
+                    document.getElementById('resetButton').addEventListener('click', function () {
+                        // Mengarahkan ke URL tanpa query string untuk mereset filter
+                        window.location.href = "{{ route('barang.view') }}";
+                    });
+                </script>
+
 
                 <div class="row">
                     <!-- simple table -->

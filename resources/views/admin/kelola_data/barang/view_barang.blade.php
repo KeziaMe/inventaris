@@ -71,7 +71,7 @@
                         <!-- Tombol Filter dan Reset -->
                         <div class="col-md-3">
                             <button type="submit" class="btn btn-primary">Filter</button>
-                            <button type="button" class="btn btn-secondary" id="resetButton">Reset Filter</button>
+                            <button type="button" class="btn btn-secondary" id="resetButton">Hapus Filter</button>
                         </div>
                     </div>
                 </form>

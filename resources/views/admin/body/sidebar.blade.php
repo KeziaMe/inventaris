@@ -14,7 +14,7 @@
       <li class="nav-item w-100">
         <a class="nav-link" href="{{route('dashboard')}}">
           <i class="fe fe-home fe-16"></i>
-          <span class="ml-3 item-text">Dashboard</span>
+          <span class="ml-3 item-text">Beranda</span>
         </a>
       </li>
     </ul>

@@ -130,7 +130,7 @@
       <li class="nav-item w-100">
       <a class="nav-link" href="{{route('role.view')}}">
         <i class="fe fe-users fe-16"></i>
-        <span class="ml-3 item-text">Role</span>
+        <span class="ml-3 item-text">Peran</span>
       </a>
       </li>
     @endif
@@ -139,7 +139,7 @@
       <li class="nav-item w-100">
       <a class="nav-link" href="{{route('user.view')}}">
         <i class="fe fe-user fe-16"></i>
-        <span class="ml-3 item-text">User</span>
+        <span class="ml-3 item-text">Pengguna</span>
       </a>
       </li>
     @endif

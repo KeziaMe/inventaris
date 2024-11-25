@@ -57,7 +57,7 @@
                                                                 <a class="dropdown-item"
                                                                     href="{{route('pengaduan.detail', $pengaduan->id)}}">Detail</a>
                                                                 <a class="dropdown-item"
-                                                                    href="{{route('pengaduan.edit', $pengaduan->id)}}">Edit</a>
+                                                                    href="{{route('pengaduan.edit', $pengaduan->id)}}">Ubah</a>
                                                                 <a class="dropdown-item" id="delete"
                                                                     href="{{route('pengaduan.hapus', $pengaduan->id)}}">Hapus</a>
                                                             @endif

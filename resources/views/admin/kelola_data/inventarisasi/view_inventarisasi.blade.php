@@ -42,7 +42,7 @@
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item"
-                                                            href="{{route('inventarisasi.edit', $inventarisasi->id)}}">Edit</a>
+                                                            href="{{route('inventarisasi.edit', $inventarisasi->id)}}">Ubah</a>
                                                         <a class="dropdown-item" id="delete"
                                                             href="{{route('inventarisasi.hapus', $inventarisasi->id)}}">Hapus</a>
                                                     </div>

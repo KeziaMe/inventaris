@@ -140,7 +140,7 @@
                                                             <a class="dropdown-item"
                                                                 href="{{route('barang.detail', $barang->id)}}">Detail</a>
                                                             <a class="dropdown-item"
-                                                                href="{{route('barang.edit', $barang->id)}}">Edit</a>
+                                                                href="{{route('barang.edit', $barang->id)}}">Ubah</a>
                                                             <a class="dropdown-item" id="delete"
                                                                 href="{{route('barang.hapus', $barang->id)}}">Hapus</a>
                                                         </div>

@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="page-title">Role</h2>
+                <h2 class="page-title">Peran</h2>
                 <div class="col text-end mb-3">
                     <a href="{{route('role.tambah')}}" class="btn btn-success" style="color: white;">
                         <i class="fe fe-plus"></i>Tambah
@@ -19,7 +19,7 @@
                             <thead>
                                 <tr>
                                     <th>NO</th>
-                                    <th>Role</th>
+                                    <th>Peran</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -36,7 +36,7 @@
                                                 <span class="text-muted sr-only">Action</span>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="{{route('role.edit', $role->id)}}">Edit</a>
+                                                <a class="dropdown-item" href="{{route('role.edit', $role->id)}}">Ubah</a>
                                                 <a class="dropdown-item" id="delete"
                                                     href="{{route('role.hapus', $role->id)}}">Hapus</a>
                                             </div>

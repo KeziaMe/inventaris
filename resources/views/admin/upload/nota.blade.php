@@ -30,9 +30,9 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="textNota">preview</label>
+                                        <label for="textNota">Menampilkan</label>
                                         <!-- menambahkan kelas foto-preview pada gambar -->
-                                        <img id="previewNota" src="#" alt="Preview Nota" class="foto-preview">
+                                        <img id="previewNota" src="#" alt="Menampilkan Nota" class="foto-preview">
                                     </div>
 
                                     <div class="form-group row">

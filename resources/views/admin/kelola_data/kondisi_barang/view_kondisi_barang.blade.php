@@ -38,7 +38,7 @@
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item"
-                                                            href="{{route('kondisibarang.edit', $kondisibarang->id)}}">Edit</a>
+                                                            href="{{route('kondisibarang.edit', $kondisibarang->id)}}">Ubah</a>
                                                         <a class="dropdown-item" id="delete"
                                                             href="{{route('kondisibarang.hapus', $kondisibarang->id)}}">Hapus</a>
                                                     </div>

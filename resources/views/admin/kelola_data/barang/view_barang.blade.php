@@ -126,8 +126,10 @@
                                                 <td>{{$barang->nm_brg}}</td>
                                                 <td>{{ $barang->kondisi_brg }}</td>
                                                 <td>{{$barang->ket}}</td>
-                                                <td>{{ \Carbon\Carbon::parse($barang->tgl_masuk)->format('Y-m-d') }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($barang->tgl_update)->format('Y-m-d') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($barang->tgl_masuk)->translatedFormat('d F Y') }}
+                                                </td>
+                                                <td>{{ \Carbon\Carbon::parse($barang->tgl_update)->translatedFormat('d F Y') }}
+                                                </td>
                                                 <td>{{$barang->jenis_brg}}</td>
 
                                                 @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")

@@ -30,11 +30,11 @@
                 <div class="col-md-5">
                     <p>
                         <small class="small text-muted text-uppercase">Tanggal Masuk</small><br />
-                        <strong>{{ \Carbon\Carbon::parse($detailData_barang->tgl_masuk)->format('Y-m-d') }}</strong>
+                        <strong>{{ \Carbon\Carbon::parse($detailData_barang->tgl_masuk)->translatedFormat('d F Y') }}</strong>
                     </p>
                     <p>
                         <small class="small text-muted text-uppercase">Tanggal Update</small><br />
-                        <strong>{{ \Carbon\Carbon::parse($detailData_barang->tgl_update)->format('Y-m-d') }}</strong>
+                        <strong>{{ \Carbon\Carbon::parse($detailData_barang->tgl_update)->translatedFormat('d F Y') }}</strong>
                     </p>
 
                     <p>

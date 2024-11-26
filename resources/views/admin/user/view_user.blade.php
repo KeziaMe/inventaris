@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="page-title">User</h2>
+                <h2 class="page-title">Pengguna</h2>
                 <div class="col text-end mb-3"> <!-- ada jarak dengan tabel -->
                     <a href="{{route('user.tambah')}}" class="btn btn-success" style="color: white;">
                         <i class="fe fe-plus"></i>Tambah
@@ -20,7 +20,7 @@
                                 <tr>
                                     <th>NO</th>
                                     <th>Nama</th>
-                                    <th>Role</th>
+                                    <th>Peran</th>
                                     <th>Email</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -38,7 +38,7 @@
                                                 <span class="text-muted sr-only">Action</span>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="{{route('user.edit', $user->id)}}">Edit</a>
+                                                <a class="dropdown-item" href="{{route('user.edit', $user->id)}}">Ubah</a>
                                                 <a class="dropdown-item" id="delete"
                                                     href="{{route('user.hapus', $user->id)}}">Hapus</a>
                                             </div>

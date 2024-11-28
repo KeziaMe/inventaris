@@ -41,10 +41,12 @@
                                         @foreach ($allDataPengaduan as $key => $pengaduan)
                                             <tr>
                                                 <td>{{$key + 1}}</td>
-                                                <td>{{$pengaduan->tgl_pengaduan}}</td>
+                                                <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_pengaduan)->translatedFormat('d F Y') }}
+                                                </td>
                                                 <td>{{$pengaduan->id_kondisi_brg}}</td>
                                                 <td>{{$pengaduan->nm_status_pengaduan}}</td>
-                                                <td>{{$pengaduan->tgl_update}}</td>
+                                                <td>{{ \Carbon\Carbon::parse($pengaduan->tgl_update)->translatedFormat('d F Y') }}
+                                                </td>
                                                 <td>{{$pengaduan->id_inventarisasi}}</td>
 
                                                 @if (auth()->user()->role == "Admin" || auth()->user()->role == "Kepala Sekolah" || auth()->user()->role == "SARPRAS")

@@ -14,7 +14,7 @@
                 <div class="col-md-7">
                     <p class="small text-muted text-uppercase mb-2">Tanggal Pengaduan</p>
                     <p class="mb-4">
-                        <strong>{{$detailData_pengaduan->tgl_pengaduan}}</strong>
+                        <strong>{{ \Carbon\Carbon::parse($detailData_pengaduan->tgl_pengaduan)->translatedFormat('d F Y') }}</strong>
                     </p>
                     <p>
                         <span class="small text-muted text-uppercase">Keterangan</span><br />
@@ -32,7 +32,7 @@
                 <div class="col-md-5">
                     <p>
                         <small class="small text-muted text-uppercase">Tanggal Update</small><br />
-                        <strong>{{$detailData_pengaduan->tgl_update}}</strong>
+                        <strong>{{ \Carbon\Carbon::parse($detailData_pengaduan->tgl_update)->translatedFormat('d F Y') }}</strong>
                     </p>
                     <p>
                         <small class="small text-muted text-uppercase">Inventarisasi</small><br />

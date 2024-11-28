@@ -33,7 +33,8 @@
                                                 <td>{{$key + 1}}</td>
                                                 <td>{{$inventarisasi->nm_ruangan}}</td>
                                                 <td>{{$inventarisasi->kd_brg}}</td>
-                                                <td>{{$inventarisasi->tgl_inventaris}}</td>
+                                                <td>{{ \Carbon\Carbon::parse($inventarisasi->tgl_inventaris)->translatedFormat('d F Y') }}
+                                                </td>
                                                 <td>{{$inventarisasi->status}}</td>
 
                                                 <td><button class="btn btn-sm dropdown-toggle more-horizontal" type="button"

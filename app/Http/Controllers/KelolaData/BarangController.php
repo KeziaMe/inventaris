@@ -49,6 +49,16 @@ class BarangController extends Controller
             return $barang;
         });
 
+        // Clone query untuk menghitung total barang berdasarkan kondisi setelah difilter
+        $queryBaik = clone $query;
+        $queryKurangBaik = clone $query;
+        $queryRusakBerat = clone $query;
+
+        // Hitung total barang berdasarkan kondisi
+        $data['totalBaik'] = $queryBaik->where('kondisi_brg', 'Baik')->count();
+        $data['totalKurangBaik'] = $queryKurangBaik->where('kondisi_brg', 'Kurang Baik')->count();
+        $data['totalRusakBerat'] = $queryRusakBerat->where('kondisi_brg', 'Rusak Berat')->count();
+
         // Kirim data bulan, tahun, dan kondisi barang untuk filter ke view
         $data['bulanTahun'] = $bulanTahun;
         $data['kondisiBarang'] = $kondisiBarang;
@@ -245,6 +255,70 @@ class BarangController extends Controller
         ]);
 
         return $pdf->download("laporan_barang_{$bulan}_{$tahun}.pdf");
+    }
+
+    // Menampilkan grafik data barang perbulan
+    public function showGrafikKondisi(Request $request)
+    {
+        // Mengatur supaya menggunakan bahasa Indonesia
+        Carbon::setLocale('id');
+
+        // Ambil tahun dari input, default tahun sekarang
+        $selectedYear = $request->input('year', date('Y'));
+
+        // Mengambil daftar tahun yang tersedia dari data barang
+        $availableYears = Barang::selectRaw('YEAR(tgl_masuk) as tahun')
+            ->distinct()//mengambil tahun yang ada datanya saja
+            ->orderBy('tahun', 'desc')//mengurutkan tahun-tahun yang diambil dalam urutan dari yang terbaru ke yang paling lama
+            ->pluck('tahun')//Mengambil nilai dari kolom tahun dan mengembalikannya sebagai koleksi
+            ->toArray();//mengubah koleksi menjadi array
+
+        // Mengambil data barang berdasar bulan, kondisi, dan tahun
+        $barangPerKondisiDanBulan = Barang::selectRaw('MONTH(tgl_masuk) as bulan, kondisi_brg as kondisi, COUNT(*) as jumlah')
+            ->whereYear('tgl_masuk', $selectedYear)
+            ->groupBy('bulan', 'kondisi')
+            ->orderBy('bulan', 'asc')
+            ->get();
+
+        // Inisialisasi array untuk setiap kondisi perbulan
+        $dataGrafik = [];
+        $kondisiLabels = ['Baik', 'Kurang Baik', 'Rusak Berat'];
+        $bulanLabels = collect(range(1, 12))->map(function ($month) {
+            // agar menjadi nama bulan dalam bahasa Indonesia
+            return Carbon::create()->month($month)->translatedFormat('F');
+        });
+
+        // Loop untuk mengisi data grafik
+        foreach ($bulanLabels as $bulan) {
+            $data = [
+                'bulan' => $bulan,
+                'baik' => 0,
+                'kurang_baik' => 0,
+                'rusak_berat' => 0,
+            ];
+
+            foreach ($barangPerKondisiDanBulan as $barang) {
+                if (Carbon::create()->month($barang->bulan)->translatedFormat('F') == $bulan) {
+                    if (strtolower($barang->kondisi) == 'baik') {
+                        $data['baik'] = $barang->jumlah;
+                    } elseif (strtolower($barang->kondisi) == 'kurang baik') {
+                        $data['kurang_baik'] = $barang->jumlah;
+                    } elseif (strtolower($barang->kondisi) == 'rusak berat') {
+                        $data['rusak_berat'] = $barang->jumlah;
+                    }
+                }
+            }
+            $dataGrafik[] = $data;
+        }
+
+        // Mengirimkan data ke view
+        return view('admin.index', [
+            'dataGrafik' => $dataGrafik,
+            'bulanLabels' => $bulanLabels,
+            'kondisiLabels' => $kondisiLabels,
+            'selectedYear' => $selectedYear,
+            'availableYears' => $availableYears // Kirim daftar tahun yang tersedia
+        ]);
     }
 
 }

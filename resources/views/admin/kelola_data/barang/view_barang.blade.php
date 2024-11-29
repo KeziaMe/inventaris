@@ -90,17 +90,6 @@
                     <div class="col-md-12 my-4">
                         <div class="card shadow">
                             <div class="card-body">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="mr-3">
-                                        <strong>Total Barang Baik: </strong>{{ $totalBaik }}
-                                    </div>
-                                    <div class="mr-3">
-                                        <strong>Total Barang Kurang Baik: </strong>{{ $totalKurangBaik }}
-                                    </div>
-                                    <div>
-                                        <strong>Total Barang Rusak Berat: </strong>{{ $totalRusakBerat }}
-                                    </div>
-                                </div>
 
                                 <table class="table dataTables" id="dataTable-1">
                                     <thead>

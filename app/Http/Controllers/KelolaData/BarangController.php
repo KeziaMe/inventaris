@@ -49,16 +49,6 @@ class BarangController extends Controller
             return $barang;
         });
 
-        // Clone query untuk menghitung total barang berdasarkan kondisi setelah difilter
-        $queryBaik = clone $query;
-        $queryKurangBaik = clone $query;
-        $queryRusakBerat = clone $query;
-
-        // Hitung total barang berdasarkan kondisi
-        $data['totalBaik'] = $queryBaik->where('kondisi_brg', 'Baik')->count();
-        $data['totalKurangBaik'] = $queryKurangBaik->where('kondisi_brg', 'Kurang Baik')->count();
-        $data['totalRusakBerat'] = $queryRusakBerat->where('kondisi_brg', 'Rusak Berat')->count();
-
         // Kirim data bulan, tahun, dan kondisi barang untuk filter ke view
         $data['bulanTahun'] = $bulanTahun;
         $data['kondisiBarang'] = $kondisiBarang;

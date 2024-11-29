@@ -8,6 +8,10 @@ use Auth;
 
 class BerandaController extends Controller
 {
+    public function beranda() {
+        return view ('admin.index');
+    }
+
     //
     public function logout()
     {

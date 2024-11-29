@@ -2,107 +2,77 @@
 @section('admin')
 <main role="main" class="main-content">
   <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-12">
-        <div class="row align-items-center mb-2">
-          <div class="col">
-            <h2 class="h5 page-title">Grafik Kondisi Barang</h2>
-          </div>
-        </div>
-
-        <!-- Filter Tahun -->
-        <div class="row mb-4">
-          <div class="col-md-12">
-            <div class="card shadow">
-              <div class="card-body">
-                <form method="GET" action="{{ route('dashboard') }}">
-                  <div class="form-group">
-                    <label for="year">Pilih Tahun:</label>
-                    <select name="year" id="year" class="form-control" onchange="this.form.submit()">
-                      @foreach ($availableYears as $year)
-              <option value="{{ $year }}" {{ $year == $selectedYear ? 'selected' : '' }}>{{ $year }}</option>
-            @endforeach
-                    </select>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Grafik -->
-        <div class="row my-4">
-          <div class="col-md-12">
-            <div class="card shadow">
-              <div class="card-body">
-                <h5 class="card-title">Grafik Jumlah Barang Berdasarkan Kondisi per Bulan</h5>
-                <canvas id="kondisiChart"></canvas>
-              </div>
-            </div>
-          </div>
-        </div> <!-- end Grafik -->
-
+    <!-- Header -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-12 text-center">
+        <h1 class="display-4">Dashboard</h1>
+        <h3 class="text-primary">SMPK BAKTI ROGOJAMPI</h3>
+        <p class="text-muted">Selamat datang, pantau perkembangan sekolah dengan mudah.</p>
       </div>
+    </div>
+
+    <!-- Statistik Utama -->
+    <div class="row">
+      <!-- Siswa -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card shadow border-left-primary">
+          <div class="card-body">
+            <h5 class="card-title">Jumlah Siswa</h5>
+            <h3 class="text-primary">1,250</h3>
+            <p class="text-muted">Siswa terdaftar</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guru -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card shadow border-left-success">
+          <div class="card-body">
+            <h5 class="card-title">Jumlah Guru</h5>
+            <h3 class="text-success">75</h3>
+            <p class="text-muted">Guru aktif</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kelas -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card shadow border-left-warning">
+          <div class="card-body">
+            <h5 class="card-title">Jumlah Kelas</h5>
+            <h3 class="text-warning">30</h3>
+            <p class="text-muted">Kelas berjalan</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prestasi -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card shadow border-left-danger">
+          <div class="card-body">
+            <h5 class="card-title">Prestasi Sekolah</h5>
+            <h3 class="text-danger">15</h3>
+            <p class="text-muted">Prestasi diraih tahun ini</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Informasi dan Grafik -->
+    <div class="row">
+      <!-- Grafik Kehadiran -->
+      <div class="col-lg-12 mb-4">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white">
+            Grafik Kehadiran Siswa
+          </div>
+          <div class="card-body">
+            <canvas id="attendanceChart"></canvas>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </main>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Mengambil data dari controller
-    var dataGrafik = @json($dataGrafik);
-    var bulanLabels = @json($bulanLabels);
-    var kondisiLabels = @json($kondisiLabels);
-
-    // Memetakan data untuk Chart.js
-    var datasets = kondisiLabels.map(function (label) {
-      var warna = ''; // Mengatur warna yang berbeda untuk setiap kondisi
-      if (label === 'Baik') {
-        warna = 'rgba(75, 192, 192, 0.2)'; // hijau
-      } else if (label === 'Kurang Baik') {
-        warna = 'rgba(255, 206, 86, 0.2)'; // kuning 
-      } else if (label === 'Rusak Berat') {
-        warna = 'rgba(255, 99, 132, 0.2)'; // merah 
-      }
-
-      return {
-        label: label,
-        data: dataGrafik.map(function (d) {
-          if (label === 'Baik') return d.baik;
-          if (label === 'Kurang Baik') return d.kurang_baik;
-          if (label === 'Rusak Berat') return d.rusak_berat;
-        }),
-        backgroundColor: warna,
-        borderColor: warna.replace('0.2', '1'), // Warna border 
-        borderWidth: 1
-      };
-    });
-
-    var ctx = document.getElementById('kondisiChart').getContext('2d');
-
-    var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: bulanLabels,
-        datasets: datasets
-      },
-      options: {
-        responsive: true,
-        scales: {
-          x: {
-            beginAtZero: true,
-          },
-          y: {
-            beginAtZero: true,
-            ticks: {
-              stepSize: 1, // untuk menampilkan bilangan bulat
-              precision: 0 // menampilkan hanya bilangan bulat
-            }
-          }
-        }
-      }
-    });
-  });
-</script>
-
 @endsection

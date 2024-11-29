@@ -31,13 +31,19 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    // Rute dashboard untuk mengarah ke BarangController showGrafik
-    Route::get('/dashboard', [BarangController::class, 'showGrafikKondisi'])->name('dashboard');
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     // Rute dashboard untuk mengarah ke BarangController showGrafik
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
+
+Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(function () {
+    Route::get('/dashboard', [BerandaController::class, 'beranda'])->name('dashboard');
 });
 
 Route::get('/admin/logout', [BerandaController::class, 'logout'])->name('admin.logout');

@@ -60,7 +60,9 @@
                                                 <td>{{ $barang->baik }}</td>
                                                 <td>{{ $barang->kurang_baik }}</td>
                                                 <td>{{ $barang->rusak_berat }}</td>
-                                                <td></td>
+                                                <td>
+                                                    {{ ($barang->baik ?? 0) + ($barang->kurang_baik ?? 0) + ($barang->rusak_berat ?? 0) }}
+                                                </td>
                                                 <td>{{$barang->ket}}</td>
                                                 @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
                                                     <td>
@@ -95,13 +97,25 @@
 </main> <!-- main -->
 
 <script>
-    document.getElementById('resetButton').addEventListener('click', function () {
-        // Menghapus pilihan di dropdown
-        document.getElementById('filterBulan').selectedIndex = 0; // Reset dropdown bulan
-        document.getElementById('filterTahun').selectedIndex = 0; // Reset dropdown tahun
+    document.addEventListener('DOMContentLoaded', function () {
+        // Fungsi untuk menghitung jumlah total
+        function hitungJumlah() {
+            const rows = document.querySelectorAll('#dataTable-1 tbody tr');
+            rows.forEach(row => {
+                const baik = parseInt(row.querySelector('.baik').textContent) || 0;
+                const kurangBaik = parseInt(row.querySelector('.kurang_baik').textContent) || 0;
+                const rusakBerat = parseInt(row.querySelector('.rusak_berat').textContent) || 0;
 
-        // Mengarahkan ke URL tanpa parameter filter
-        window.location.href = "{{ route('barang.view') }}";
+                // Menghitung total jumlah
+                const jumlah = baik + kurangBaik + rusakBerat;
+
+                // Menampilkan hasil perhitungan ke kolom Jumlah
+                row.querySelector('.jumlah').textContent = jumlah;
+            });
+        }
+
+        // Panggil fungsi hitungJumlah saat halaman dimuat
+        hitungJumlah();
     });
 </script>
 

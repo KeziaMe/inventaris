@@ -30,80 +30,11 @@
                     @endif
                 </div>
 
-                <!-- Filter Bulan, Tahun, dan Kondisi -->
-                <form id="filterForm" method="GET" action="{{ route('barang.view') }}" class="mb-4">
-                    <div class="row">
-                        <!-- Dropdown Bulan -->
-                        <div class="col-md-3">
-                            <select class="form-control" id="filterBulan" name="bulan">
-                                <option value="">Pilih Bulan</option>
-                                @foreach ($bulanTahun as $item)
-                                    <option value="{{ $item->bulan }}" {{ request('bulan') == $item->bulan ? 'selected' : '' }}>
-                                        {{ \Carbon\Carbon::create()->month($item->bulan)->isoFormat('MMMM') }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Dropdown Tahun -->
-                        <div class="col-md-3">
-                            <select class="form-control" id="filterTahun" name="tahun">
-                                <option value="">Pilih Tahun</option>
-                                @foreach ($bulanTahun->pluck('tahun')->unique() as $tahun)
-                                    <option value="{{ $tahun }}" {{ request('tahun') == $tahun ? 'selected' : '' }}>
-                                        {{ $tahun }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Dropdown Kondisi -->
-                        <div class="col-md-3">
-                            <select class="form-control" id="filterKondisi" name="kondisi">
-                                <option value="">Pilih Kondisi</option>
-                                <option value="Baik" {{ request('kondisi') == 'Baik' ? 'selected' : '' }}>Baik</option>
-                                <option value="Kurang Baik" {{ request('kondisi') == 'Kurang Baik' ? 'selected' : '' }}>
-                                    Kurang Baik</option>
-                                <option value="Rusak Berat" {{ request('kondisi') == 'Rusak Berat' ? 'selected' : '' }}>
-                                    Rusak Berat</option>
-                            </select>
-                        </div>
-
-
-                        <!-- Tombol Filter dan Reset -->
-                        <div class="col-md-3">
-                            <button type="submit" class="btn btn-primary">Filter</button>
-                            <button type="button" class="btn btn-secondary" id="resetButton">Hapus Filter</button>
-                        </div>
-                    </div>
-                </form>
-
-                <!-- Script untuk tombol Reset -->
-                <script>
-                    document.getElementById('resetButton').addEventListener('click', function () {
-                        // Mengarahkan ke URL tanpa query string untuk mereset filter
-                        window.location.href = "{{ route('barang.view') }}";
-                    });
-                </script>
-
-
                 <div class="row">
                     <!-- simple table -->
                     <div class="col-md-12 my-4">
                         <div class="card shadow">
                             <div class="card-body">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="mr-3">
-                                        <strong>Total Barang Baik: </strong>{{ $totalBaik }}
-                                    </div>
-                                    <div class="mr-3">
-                                        <strong>Total Barang Kurang Baik: </strong>{{ $totalKurangBaik }}
-                                    </div>
-                                    <div>
-                                        <strong>Total Barang Rusak Berat: </strong>{{ $totalRusakBerat }}
-                                    </div>
-                                </div>
-
                                 <table class="table dataTables" id="dataTable-1">
                                     <thead>
                                         <tr>
@@ -129,7 +60,7 @@
                                                 <td>{{ $barang->kurang_baik }}</td>
                                                 <td>{{ $barang->rusak_berat }}</td>
                                                 <td>{{$barang->ket}}</td>
-                                               
+
 
                                                 @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
                                                     <td>

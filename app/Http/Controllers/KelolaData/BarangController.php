@@ -18,56 +18,7 @@ class BarangController extends Controller
     //
     public function barangView(Request $request)
     {
-        // Ambil bulan dan tahun yang unik dari tgl_update
-        $bulanTahun = DB::table('barangs')
-            ->select(DB::raw('DISTINCT YEAR(tgl_update) as tahun, MONTH(tgl_update) as bulan'))
-            ->orderBy('tahun', 'desc')
-            ->get();
-
-        // Ambil data barang dengan query dasar
-        $query = Barang::query();
-
-        // Filter berdasarkan bulan dan tahun jika ada input
-        if ($request->has('bulan') && $request->bulan != '') {
-            $query->whereMonth('tgl_update', $request->bulan);
-        }
-
-        if ($request->has('tahun') && $request->tahun != '') {
-            $query->whereYear('tgl_update', $request->tahun);
-        }
-
-        // Filter berdasarkan kondisi barang jika ada input
-        if ($request->has('kondisi') && $request->kondisi != '') {
-            if ($request->kondisi === 'Baik') {
-                $query->where('baik', true);
-            } elseif ($request->kondisi === 'Kurang Baik') {
-                $query->where('kurang_baik', true);
-            } elseif ($request->kondisi === 'Rusak Berat') {
-                $query->where('rusak_berat', true);
-            }
-        }
-
-        // Ambil data barang yang sudah difilter
-        $data['allDataBarang'] = $query->get()->map(function ($barang) {
-            $barang->tgl_masuk = Carbon::parse($barang->tgl_masuk)->format('Y-m-d');
-            $barang->tgl_update = Carbon::parse($barang->tgl_update)->format('Y-m-d');
-            return $barang;
-        });
-
-        // Hitung total barang berdasarkan kondisi
-        $data['totalBaik'] = Barang::where('baik', true)->count();
-        $data['totalKurangBaik'] = Barang::where('kurang_baik', true)->count();
-        $data['totalRusakBerat'] = Barang::where('rusak_berat', true)->count();
-
-        // Kirim data bulan, tahun, dan kondisi barang untuk filter ke view
-        $data['bulanTahun'] = $bulanTahun;
-        $data['kondisiBarang'] = ['Baik', 'Kurang Baik', 'Rusak Berat'];
-
-        // Tambahkan nilai yang dipilih ke view
-        $data['selectedBulan'] = $request->bulan;
-        $data['selectedTahun'] = $request->tahun;
-        $data['selectedKondisi'] = $request->kondisi;
-
+        $data['allDataBarang'] = Barang::all();
         return view("admin.kelola_data.barang.view_barang", $data);
     }
 

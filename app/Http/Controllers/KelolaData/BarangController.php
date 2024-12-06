@@ -73,9 +73,8 @@ class BarangController extends Controller
 
     public function barangTambah()
     {
-        $kondisi_barang = KondisiBarang::all();
         $jenis_barang = JenisBarang::all();
-        return view("admin.kelola_data.barang.tambah_barang", compact('kondisi_barang', 'jenis_barang'));
+        return view("admin.kelola_data.barang.tambah_barang", compact('jenis_barang'));
     }
 
     public function barangDetail($id)
@@ -119,33 +118,31 @@ class BarangController extends Controller
     {
         $validateData = $request->validate([
             'textKodebrg' => 'required',
-
+            'textNmbrg' => 'required',
+            'textBrgBaik' => 'required|integer',
+            'textBrgKurangBaik' => 'required|integer',
+            'textBrgRusakBerat' => 'required|integer',
+            'textJenisBrg' => 'required',
+            'textTglmasuk' => 'required|date',
+            'textTglUpdate' => 'required|date',
         ]);
 
         // Simpan data barang baru
         $data = new Barang();
         $data->kd_brg = $request->textKodebrg;
         $data->nm_brg = $request->textNmbrg;
-        $data->kondisi_brg = $request->textKondisibrg;
+        $data->baik = $request->textBrgBaik;
+        $data->kurang_baik = $request->textBrgKurangBaik;
+        $data->rusak_berat = $request->textBrgRusakBerat;
         $data->ket = $request->textKet;
         $data->tgl_masuk = $request->textTglmasuk;
         $data->tgl_update = $request->textTglUpdate;
         $data->jenis_brg = $request->textJenisBrg;
         $data->save();
 
-        // Simpan data barang baru ke tabel RiwayatBarang
-        $riwayat = new RiwayatBarang();
-        $riwayat->kd_brg = $data->kd_brg;
-        $riwayat->nm_brg = $data->nm_brg;
-        $riwayat->kondisi_brg = $data->kondisi_brg;
-        $riwayat->ket = $data->ket;
-        $riwayat->tgl_masuk = $data->tgl_masuk;
-        $riwayat->tgl_update = $data->tgl_update;
-        $riwayat->jenis_brg = $data->jenis_brg;
-        $riwayat->save();
-
         return redirect()->route('barang.view');
     }
+
 
     public function barangUpdate(Request $request, $id)
     {
@@ -167,16 +164,6 @@ class BarangController extends Controller
         $riwayat->tgl_update = $dataLama->tgl_update;
         $riwayat->jenis_brg = $dataLama->jenis_brg;
         $riwayat->save();
-
-        // Update data baru di tabel Barang
-        $dataLama->kd_brg = $request->textKodebrg;
-        $dataLama->nm_brg = $request->textNmbrg;
-        $dataLama->kondisi_brg = $request->textKondisibrg;
-        $dataLama->ket = $request->textKet;
-        $dataLama->tgl_masuk = $request->textTglmasuk;
-        $dataLama->tgl_update = $request->textTglUpdate;
-        $dataLama->jenis_brg = $request->textJenisBrg;
-        $dataLama->save();
 
         return redirect()->route('barang.view');
     }

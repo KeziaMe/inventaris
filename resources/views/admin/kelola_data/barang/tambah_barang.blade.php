@@ -32,19 +32,28 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row align-items-center">
-                                    <label for="textKondisibrg" class="col-sm-3 col-form-label">Kondisi Barang</label>
+                                <div class="form-group row">
+                                    <label for="textBrgBaik" class="col-sm-3 col-form-label">Kondisi Baik</label>
                                     <div class="col-sm-9">
-                                        <select class="custom-select" name="textKondisibrg" id="textKondisibrg">
-                                            <option selected disabled>Pilih Kondisi Barang</option>
+                                        <input type="number" class="form-control" name="textBrgBaik" id="textBrgBaik">
+                                    </div>
+                                </div>
 
-                                            @foreach ($kondisi_barang as $KondisiBarang)
-                                                <option value="{{$KondisiBarang->kondisi_brg}}">
-                                                    {{$KondisiBarang->kondisi_brg}}
-                                                </option>
-                                            @endforeach
+                                <div class="form-group row">
+                                    <label for="textBrgKurangBaik" class="col-sm-3 col-form-label">Kondisi Kurang
+                                        Baik</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="textBrgKurangBaik"
+                                            id="textBrgKurangBaik">
+                                    </div>
+                                </div>
 
-                                        </select>
+                                <div class="form-group row">
+                                    <label for="textBrgRusakBerat" class="col-sm-3 col-form-label">Kondisi Rusak
+                                        Berat</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="textBrgRusakBerat"
+                                            id="textBrgRusakBerat">
                                     </div>
                                 </div>
 

@@ -97,10 +97,9 @@ class BarangController extends Controller
 
     public function barangEdit($id)
     {
-        $kondisi_barang = KondisiBarang::all();
         $jenis_barang = JenisBarang::all();
         $editDataBarang = Barang::find($id);
-        return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang', 'kondisi_barang', 'jenis_barang'));
+        return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang', 'jenis_barang'));
     }
 
     public function riwayatbarangView()
@@ -129,8 +128,6 @@ class BarangController extends Controller
         $data->kurang_baik = $request->textBrgKurangBaik;
         $data->rusak_berat = $request->textRusakBerat;
         $data->ket = $request->textKet;
-        $data->tgl_masuk = $request->textTglmasuk;
-        $data->tgl_update = $request->textTglUpdate;
         $data->jenis_brg = $request->textJenisBrg;
         $data->save();
 
@@ -144,19 +141,15 @@ class BarangController extends Controller
             // Tambahkan validasi untuk field lainnya sesuai kebutuhan
         ]);
 
-        // Ambil data barang yang lama
-        $dataLama = Barang::find($id);
-
-        // Simpan data lama ke tabel RiwayatBarang sebagai entri baru
-        $riwayat = new RiwayatBarang();
-        $riwayat->kd_brg = $dataLama->kd_brg;
-        $riwayat->nm_brg = $dataLama->nm_brg;
-        $riwayat->kondisi_brg = $dataLama->kondisi_brg;
-        $riwayat->ket = $dataLama->ket;
-        $riwayat->tgl_masuk = $dataLama->tgl_masuk;
-        $riwayat->tgl_update = $dataLama->tgl_update;
-        $riwayat->jenis_brg = $dataLama->jenis_brg;
-        $riwayat->save();
+        $data = Barang::find($id);
+        $data->kd_brg = $request->textKodebrg;
+        $data->nm_brg = $request->textNmbrg;
+        $data->baik = $request->textBrgBaik;
+        $data->kurang_baik = $request->textBrgKurangBaik;
+        $data->rusak_berat = $request->textRusakBerat;
+        $data->ket = $request->textKet;
+        $data->jenis_brg = $request->textJenisBrg;
+        $data->save();
 
         return redirect()->route('barang.view');
     }

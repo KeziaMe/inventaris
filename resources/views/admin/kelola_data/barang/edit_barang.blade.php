@@ -33,17 +33,29 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row align-items-center">
-                                    <label for="textKondisibrg" class="col-sm-3 col-form-label">Kondisi Barang</label>
+                                <div class="form-group row">
+                                    <label for="textBrgBaik" class="col-sm-3 col-form-label">Keadaan Baik</label>
                                     <div class="col-sm-9">
-                                        <select class="custom-select" name="textKondisibrg" id="textKondisibrg" value="{{$editDataBarang->kondisi_brg}}">
-                                            <option selected disabled>Pilih Kondisi Barang</option>
+                                        <input type="number" class="form-control" name="textBrgBaik" id="textBrgBaik" value="{{$editDataBarang->baik}}"
+                                            placeholder="Jumlah Barang">
+                                    </div>
+                                </div>     
+                                
+                                <div class="form-group row">
+                                    <label for="textBrgKurangBaik" class="col-sm-3 col-form-label">Keadaan Kurang
+                                        Baik</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="textBrgKurangBaik"
+                                            id="textBrgKurangBaik"  value="{{$editDataBarang->kurang_baik}}" placeholder="Jumlah Barang">
+                                    </div>
+                                </div>
 
-                                            @foreach ( $kondisi_barang as $KondisiBarang)
-                                            <option value="{{$KondisiBarang->kondisi_brg}}" {{($editDataBarang->kondisi_brg == "$KondisiBarang->kondisi_brg" ? "selected" : "")}}>{{$KondisiBarang->kondisi_brg}}</option>
-                                            @endforeach
-
-                                        </select>
+                                <div class="form-group row">
+                                    <label for="textRusakBerat" class="col-sm-3 col-form-label">Keadaan Rusak
+                                        Berat</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="textRusakBerat" value="{{$editDataBarang->rusak_berat}}"
+                                            id="textRusakBerat" placeholder="Jumlah Barang">
                                     </div>
                                 </div>
 
@@ -52,20 +64,6 @@
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="textKet" id="textKet" value="{{$editDataBarang->ket}}"
                                             placeholder="Keterangan">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row align-items-center">
-                                    <label for="textTglmasuk" class="col-sm-3 col-form-label">Tanggal Masuk</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" id="textTglmasuk" type="date" name="textTglmasuk" value="{{$editDataBarang->tgl_masuk}}">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row align-items-center">
-                                    <label for="textTglUpdate" class="col-sm-3 col-form-label">Tanggal Update</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" id="textTglUpdate" type="date" name="textTglUpdate" value="{{$editDataBarang->tgl_update}}">
                                     </div>
                                 </div>
 

@@ -14,58 +14,72 @@
                         </div>
                         <div class="card-body">
                             <form method="post" action="{{route('barang.update', $editDataBarang->id)}}"
-                            enctype="multipart/form-data">
+                                enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group row">
                                     <label for="textKodebrg" class="col-sm-3 col-form-label">Kode Barang</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="textKodebrg" id="textKodebrg"  value="{{$editDataBarang->kd_brg}}"
-                                            placeholder="Kode Barang">
+                                        <input type="text" class="form-control" name="textKodebrg" id="textKodebrg"
+                                            value="{{$editDataBarang->kd_brg}}" placeholder="Kode Barang">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="textNmbrg" class="col-sm-3 col-form-label">Nama Barang</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="textNmbrg" id="textNmbrg" value="{{$editDataBarang->nm_brg}}"
-                                            placeholder="Nama Barang">
+                                        <input type="text" class="form-control" name="textNmbrg" id="textNmbrg"
+                                            value="{{$editDataBarang->nm_brg}}" placeholder="Nama Barang">
                                     </div>
                                 </div>
 
-                                <div class="form-group row align-items-center">
-                                    <label for="textKondisibrg" class="col-sm-3 col-form-label">Kondisi Barang</label>
+                                <div class="form-group row">
+                                    <label for="textBrgBaik" class="col-sm-3 col-form-label">Kondisi Baik</label>
                                     <div class="col-sm-9">
-                                        <select class="custom-select" name="textKondisibrg" id="textKondisibrg" value="{{$editDataBarang->kondisi_brg}}">
-                                            <option selected disabled>Pilih Kondisi Barang</option>
+                                        <input type="number" class="form-control" name="textBrgBaik" id="textBrgBaik"
+                                            value="{{$editDataBarang->baik}}">
+                                    </div>
+                                </div>
 
-                                            @foreach ( $kondisi_barang as $KondisiBarang)
-                                            <option value="{{$KondisiBarang->kondisi_brg}}" {{($editDataBarang->kondisi_brg == "$KondisiBarang->kondisi_brg" ? "selected" : "")}}>{{$KondisiBarang->kondisi_brg}}</option>
-                                            @endforeach
+                                <div class="form-group row">
+                                    <label for="textBrgKurangBaik" class="col-sm-3 col-form-label">Kondisi Kurang
+                                        Baik</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="textBrgKurangBaik"
+                                            id="textBrgKurangBaik" value="{{$editDataBarang->kurang_baik}}">
+                                    </div>
+                                </div>
 
-                                        </select>
+                                <div class="form-group row">
+                                    <label for="textBrgRusakBerat" class="col-sm-3 col-form-label">Kondisi Rusak
+                                        Berat</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="textBrgRusakBerat"
+                                            id="textBrgRusakBerat" value="{{$editDataBarang->rusak_berat}}">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="textKet" class="col-sm-3 col-form-label">Keterangan</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="textKet" id="textKet" value="{{$editDataBarang->ket}}"
-                                            placeholder="Keterangan">
+                                        <input type="text" class="form-control" name="textKet" id="textKet"
+                                            value="{{$editDataBarang->ket}}" placeholder="Keterangan">
                                     </div>
                                 </div>
 
                                 <div class="form-group row align-items-center">
                                     <label for="textTglmasuk" class="col-sm-3 col-form-label">Tanggal Masuk</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="textTglmasuk" type="date" name="textTglmasuk" value="{{$editDataBarang->tgl_masuk}}">
+                                        <input class="form-control" id="textTglmasuk" type="date" name="textTglmasuk"
+                                            value="{{$editDataBarang->tgl_masuk}}">
                                     </div>
                                 </div>
 
                                 <div class="form-group row align-items-center">
                                     <label for="textTglUpdate" class="col-sm-3 col-form-label">Tanggal Update</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="textTglUpdate" type="date" name="textTglUpdate" value="{{$editDataBarang->tgl_update}}">
+                                        <input class="form-control" id="textTglUpdate" type="date" name="textTglUpdate"
+                                            value="{{$editDataBarang->tgl_update}}">
                                     </div>
                                 </div>
 
@@ -75,8 +89,11 @@
                                         <select class="custom-select" name="textJenisBrg" id="custom-select">
                                             <option selected disabled>Pilih Jenis Barang</option>
 
-                                            @foreach ( $jenis_barang as $JenisBarang)
-                                           <option value="{{$JenisBarang->jns_brg}}" {{($editDataBarang->jenis_brg == $JenisBarang->jns_brg ? "selected" : "")}}>{{$JenisBarang->jns_brg}}</option>
+                                            @foreach ($jenis_barang as $JenisBarang)
+                                                <option value="{{$JenisBarang->jns_brg}}"
+                                                    {{($editDataBarang->jenis_brg == $JenisBarang->jns_brg ? "selected" : "")}}>
+                                                    {{$JenisBarang->jns_brg}}
+                                                </option>
 
                                             @endforeach
 

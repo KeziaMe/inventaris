@@ -152,18 +152,18 @@ class BarangController extends Controller
         ]);
 
         // Ambil data barang yang lama
-        $dataLama = Barang::find($id);
+        $data = Barang::find($id);
 
         // Simpan data lama ke tabel RiwayatBarang sebagai entri baru
-        $riwayat = new RiwayatBarang();
-        $riwayat->kd_brg = $dataLama->kd_brg;
-        $riwayat->nm_brg = $dataLama->nm_brg;
-        $riwayat->kondisi_brg = $dataLama->kondisi_brg;
-        $riwayat->ket = $dataLama->ket;
-        $riwayat->tgl_masuk = $dataLama->tgl_masuk;
-        $riwayat->tgl_update = $dataLama->tgl_update;
-        $riwayat->jenis_brg = $dataLama->jenis_brg;
-        $riwayat->save();
+        $data = new RiwayatBarang();
+        $data->kd_brg = $request->kd_brg;
+        $data->nm_brg = $request->nm_brg;
+        $data->kondisi_brg = $request->kondisi_brg;
+        $data->ket = $request->ket;
+        $data->tgl_masuk = $request->tgl_masuk;
+        $data->tgl_update = $request->tgl_update;
+        $data->jenis_brg = $request->jenis_brg;
+        $data->save();
 
         return redirect()->route('barang.view');
     }

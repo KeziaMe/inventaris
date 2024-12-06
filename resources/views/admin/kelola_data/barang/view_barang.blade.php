@@ -6,7 +6,8 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Data Barang</h2>
-                <div class="col text-end mb-3"> <!-- Menambahkan margin bawah pada kolom tombol "Tambah" -->
+                <div class="col text-end mb-3">
+                    <!-- Menambahkan margin bawah pada kolom tombol "Tambah" -->
                     @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
                         <a href="{{route('barang.tambah')}}" class="btn btn-success" style="color: white;">
                             <i class="fe fe-plus"></i>Tambah
@@ -60,13 +61,14 @@
                         <div class="col-md-3">
                             <select class="form-control" id="filterKondisi" name="kondisi">
                                 <option value="">Pilih Kondisi</option>
-                                @foreach ($kondisiBarang as $kondisi)
-                                    <option value="{{ $kondisi->kondisi_brg }}" {{ request('kondisi') == $kondisi->kondisi_brg ? 'selected' : '' }}>
-                                        {{ $kondisi->kondisi_brg }}
-                                    </option>
-                                @endforeach
+                                <option value="Baik" {{ request('kondisi') == 'Baik' ? 'selected' : '' }}>Baik</option>
+                                <option value="Kurang Baik" {{ request('kondisi') == 'Kurang Baik' ? 'selected' : '' }}>
+                                    Kurang Baik</option>
+                                <option value="Rusak Berat" {{ request('kondisi') == 'Rusak Berat' ? 'selected' : '' }}>
+                                    Rusak Berat</option>
                             </select>
                         </div>
+
 
                         <!-- Tombol Filter dan Reset -->
                         <div class="col-md-3">
@@ -108,7 +110,9 @@
                                             <th>NO</th>
                                             <th>Kode Barang</th>
                                             <th>Nama Barang</th>
-                                            <th>Kondisi Barang</th>
+                                            <th>K. Baik</th>
+                                            <th>K. Kurang Baik</th>
+                                            <th>K. Rusak Berat</th>
                                             <th>Keterangan</th>
                                             <th>Tanggal Masuk</th>
                                             <th>Tanggal Update</th>
@@ -124,7 +128,9 @@
                                                 <td>{{$key + 1}}</td>
                                                 <td>{{$barang->kd_brg}}</td>
                                                 <td>{{$barang->nm_brg}}</td>
-                                                <td>{{ $barang->kondisi_brg }}</td>
+                                                <td>{{ $barang->baik }}</td>
+                                                <td>{{ $barang->kurang_baik }}</td>
+                                                <td>{{ $barang->rusak_berat }}</td>
                                                 <td>{{$barang->ket}}</td>
                                                 <td>{{ \Carbon\Carbon::parse($barang->tgl_masuk)->translatedFormat('d F Y') }}
                                                 </td>

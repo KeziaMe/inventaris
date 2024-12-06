@@ -37,7 +37,9 @@ Route::middleware([
     'verified',
 ])->group(function () {
     // Rute dashboard untuk mengarah ke BarangController showGrafik
-    Route::get('/dashboard', [BarangController::class, 'showGrafikKondisi'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('admin.index');
+    })->name('dashboard');
 });
 
 Route::get('/admin/logout', [BerandaController::class, 'logout'])->name('admin.logout');
@@ -119,17 +121,6 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
     });
 });
 
-Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(function () {
-    Route::prefix('inventarisasi')->group(function () {
-        Route::get('/view', [InventarisasiController::class, 'inventarisasiView'])->name('inventarisasi.view');
-        Route::get('/Tambah', [InventarisasiController::class, 'inventarisasiTambah'])->name('inventarisasi.tambah');
-        Route::post('/store', [InventarisasiController::class, 'inventarisasiStore'])->name('inventarisasi.store');
-        Route::get('/Edit/{id}', [InventarisasiController::class, 'inventarisasiEdit'])->name('inventarisasi.edit');
-        Route::post('/update/{id}', [InventarisasiController::class, 'inventarisasiUpdate'])->name('inventarisasi.update');
-        Route::get('/hapus/{id}', [InventarisasiController::class, 'inventarisasiHapus'])->name('inventarisasi.hapus');
-    });
-});
-
 // Semua route untuk user
 Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
     Route::prefix('role')->group(function () {
@@ -163,5 +154,3 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,Bendahara'])->group(funct
         Route::get('/hapus/{id}', [NotaController::class, 'hapusNota'])->name('nota.hapus');
     });
 });
-
-

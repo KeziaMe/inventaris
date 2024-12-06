@@ -64,6 +64,7 @@ class BarangController extends Controller
 
     public function barangStore(Request $request)
     {
+        // Validasi input
         $validateData = $request->validate([
             'textKodebrg' => 'required',
             'textNmbrg' => 'required',
@@ -71,9 +72,11 @@ class BarangController extends Controller
             'textBrgKurangBaik' => 'required|integer',
             'textBrgRusakBerat' => 'required|integer',
             'textJenisBrg' => 'required',
-            'textTglmasuk' => 'required|date',
-            'textTglUpdate' => 'required|date',
+            'textKet' => 'nullable|string', // Pastikan keterangan bisa kosong
         ]);
+
+        // Menghitung jumlah total berdasarkan kondisi barang
+        $jumlah = $request->textBrgBaik + $request->textBrgKurangBaik + $request->textBrgRusakBerat;
 
         // Simpan data barang baru
         $data = new Barang();
@@ -82,34 +85,54 @@ class BarangController extends Controller
         $data->baik = $request->textBrgBaik;
         $data->kurang_baik = $request->textBrgKurangBaik;
         $data->rusak_berat = $request->textBrgRusakBerat;
+        $data->jumlah = $jumlah; // Menyimpan jumlah yang dihitung
         $data->ket = $request->textKet;
         $data->jenis_brg = $request->textJenisBrg;
         $data->save();
 
-        return redirect()->route('barang.view');
+        return redirect()->route('barang.view')->with('success', 'Data barang berhasil disimpan.');
     }
+
 
 
     public function barangUpdate(Request $request, $id)
     {
+        // Validasi input
         $validateData = $request->validate([
             'textKodebrg' => 'required',
-            // Tambahkan validasi untuk field lainnya sesuai kebutuhan
+            'textNmbrg' => 'required',
+            'textBrgBaik' => 'required|integer',
+            'textBrgKurangBaik' => 'required|integer',
+            'textBrgRusakBerat' => 'required|integer',
+            'textJenisBrg' => 'required',
+            'textKet' => 'nullable|string', // Keterangan bisa kosong
         ]);
 
         // Ambil data barang yang lama
         $data = Barang::find($id);
+
+        // Pastikan barang ditemukan
+        if (!$data) {
+            return redirect()->route('barang.view')->with('error', 'Barang tidak ditemukan.');
+        }
+
+        // Menghitung jumlah total berdasarkan kondisi barang yang baru
+        $jumlah = $request->textBrgBaik + $request->textBrgKurangBaik + $request->textBrgRusakBerat;
+
+        // Update data barang
         $data->kd_brg = $request->textKodebrg;
         $data->nm_brg = $request->textNmbrg;
         $data->baik = $request->textBrgBaik;
         $data->kurang_baik = $request->textBrgKurangBaik;
         $data->rusak_berat = $request->textBrgRusakBerat;
+        $data->jumlah = $jumlah;  // Update jumlah berdasarkan perhitungan baru
         $data->ket = $request->textKet;
         $data->jenis_brg = $request->textJenisBrg;
         $data->save();
 
-        return redirect()->route('barang.view');
+        return redirect()->route('barang.view')->with('success', 'Data barang berhasil diperbarui.');
     }
+
 
     public function barangHapus($id)
     {

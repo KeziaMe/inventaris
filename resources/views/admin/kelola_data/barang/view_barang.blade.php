@@ -61,7 +61,7 @@
                                                 <td>{{ $barang->kurang_baik }}</td>
                                                 <td>{{ $barang->rusak_berat }}</td>
                                                 <td>
-                                                    {{ ($barang->baik ?? 0) + ($barang->kurang_baik ?? 0) + ($barang->rusak_berat ?? 0) }}
+                                                    {{ $barang->jumlah }}
                                                 </td>
                                                 <td>{{$barang->ket}}</td>
                                                 @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")

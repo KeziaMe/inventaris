@@ -34,10 +34,11 @@ Route::get('/', function () {
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified',
+    'verified'
 ])->group(function () {
-    // Rute dashboard untuk mengarah ke BarangController showGrafik
-    Route::get('/dashboard', [BarangController::class, 'showGrafikKondisi'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('admin.index');
+    })->name('dashboard');
 });
 
 Route::get('/admin/logout', [BerandaController::class, 'logout'])->name('admin.logout');
@@ -163,5 +164,3 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,Bendahara'])->group(funct
         Route::get('/hapus/{id}', [NotaController::class, 'hapusNota'])->name('nota.hapus');
     });
 });
-
-

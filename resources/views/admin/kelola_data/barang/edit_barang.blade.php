@@ -68,22 +68,6 @@
                                 </div>
 
                                 <div class="form-group row align-items-center">
-                                    <label for="textTglmasuk" class="col-sm-3 col-form-label">Tanggal Masuk</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" id="textTglmasuk" type="date" name="textTglmasuk"
-                                            value="{{$editDataBarang->tgl_masuk}}">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row align-items-center">
-                                    <label for="textTglUpdate" class="col-sm-3 col-form-label">Tanggal Update</label>
-                                    <div class="col-sm-9">
-                                        <input class="form-control" id="textTglUpdate" type="date" name="textTglUpdate"
-                                            value="{{$editDataBarang->tgl_update}}">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row align-items-center">
                                     <label for="textJenisBrg" class="col-sm-3 col-form-label">Jenis Barang</label>
                                     <div class="col-sm-9">
                                         <select class="custom-select" name="textJenisBrg" id="custom-select">

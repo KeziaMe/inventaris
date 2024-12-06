@@ -113,10 +113,8 @@
                                             <th>K. Baik</th>
                                             <th>K. Kurang Baik</th>
                                             <th>K. Rusak Berat</th>
+                                            <th>Jumlah</th>
                                             <th>Keterangan</th>
-                                            <th>Tanggal Masuk</th>
-                                            <th>Tanggal Update</th>
-                                            <th>Jenis Barang</th>
                                             @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
                                                 <th>Aksi</th>
                                             @endif
@@ -131,13 +129,8 @@
                                                 <td>{{ $barang->baik }}</td>
                                                 <td>{{ $barang->kurang_baik }}</td>
                                                 <td>{{ $barang->rusak_berat }}</td>
+                                                <td></td>
                                                 <td>{{$barang->ket}}</td>
-                                                <td>{{ \Carbon\Carbon::parse($barang->tgl_masuk)->translatedFormat('d F Y') }}
-                                                </td>
-                                                <td>{{ \Carbon\Carbon::parse($barang->tgl_update)->translatedFormat('d F Y') }}
-                                                </td>
-                                                <td>{{$barang->jenis_brg}}</td>
-
                                                 @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
                                                     <td>
                                                         <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"

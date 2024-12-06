@@ -32,19 +32,30 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row align-items-center">
-                                    <label for="textKondisibrg" class="col-sm-3 col-form-label">Kondisi Barang</label>
+                                <div class="form-group row">
+                                    <label for="textBrgBaik" class="col-sm-3 col-form-label">Keadaan Baik</label>
                                     <div class="col-sm-9">
-                                        <select class="custom-select" name="textKondisibrg" id="textKondisibrg">
-                                            <option selected disabled>Pilih Kondisi Barang</option>
+                                        <input type="number" class="form-control" name="textBrgBaik" id="textBrgBaik"
+                                            placeholder="Jumlah Barang">
+                                    </div>
+                                </div>
 
-                                            @foreach ($kondisi_barang as $KondisiBarang)
-                                                <option value="{{$KondisiBarang->kondisi_brg}}">
-                                                    {{$KondisiBarang->kondisi_brg}}
-                                                </option>
-                                            @endforeach
+                                <div class="form-group row">
+                                    <label for="textBrgKurangBaik" class="col-sm-3 col-form-label">Keadaan Kurang
+                                        Baik</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="textBrgKurangBaik"
+                                            id="textBrgKurangBaik" placeholder="Jumlah Barang">
+                                    </div>
+                                </div>
 
-                                        </select>
+
+                                <div class="form-group row">
+                                    <label for="textRusakBerat" class="col-sm-3 col-form-label">Keadaan Rusak
+                                        Berat</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" name="textRusakBerat"
+                                            id="textRusakBerat" placeholder="Jumlah Barang">
                                     </div>
                                 </div>
 

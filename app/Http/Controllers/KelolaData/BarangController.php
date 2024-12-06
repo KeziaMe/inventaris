@@ -24,12 +24,10 @@ class BarangController extends Controller
             ->orderBy('tahun', 'desc')
             ->get();
 
-        // Ambil kondisi barang yang unik untuk filter
-        $kondisiBarang = Barang::select('kondisi_brg')->distinct()->get();
-
-        // Filter berdasarkan bulan, tahun, dan kondisi barang jika ada input
+        // Ambil data barang dengan query dasar
         $query = Barang::query();
 
+        // Filter berdasarkan bulan dan tahun jika ada input
         if ($request->has('bulan') && $request->bulan != '') {
             $query->whereMonth('tgl_update', $request->bulan);
         }
@@ -38,8 +36,15 @@ class BarangController extends Controller
             $query->whereYear('tgl_update', $request->tahun);
         }
 
+        // Filter berdasarkan kondisi barang jika ada input
         if ($request->has('kondisi') && $request->kondisi != '') {
-            $query->where('kondisi_brg', $request->kondisi);
+            if ($request->kondisi === 'Baik') {
+                $query->where('baik', true);
+            } elseif ($request->kondisi === 'Kurang Baik') {
+                $query->where('kurang_baik', true);
+            } elseif ($request->kondisi === 'Rusak Berat') {
+                $query->where('rusak_berat', true);
+            }
         }
 
         // Ambil data barang yang sudah difilter
@@ -49,19 +54,14 @@ class BarangController extends Controller
             return $barang;
         });
 
-        // Clone query untuk menghitung total barang berdasarkan kondisi setelah difilter
-        $queryBaik = clone $query;
-        $queryKurangBaik = clone $query;
-        $queryRusakBerat = clone $query;
-
         // Hitung total barang berdasarkan kondisi
-        $data['totalBaik'] = $queryBaik->where('kondisi_brg', 'Baik')->count();
-        $data['totalKurangBaik'] = $queryKurangBaik->where('kondisi_brg', 'Kurang Baik')->count();
-        $data['totalRusakBerat'] = $queryRusakBerat->where('kondisi_brg', 'Rusak Berat')->count();
+        $data['totalBaik'] = Barang::where('baik', true)->count();
+        $data['totalKurangBaik'] = Barang::where('kurang_baik', true)->count();
+        $data['totalRusakBerat'] = Barang::where('rusak_berat', true)->count();
 
         // Kirim data bulan, tahun, dan kondisi barang untuk filter ke view
         $data['bulanTahun'] = $bulanTahun;
-        $data['kondisiBarang'] = $kondisiBarang;
+        $data['kondisiBarang'] = ['Baik', 'Kurang Baik', 'Rusak Berat'];
 
         // Tambahkan nilai yang dipilih ke view
         $data['selectedBulan'] = $request->bulan;
@@ -73,9 +73,8 @@ class BarangController extends Controller
 
     public function barangTambah()
     {
-        $kondisi_barang = KondisiBarang::all();
         $jenis_barang = JenisBarang::all();
-        return view("admin.kelola_data.barang.tambah_barang", compact('kondisi_barang', 'jenis_barang'));
+        return view("admin.kelola_data.barang.tambah_barang", compact('jenis_barang'));
     }
 
     public function barangDetail($id)
@@ -126,23 +125,14 @@ class BarangController extends Controller
         $data = new Barang();
         $data->kd_brg = $request->textKodebrg;
         $data->nm_brg = $request->textNmbrg;
-        $data->kondisi_brg = $request->textKondisibrg;
+        $data->baik = $request->textBrgBaik;
+        $data->kurang_baik = $request->textBrgKurangBaik;
+        $data->rusak_berat = $request->textRusakBerat;
         $data->ket = $request->textKet;
         $data->tgl_masuk = $request->textTglmasuk;
         $data->tgl_update = $request->textTglUpdate;
         $data->jenis_brg = $request->textJenisBrg;
         $data->save();
-
-        // Simpan data barang baru ke tabel RiwayatBarang
-        $riwayat = new RiwayatBarang();
-        $riwayat->kd_brg = $data->kd_brg;
-        $riwayat->nm_brg = $data->nm_brg;
-        $riwayat->kondisi_brg = $data->kondisi_brg;
-        $riwayat->ket = $data->ket;
-        $riwayat->tgl_masuk = $data->tgl_masuk;
-        $riwayat->tgl_update = $data->tgl_update;
-        $riwayat->jenis_brg = $data->jenis_brg;
-        $riwayat->save();
 
         return redirect()->route('barang.view');
     }
@@ -167,16 +157,6 @@ class BarangController extends Controller
         $riwayat->tgl_update = $dataLama->tgl_update;
         $riwayat->jenis_brg = $dataLama->jenis_brg;
         $riwayat->save();
-
-        // Update data baru di tabel Barang
-        $dataLama->kd_brg = $request->textKodebrg;
-        $dataLama->nm_brg = $request->textNmbrg;
-        $dataLama->kondisi_brg = $request->textKondisibrg;
-        $dataLama->ket = $request->textKet;
-        $dataLama->tgl_masuk = $request->textTglmasuk;
-        $dataLama->tgl_update = $request->textTglUpdate;
-        $dataLama->jenis_brg = $request->textJenisBrg;
-        $dataLama->save();
 
         return redirect()->route('barang.view');
     }
@@ -268,56 +248,50 @@ class BarangController extends Controller
 
         // Mengambil daftar tahun yang tersedia dari data barang
         $availableYears = Barang::selectRaw('YEAR(tgl_masuk) as tahun')
-            ->distinct()//mengambil tahun yang ada datanya saja
-            ->orderBy('tahun', 'desc')//mengurutkan tahun-tahun yang diambil dalam urutan dari yang terbaru ke yang paling lama
-            ->pluck('tahun')//Mengambil nilai dari kolom tahun dan mengembalikannya sebagai koleksi
-            ->toArray();//mengubah koleksi menjadi array
+            ->distinct()
+            ->orderBy('tahun', 'desc')
+            ->pluck('tahun')
+            ->toArray();
 
-        // Mengambil data barang berdasar bulan, kondisi, dan tahun
-        $barangPerKondisiDanBulan = Barang::selectRaw('MONTH(tgl_masuk) as bulan, kondisi_brg as kondisi, COUNT(*) as jumlah')
+        // Mengambil data barang per bulan untuk kolom baik, kurang_baik, dan rusak_berat
+        $barangPerBulan = Barang::selectRaw('
+            MONTH(tgl_masuk) as bulan,
+            SUM(baik) as total_baik,
+            SUM(kurang_baik) as total_kurang_baik,
+            SUM(rusak_berat) as total_rusak_berat
+        ')
             ->whereYear('tgl_masuk', $selectedYear)
-            ->groupBy('bulan', 'kondisi')
+            ->groupBy('bulan')
             ->orderBy('bulan', 'asc')
             ->get();
 
-        // Inisialisasi array untuk setiap kondisi perbulan
+        // Inisialisasi array untuk data grafik
         $dataGrafik = [];
-        $kondisiLabels = ['Baik', 'Kurang Baik', 'Rusak Berat'];
         $bulanLabels = collect(range(1, 12))->map(function ($month) {
-            // agar menjadi nama bulan dalam bahasa Indonesia
+            // Ubah menjadi nama bulan dalam bahasa Indonesia
             return Carbon::create()->month($month)->translatedFormat('F');
         });
 
         // Loop untuk mengisi data grafik
-        foreach ($bulanLabels as $bulan) {
-            $data = [
-                'bulan' => $bulan,
-                'baik' => 0,
-                'kurang_baik' => 0,
-                'rusak_berat' => 0,
+        foreach (range(1, 12) as $bulan) {
+            $barangBulan = $barangPerBulan->firstWhere('bulan', $bulan);
+            $dataGrafik[] = [
+                'bulan' => Carbon::create()->month($bulan)->translatedFormat('F'),
+                'baik' => $barangBulan ? $barangBulan->total_baik : 0,
+                'kurang_baik' => $barangBulan ? $barangBulan->total_kurang_baik : 0,
+                'rusak_berat' => $barangBulan ? $barangBulan->total_rusak_berat : 0,
             ];
-
-            foreach ($barangPerKondisiDanBulan as $barang) {
-                if (Carbon::create()->month($barang->bulan)->translatedFormat('F') == $bulan) {
-                    if (strtolower($barang->kondisi) == 'baik') {
-                        $data['baik'] = $barang->jumlah;
-                    } elseif (strtolower($barang->kondisi) == 'kurang baik') {
-                        $data['kurang_baik'] = $barang->jumlah;
-                    } elseif (strtolower($barang->kondisi) == 'rusak berat') {
-                        $data['rusak_berat'] = $barang->jumlah;
-                    }
-                }
-            }
-            $dataGrafik[] = $data;
         }
+
+        $kondisiLabels = ['Baik', 'Kurang Baik', 'Rusak Berat'];
 
         // Mengirimkan data ke view
         return view('admin.index', [
+            'kondisiLabels' => $kondisiLabels,
             'dataGrafik' => $dataGrafik,
             'bulanLabels' => $bulanLabels,
-            'kondisiLabels' => $kondisiLabels,
             'selectedYear' => $selectedYear,
-            'availableYears' => $availableYears // Kirim daftar tahun yang tersedia
+            'availableYears' => $availableYears, // Kirim daftar tahun yang tersedia
         ]);
     }
 

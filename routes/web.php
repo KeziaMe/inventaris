@@ -62,12 +62,8 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS,Kepala Sekolah'])
         Route::get('/viewriwayat', [BarangController::class, 'riwayatbarangView'])->name('barang.viewriwayat');
         Route::get('/edit{id}', [BarangController::class, 'barangEdit'])->name('barang.edit');
         Route::post('/update/{id}', [BarangController::class, 'barangUpdate'])->name('barang.update');
-        Route::get('/unduh', [BarangController::class, 'barangUnduh'])->name('barang.unduh');
         Route::post('/store', [BarangController::class, 'barangStore'])->name('barang.store');
         Route::get('/hapus/{id}', [BarangController::class, 'barangHapus'])->name('barang.hapus');
-        Route::get('/barang/unduh', [BarangController::class, 'unduhPerbulan'])->name('unduh.perbulan');
-        Route::post('/unduh', [BarangController::class, 'unduhPDF'])->name('barang.unduhBulan.pdf');
-        Route::get('/api/data-barang', [BarangController::class, 'getDataBarang'])->name('api.dataBarang');
         Route::get('/detail/{id}', [BarangController::class, 'barangDetail'])->name('barang.detail');
     });
 });

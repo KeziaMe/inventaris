@@ -53,17 +53,6 @@ class BarangController extends Controller
         return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang', 'jenis_barang'));
     }
 
-    public function riwayatbarangView()
-    {
-        $data['allDataRiwayatBarang'] = RiwayatBarang::orderBy('tgl_update', 'desc')->get();
-        return view("admin.kelola_data.barang.riwayat_barang", $data);
-    }
-
-    public function barangUnduh()
-    {
-        return view("admin.kelola_data.barang.unduh_barang");
-    }
-
     public function barangStore(Request $request)
     {
         $validateData = $request->validate([
@@ -111,73 +100,5 @@ class BarangController extends Controller
         $hapusDataBarang->delete();
 
         return redirect()->route('barang.view');
-    }
-
-    public function getDataBarang(Request $request)
-    {
-        $bulan = $request->input('bulan');
-        $tahun = $request->input('tahun');
-
-        $dataBarang = Barang::whereMonth('tgl_update', $bulan)
-            ->whereYear('tgl_update', $tahun)
-            ->get()
-            ->map(function ($barang) {
-                // Format ulang tanggal sebelum dikirim ke frontend
-                $barang->tgl_masuk = Carbon::parse($barang->tgl_masuk)->format('d-m-Y');
-                $barang->tgl_update = Carbon::parse($barang->tgl_update)->format('d-m-Y');
-                return $barang;
-            });
-
-        return response()->json($dataBarang);
-    }
-
-
-    public function unduhPerbulan(Request $request)
-    {
-        // Mengambil data bulan dan tahun yang ada barangnya (berdasarkan tgl_update) 
-        $dataBarang = Barang::selectRaw('MONTH(tgl_update) as bulan, YEAR(tgl_update) as tahun')
-            ->whereNotNull('tgl_update') // Memastikan tgl_update tidak null
-            ->groupBy('bulan', 'tahun') // Pengelompokan berdasar bulan dan tahun
-            ->orderBy('bulan') //Mengurutkan
-            ->get();
-
-        // Mengelompokkan data berdasarkan bulan
-        $bulanDenganBarang = $dataBarang->groupBy('bulan')->map(function ($item) {
-            return $item->pluck('tahun')->toArray();
-        });
-
-        // Mengirim variabel ke view
-        return view("admin.kelola_data.barang.halaman_unduh_barang", compact('bulanDenganBarang'));
-    }
-
-    public function unduhPdf(Request $request)
-    {
-        $bulan = $request->input('bulan');
-        $tahun = $request->input('tahun');
-
-        $namaBulan = Carbon::create()->month($bulan)->translatedFormat('F');
-
-        // Ambil data barang
-        $dataBarang = Barang::whereMonth('tgl_update', $bulan)
-            ->whereYear('tgl_update', $tahun)
-            ->get()
-            ->map(function ($barang) {
-                // Mengubah format tgl_masuk dan tgl_update menjadi objek Carbon
-                $barang->tgl_masuk = Carbon::parse($barang->tgl_masuk);
-                $barang->tgl_update = Carbon::parse($barang->tgl_update);
-                return $barang;
-            });
-
-        if ($dataBarang->isEmpty()) {
-            return redirect()->back()->with('error', 'Tidak ada data barang untuk bulan dan tahun yang dipilih.');
-        }
-
-        $pdf = PDF::loadView('admin.kelola_data.barang.unduh_barang', [
-            'dataBarang' => $dataBarang,
-            'bulan' => $namaBulan,
-            'tahun' => $tahun
-        ]);
-
-        return $pdf->download("laporan_barang_{$bulan}_{$tahun}.pdf");
     }
 }

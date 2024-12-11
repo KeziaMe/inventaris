@@ -51,17 +51,6 @@ class BarangController extends Controller
         return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang', 'jenis_barang'));
     }
 
-    public function riwayatbarangView()
-    {
-        $data['allDataRiwayatBarang'] = RiwayatBarang::orderBy('tgl_update', 'desc')->get();
-        return view("admin.kelola_data.barang.riwayat_barang", $data);
-    }
-
-    public function barangUnduh()
-    {
-        return view("admin.kelola_data.barang.unduh_barang");
-    }
-
     public function barangStore(Request $request)
     {
         // Validasi input

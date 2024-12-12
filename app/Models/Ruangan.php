@@ -13,4 +13,9 @@ class Ruangan extends Model
     {
         return $this->hasMany(Inventarisasi::class);
     }
+
+    public function barang()
+    {
+        return $this->hasMany(Barang::class);
+    }
 }

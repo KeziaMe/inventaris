@@ -5,6 +5,7 @@ namespace App\Http\Controllers\KelolaData;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Barang;
+use App\Models\Ruangan;
 use App\Models\JenisBarang;
 use App\Models\Pengaduan;
 use Carbon\Carbon; //untuk manipulasi tanggal
@@ -23,7 +24,8 @@ class BarangController extends Controller
     public function barangTambah()
     {
         $jenis_barang = JenisBarang::all();
-        return view("admin.kelola_data.barang.tambah_barang", compact('jenis_barang'));
+        $ruangan = Ruangan::all();
+        return view("admin.kelola_data.barang.tambah_barang", compact('jenis_barang', 'ruangan'));
     }
 
     public function barangDetail($id)

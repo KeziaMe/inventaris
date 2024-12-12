@@ -64,6 +64,7 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS,Kepala Sekolah'])
         Route::post('/store', [BarangController::class, 'barangStore'])->name('barang.store');
         Route::get('/hapus/{id}', [BarangController::class, 'barangHapus'])->name('barang.hapus');
         Route::get('/detail/{id}', [BarangController::class, 'barangDetail'])->name('barang.detail');
+        Route::get('/unduh', [BarangController::class, 'barangUnduh'])->name('barang.unduh');
     });
 });
 

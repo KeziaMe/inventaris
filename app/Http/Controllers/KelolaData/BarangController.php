@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\KelolaData;
 
 use App\Http\Controllers\Controller;
-use App\Models\KondisiBarang;
 use Illuminate\Http\Request;
 use App\Models\Barang;
-use App\Models\RiwayatBarang;
 use App\Models\JenisBarang;
 use App\Models\Pengaduan;
 use Carbon\Carbon; //untuk manipulasi tanggal
@@ -98,5 +96,10 @@ class BarangController extends Controller
         $hapusDataBarang->delete();
 
         return redirect()->route('barang.view');
+    }
+
+    public function barangUnduh()
+    {
+        return view("admin.kelola_data.barang.halaman_unduh");
     }
 }

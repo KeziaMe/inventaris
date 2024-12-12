@@ -14,7 +14,7 @@
                         </a>
                     @endif
                     @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
-                        <a href="{{route('barang.tambah')}}" class="btn btn-primary" style="color: white;">
+                        <a href="{{route('barang.unduh')}}" class="btn btn-primary" style="color: white;">
                             <i class="fe fe-plus"></i>Unduh
                         </a>
                     @endif

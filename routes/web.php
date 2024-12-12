@@ -59,7 +59,6 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS,Kepala Sekolah'])
     Route::prefix('barang')->group(function () {
         Route::get('/view', [BarangController::class, 'barangView'])->name('barang.view');
         Route::get('/tambah', [BarangController::class, 'barangTambah'])->name('barang.tambah');
-        Route::get('/viewriwayat', [BarangController::class, 'riwayatbarangView'])->name('barang.viewriwayat');
         Route::get('/edit{id}', [BarangController::class, 'barangEdit'])->name('barang.edit');
         Route::post('/update/{id}', [BarangController::class, 'barangUpdate'])->name('barang.update');
         Route::post('/store', [BarangController::class, 'barangStore'])->name('barang.store');

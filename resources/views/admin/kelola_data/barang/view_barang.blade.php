@@ -14,7 +14,7 @@
                         </a>
                     @endif
 
-                    <a href="{{route('')}}" class="btn btn-primary" style="color: white;">
+                    <a href="{{route('barang.unduh')}}" class="btn btn-primary" style="color: white;">
                         <i class="fe fe-download"></i>Unduh
                     </a>
                 </div>

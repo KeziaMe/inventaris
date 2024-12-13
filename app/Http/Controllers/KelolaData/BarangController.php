@@ -28,28 +28,6 @@ class BarangController extends Controller
         return view("admin.kelola_data.barang.tambah_barang", compact('jenis_barang', 'ruangan'));
     }
 
-    public function barangDetail($id)
-    {
-        $detailData_barang = Barang::with('pengaduan')->find($id);
-
-        // Cek jika barang ditemukan
-        if (!$detailData_barang) {
-            return redirect()->back()->with('error', 'Barang tidak ditemukan.');
-        }
-
-
-        // Menghitung jumlah total perbaikan untuk barang ini
-        $jumlahPerbaikan = $detailData_barang->pengaduan->sum('jumlah_perbaikan');
-
-        return view("admin.kelola_data.barang.detail_barang", compact('detailData_barang', 'jumlahPerbaikan'));
-    }
-
-    public function barangEdit($id)
-    {
-        $jenis_barang = JenisBarang::all();
-        $editDataBarang = Barang::find($id);
-        return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang', 'jenis_barang'));
-    }
 
     public function barangStore(Request $request)
     {
@@ -77,9 +55,33 @@ class BarangController extends Controller
         $data->jumlah = $jumlah; // Menyimpan jumlah yang dihitung
         $data->ket = $request->textKet;
         $data->jenis_brg = $request->textJenisBrg;
+        $data->ruangan = $request->textRuangan;
         $data->save();
 
         return redirect()->route('barang.view')->with('success', 'Data barang berhasil disimpan.');
+    }
+
+    public function barangDetail($id)
+    {
+        $detailData_barang = Barang::with('pengaduan')->find($id);
+
+        // Cek jika barang ditemukan
+        if (!$detailData_barang) {
+            return redirect()->back()->with('error', 'Barang tidak ditemukan.');
+        }
+
+
+        // Menghitung jumlah total perbaikan untuk barang ini
+        $jumlahPerbaikan = $detailData_barang->pengaduan->sum('jumlah_perbaikan');
+
+        return view("admin.kelola_data.barang.detail_barang", compact('detailData_barang', 'jumlahPerbaikan'));
+    }
+
+    public function barangEdit($id)
+    {
+        $jenis_barang = JenisBarang::all();
+        $editDataBarang = Barang::find($id);
+        return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang', 'jenis_barang'));
     }
 
     public function barangUpdate(Request $request, $id)

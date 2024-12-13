@@ -8,12 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Ruangan extends Model
 {
     use HasFactory;
-
-    public function Inventarisasi()
-    {
-        return $this->hasMany(Inventarisasi::class);
-    }
-
     public function barang()
     {
         return $this->hasMany(Barang::class);

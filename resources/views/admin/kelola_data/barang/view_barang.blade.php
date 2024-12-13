@@ -47,7 +47,7 @@
                                                 <td>{{$key + 1}}</td>
                                                 <td>{{$barang->kd_brg}}</td>
                                                 <td>{{$barang->nm_brg}}</td>
-                                                <td></td>
+                                                <td>{{$barang->ruangan}}</td>
                                                 <td>{{ $barang->baik }}</td>
                                                 <td>{{ $barang->kurang_baik }}</td>
                                                 <td>{{ $barang->rusak_berat }}</td>

@@ -38,9 +38,9 @@
                                         <select class="custom-select" name="textRuangan" id="textRuangan">
                                             <option selected disabled>Pilih Ruangan</option>
                                             @foreach ($ruangan as $Ruangan)
-                                                <option value="{{ $Ruangan->nm_ruangan}}">
-                                                    {{$Ruangan->nm_ruangan}}
-                                                </option>
+                                            <option value="{{ $Ruangan->nm_ruangan}}">
+                                                {{$Ruangan->nm_ruangan}}
+                                            </option>
                                             @endforeach
 
                                         </select>
@@ -86,9 +86,9 @@
                                         <select class="custom-select" name="textJenisBrg" id="textJenisBrg">
                                             <option selected disabled>Pilih Jenis Barang</option>
                                             @foreach ($jenis_barang as $JenisBarang)
-                                                <option value="{{ $JenisBarang->jns_brg}}">
-                                                    {{$JenisBarang->jns_brg}}
-                                                </option>
+                                            <option value="{{ $JenisBarang->jns_brg}}">
+                                                {{$JenisBarang->jns_brg}}
+                                            </option>
                                             @endforeach
 
                                         </select>

@@ -32,6 +32,7 @@
                                             <th>NO</th>
                                             <th>Kode Barang</th>
                                             <th>Nama Barang</th>
+                                            <th>Ruangan</th>
                                             <th>Keadaan Baik</th>
                                             <th>Keadaan Kurang Baik</th>
                                             <th>Keadaan Rusak Berat</th>
@@ -49,6 +50,7 @@
                                                 <td>{{$key + 1}}</td>
                                                 <td>{{$barang->kd_brg}}</td>
                                                 <td>{{$barang->nm_brg}}</td>
+                                                <td></td>
                                                 <td>{{ $barang->baik }}</td>
                                                 <td>{{ $barang->kurang_baik }}</td>
                                                 <td>{{ $barang->rusak_berat }}</td>

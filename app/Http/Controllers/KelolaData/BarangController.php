@@ -102,4 +102,5 @@ class BarangController extends Controller
     {
         return view("admin.kelola_data.barang.halaman_unduh");
     }
+
 }

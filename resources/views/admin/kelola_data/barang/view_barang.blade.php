@@ -51,7 +51,7 @@
                                                 <td>{{ $barang->baik }}</td>
                                                 <td>{{ $barang->kurang_baik }}</td>
                                                 <td>{{ $barang->rusak_berat }}</td>
-                                                <td>{{($barang->baik ?? 0) + ($barang->kurang_baikbaik ?? 0) + ($barang->rusak_berat ?? 0)}}
+                                                <td>{{($barang->baik ?? 0) + ($barang->kurang_baik ?? 0) + ($barang->rusak_berat ?? 0)}}
                                                 </td>
                                                 <td>{{$barang->ket}}</td>
 

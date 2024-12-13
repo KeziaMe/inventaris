@@ -97,6 +97,9 @@
 
                                 <div class="form-group mb-2">
                                     <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <a href="{{route('barang.view')}}" class="btn btn-success" style="color: white;">
+                                        <i class="fe fe-back"></i>Kembali
+                                    </a>
                                 </div>
                             </form>
                         </div>

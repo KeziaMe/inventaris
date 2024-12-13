@@ -9,8 +9,8 @@ class Ruangan extends Model
 {
     use HasFactory;
 
-    public function Inventarisasi()
+    public function barang()
     {
-        return $this->hasMany(Inventarisasi::class);
+        return $this->hasMany(Barang::class);
     }
 }

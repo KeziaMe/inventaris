@@ -32,6 +32,21 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group row align-items-center">
+                                    <label for="textRuangan" class="col-sm-3 col-form-label">Ruangan</label>
+                                    <div class="col-sm-9">
+                                        <select class="custom-select" name="textRuangan" id="textRuangan">
+                                            <option selected disabled>Pilih Ruangan</option>
+                                            @foreach ($ruangan as $Ruangan)
+                                                <option value="{{ $Ruangan->nm_ruangan}}">
+                                                    {{$Ruangan->nm_ruangan}}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="form-group row">
                                     <label for="textBrgBaik" class="col-sm-3 col-form-label">Keadaan Baik</label>
                                     <div class="col-sm-9">

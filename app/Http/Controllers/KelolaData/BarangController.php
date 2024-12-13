@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\JenisBarang;
 use App\Models\Pengaduan;
+use App\Models\Ruangan;
 use Carbon\Carbon; //untuk manipulasi tanggal
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,8 @@ class BarangController extends Controller
     public function barangTambah()
     {
         $jenis_barang = JenisBarang::all();
-        return view("admin.kelola_data.barang.tambah_barang", compact('jenis_barang'));
+        $ruangan = Ruangan::all();
+        return view("admin.kelola_data.barang.tambah_barang", compact('jenis_barang', 'ruangan'));
     }
 
     public function barangDetail($id)
@@ -60,6 +62,7 @@ class BarangController extends Controller
         $data = new Barang();
         $data->kd_brg = $request->textKodebrg;
         $data->nm_brg = $request->textNmbrg;
+        $data->ruangan = $request->textRuangan;
         $data->baik = $request->textBrgBaik;
         $data->kurang_baik = $request->textBrgKurangBaik;
         $data->rusak_berat = $request->textRusakBerat;

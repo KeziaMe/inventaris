@@ -27,7 +27,6 @@
                                             <th>Keterangan</th>
                                             <th>Tanggal Masuk</th>
                                             <th>Tanggal Update</th>
-                                            <th>Jenis Barang</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>

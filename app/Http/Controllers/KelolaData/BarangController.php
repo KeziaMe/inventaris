@@ -80,8 +80,9 @@ class BarangController extends Controller
     public function barangEdit($id)
     {
         $jenis_barang = JenisBarang::all();
+        $ruangan = Ruangan::all();
         $editDataBarang = Barang::find($id);
-        return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang', 'jenis_barang'));
+        return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang', 'jenis_barang', 'ruangan'));
     }
 
     public function barangUpdate(Request $request, $id)
@@ -117,6 +118,7 @@ class BarangController extends Controller
         $data->jumlah = $jumlah;  // Update jumlah berdasarkan perhitungan baru
         $data->ket = $request->textKet;
         $data->jenis_brg = $request->textJenisBrg;
+        $data->ruangan = $request->textRuangan;
         $data->save();
 
         return redirect()->route('barang.view')->with('success', 'Data barang berhasil diperbarui.');

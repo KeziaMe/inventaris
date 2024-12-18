@@ -24,6 +24,42 @@
                                 <button type="submit" class="btn btn-primary">Unduh Barang</button>
                             </div>
                         </form>
+
+                        <!-- Tambahkan tabel data barang -->
+                        <div class="table-responsive mt-4">
+                            <h4>Data Barang</h4>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>NO</th>
+                                        <th>Kode Barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Ruangan</th>
+                                        <th>Keadaan Baik</th>
+                                        <th>Keadaan Kurang Baik</th>
+                                        <th>Keadaan Rusak Berat</th>
+                                        <th>Jumlah</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($allDataBarang as $key => $barang)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $barang->kd_brg }}</td>
+                                            <td>{{ $barang->nm_brg }}</td>
+                                            <td>{{ $barang->ruangan }}</td>
+                                            <td>{{ $barang->baik }}</td>
+                                            <td>{{ $barang->kurang_baik }}</td>
+                                            <td>{{ $barang->rusak_berat }}</td>
+                                            <td>{{ ($barang->baik ?? 0) + ($barang->kurang_baik ?? 0) + ($barang->rusak_berat ?? 0) }}
+                                            </td>
+                                            <td>{{ $barang->ket }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

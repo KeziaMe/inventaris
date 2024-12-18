@@ -135,6 +135,7 @@ class BarangController extends Controller
     public function barangUnduh()
     {
         $ruangan = Ruangan::all();
-        return view("admin.kelola_data.barang.halaman_unduh", compact('ruangan'));
+        $allDataBarang = Barang::all(); // Ambil data barang
+        return view('admin.kelola_data.barang.halaman_unduh', compact('ruangan', 'allDataBarang'));
     }
 }

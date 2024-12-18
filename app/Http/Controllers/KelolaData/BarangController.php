@@ -48,7 +48,8 @@ class BarangController extends Controller
     {
         $jenis_barang = JenisBarang::all();
         $editDataBarang = Barang::find($id);
-        return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang', 'jenis_barang'));
+        $ruangan = Ruangan::all();
+        return view("admin.kelola_data.barang.edit_barang", compact('editDataBarang', 'jenis_barang', 'ruangan'));
     }
 
     public function barangStore(Request $request)
@@ -83,6 +84,7 @@ class BarangController extends Controller
         $data = Barang::find($id);
         $data->kd_brg = $request->textKodebrg;
         $data->nm_brg = $request->textNmbrg;
+        $data->ruangan = $request->textRuangan;
         $data->baik = $request->textBrgBaik;
         $data->kurang_baik = $request->textBrgKurangBaik;
         $data->rusak_berat = $request->textRusakBerat;

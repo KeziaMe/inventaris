@@ -12,12 +12,12 @@
                         <form action="#" method="GET">
                             @csrf
                             <div class="form-group">
-                                <label for="ruangan">Pilih Ruangan</label>
-                                <select name="ruangan" id="ruangan" class="form-control" required>
+                                <label for="unduh_ruangan">Pilih Ruangan</label>
+                                <select name="unduh_ruangan" id="unduh_ruangan" class="form-control" required>
                                     <option value="">-- Pilih Ruangan --</option>
-
-                                    <option value=""></option>
-
+                                    @foreach($ruangan as $Ruangan)
+                                        <option value="{{ $Ruangan->id }}">{{ $Ruangan->nm_ruangan }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group mt-3">

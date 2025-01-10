@@ -103,11 +103,24 @@ class BarangController extends Controller
         return redirect()->route('barang.view');
     }
 
-    public function barangUnduh()
+    public function barangUnduh(Request $request)
     {
+        // Ambil semua ruangan untuk dropdown
         $ruangan = Ruangan::all();
-        $allDataBarang = Barang::all(); // Ambil data barang
+
+        // Cek apakah ada parameter `ruangan_id` pada request
+        if ($request->has('ruangan')) {
+            // Jika ada, ambil data barang berdasarkan ruangan yang dipilih
+            $allDataBarang = Barang::where('nm_ruangan', $request->ruangan)->get();
+        } else {
+            // Jika tidak, kosongkan data barang
+            $allDataBarang = [];
+        }
+
+        // Kirim data ke view
         return view('admin.kelola_data.barang.halaman_unduh', compact('ruangan', 'allDataBarang'));
     }
 
+
 }
+

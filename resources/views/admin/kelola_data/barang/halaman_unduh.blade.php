@@ -20,9 +20,6 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group mt-3">
-                                <button type="submit" class="btn btn-primary">Unduh Barang</button>
-                            </div>
                         </form>
 
                         <!-- Tambahkan tabel data barang -->
@@ -42,21 +39,8 @@
                                         <th>Keterangan</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @foreach ($allDataBarang as $key => $barang)
-                                        <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $barang->kd_brg }}</td>
-                                            <td>{{ $barang->nm_brg }}</td>
-                                            <td>{{ $barang->ruangan }}</td>
-                                            <td>{{ $barang->baik }}</td>
-                                            <td>{{ $barang->kurang_baik }}</td>
-                                            <td>{{ $barang->rusak_berat }}</td>
-                                            <td>{{ ($barang->baik ?? 0) + ($barang->kurang_baik ?? 0) + ($barang->rusak_berat ?? 0) }}
-                                            </td>
-                                            <td>{{ $barang->ket }}</td>
-                                        </tr>
-                                    @endforeach
+                                <tbody id="data-barang-tbody">
+                                    <!-- Data Barang Akan Ditampilkan di Sini -->
                                 </tbody>
                             </table>
                         </div>
@@ -66,4 +50,43 @@
         </div>
     </div>
 </main>
+
+<script>
+    document.getElementById('unduh_ruangan').addEventListener('change', function () {
+        const ruanganId = this.value;
+
+        if (ruanganId) {
+            fetch(`/get-barang-by-ruangan?ruangan_id=${ruanganId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.getElementById('data-barang-tbody');
+                    tbody.innerHTML = ''; // Kosongkan tabel sebelum menambahkan data baru
+
+                    if (data.length > 0) {
+                        data.forEach((barang, index) => {
+                            tbody.innerHTML += `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>${barang.kd_brg}</td>
+                                    <td>${barang.nm_brg}</td>
+                                    <td>${barang.ruangan}</td>
+                                    <td>${barang.baik ?? 0}</td>
+                                    <td>${barang.kurang_baik ?? 0}</td>
+                                    <td>${barang.rusak_berat ?? 0}</td>
+                                    <td>${(barang.baik ?? 0) + (barang.kurang_baik ?? 0) + (barang.rusak_berat ?? 0)}</td>
+                                    <td>${barang.ket}</td>
+                                </tr>
+                            `;
+                        });
+                    } else {
+                        tbody.innerHTML = `<tr><td colspan="9" class="text-center">Tidak ada data barang untuk ruangan ini.</td></tr>`;
+                    }
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        } else {
+            // Kosongkan tabel jika tidak ada ruangan yang dipilih
+            document.getElementById('data-barang-tbody').innerHTML = `<tr><td colspan="9" class="text-center">Silakan pilih ruangan terlebih dahulu.</td></tr>`;
+        }
+    });
+</script>
 @endsection

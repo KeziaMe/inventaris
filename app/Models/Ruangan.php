@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Ruangan extends Model
 {
     use HasFactory;
-
     public function barang()
     {
-        return $this->hasMany(Barang::class);
+        return $this->hasMany(Barang::class, 'ruangan', 'id');
     }
+
 }

@@ -10,17 +10,6 @@ class Barang extends Model
 {
     use HasFactory;
 
-    public function getTglMasukAttribute($value)
-    {
-        return Carbon::parse($value);
-    }
-
-    // Accessor untuk tgl_update
-    public function getTglUpdateAttribute($value)
-    {
-        return Carbon::parse($value);
-    }
-
     public function JenisBarang()
     {
         return $this->belongsTo(JenisBarang::class);
@@ -33,6 +22,8 @@ class Barang extends Model
 
     public function ruangan()
     {
-        return $this->belongsTo(Ruangan::class);
+        return $this->belongsTo(Ruangan::class, 'ruangan', 'id');
     }
+
+
 }

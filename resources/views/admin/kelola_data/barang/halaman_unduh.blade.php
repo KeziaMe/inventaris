@@ -10,6 +10,13 @@
                         <h3 class="card-title">Unduh Barang</h3>
                     </div>
                     <div class="card-body">
+
+                        <!-- Tombol Kembali -->
+                        <div class="mb-3">
+                            <a href="{{route('barang.view')}}" class="btn btn-success" style="color: white;">
+                                <i class="fe fe-arrow-left"></i>Kembali
+                            </a>
+                        </div>
                         <form action="{{ route('barang.unduh') }}" method="GET">
                             @csrf
                             <div class="form-group">

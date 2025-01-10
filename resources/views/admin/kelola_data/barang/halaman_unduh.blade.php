@@ -1,5 +1,6 @@
 @extends('admin.admin_master')
 @section('admin')
+
 <main role="main" class="main-content">
     <div class="container-fluid">
         <div class="row">
@@ -28,13 +29,12 @@
                             </div>
                         </form>
 
-                        <!-- Tambahkan tabel data barang -->
-                        <div class="table-responsive mt-4">
+                        <div class="mt-4">
                             <h4>Data Barang</h4>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>NO</th>
+                                        <th>No</th>
                                         <th>Kode Barang</th>
                                         <th>Nama Barang</th>
                                         <th>Ruangan</th>
@@ -46,12 +46,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($allDataBarang as $key => $barang)
+                                    @foreach ($allDataBarang as $key => $barang)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $barang->kd_brg }}</td>
                                             <td>{{ $barang->nm_brg }}</td>
-                                            <td>{{ $barang->ruangan->nm_ruangan ?? '-' }}</td>
+                                            <td>{{ $barang->ruangan }}</td>
                                             <td>{{ $barang->baik }}</td>
                                             <td>{{ $barang->kurang_baik }}</td>
                                             <td>{{ $barang->rusak_berat }}</td>
@@ -59,12 +59,7 @@
                                             </td>
                                             <td>{{ $barang->ket }}</td>
                                         </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="9" class="text-center">Tidak ada data untuk ruangan yang dipilih.
-                                            </td>
-                                        </tr>
-                                    @endforelse
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -75,4 +70,5 @@
         </div>
     </div>
 </main>
+
 @endsection

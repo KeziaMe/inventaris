@@ -150,14 +150,18 @@ class BarangController extends Controller
 
     public function unduhBarang(Request $request)
     {
-        // Ambil data barang berdasarkan filter ruangan
+        // Ambil data nama ruangan yang dipilih
         $ruangan = $request->input('unduh_ruangan');
+
+        // Query untuk mengambil data barang yang sesuai dengan nama ruangan
         $query = Barang::query();
 
+        // Jika ruangan dipilih, filter berdasarkan nama ruangan di tabel barang
         if ($ruangan) {
-            $query->where('ruangan', $ruangan);
+            $query->where('ruangan', $ruangan);  // Filter berdasarkan nama ruangan yang ada di kolom 'ruangan' tabel barang
         }
 
+        // Ambil data barang yang telah difilter
         $allDataBarang = $query->get();
 
         // Generate PDF

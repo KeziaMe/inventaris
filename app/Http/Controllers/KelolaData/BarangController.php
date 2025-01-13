@@ -161,7 +161,7 @@ class BarangController extends Controller
         $allDataBarang = $query->get();
 
         // Generate PDF
-        $pdf = PDF::loadView('admin.barang.unduh_pdf', compact('allDataBarang', 'ruangan'));
+        $pdf = PDF::loadView('admin.barang.download', compact('allDataBarang', 'ruangan'));
 
         // Return PDF as download
         return $pdf->download('barang_' . $ruangan . '_unduh.pdf');

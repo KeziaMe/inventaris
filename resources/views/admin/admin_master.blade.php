@@ -400,6 +400,25 @@
     });
   </script>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleButton = document.querySelector('.collapseSidebar'); // Tombol toggle
+      const sidebar = document.querySelector('#leftSidebar'); // Sidebar
+
+      toggleButton.addEventListener('click', function () {
+        sidebar.classList.toggle('d-none'); // Tambah/hapus sidebar saat tombol diklik
+      });
+
+      // Pastikan sidebar tetap terlihat jika layar lebih besar dari breakpoint tertentu
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 992) {
+          sidebar.classList.remove('d-none'); // Tampilkan sidebar di layar besar
+        }
+      });
+    });
+  </script>
+
+
 </body>
 
 </html>

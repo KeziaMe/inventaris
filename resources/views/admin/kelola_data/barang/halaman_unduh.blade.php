@@ -32,8 +32,13 @@
                                 </select>
                             </div>
                             <div class="form-group mt-3">
-                                <button type="submit" class="btn btn-primary">Filter</button>
-                                <a href="{{ route('barang.unduh') }}" class="btn btn-secondary">Reset</a>
+                                <button type="submit" class="btn btn-primary"><i class="fe fe-filter"></i>
+                                    Filter</button>
+                                <a href="{{ route('barang.unduh') }}" class="btn btn-secondary"><i
+                                        class="fe fe-delete"></i> Reset</a>
+                                <a href="{{ route('barang.unduh_pdf', ['unduh_ruangan' => request('unduh_ruangan')]) }}"
+                                    class="btn btn-success">
+                                    <i class="fe fe-download"></i> Unduh</a>
                             </div>
                         </form>
 

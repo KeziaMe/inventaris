@@ -119,5 +119,25 @@ class BarangController extends Controller
         return view('admin.kelola_data.barang.halaman_unduh', compact('ruangan', 'allDataBarang'));
     }
 
+    public function unduhBarang(Request $request)
+    {
+        // Ambil data barang berdasarkan filter ruangan
+        $ruangan = $request->input('unduh_ruangan');
+        $query = Barang::query();
+
+        if ($ruangan) {
+            $query->where('ruangan', $ruangan);
+        }
+
+        $allDataBarang = $query->get();
+
+        // Generate PDF
+        $pdf = PDF::loadView('admin.kelola_data.barang.unduhPDF', compact('allDataBarang', 'ruangan'));
+
+
+        // Return PDF as download
+        return $pdf->download('barang_' . $ruangan . '_unduh.pdf');
+    }
+
 }
 

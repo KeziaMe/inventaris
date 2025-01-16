@@ -28,112 +28,112 @@
             </li>
 
             @if (auth()->user()->role == "SARPRAS")
-                <li class="nav-item w-100">
-                    <a class="nav-link" href="{{route('form_pengaduan')}}">
-                        <i class="fe fe-credit-card fe-16"></i>
-                        <span class="ml-3 item-text">Form Pengaduan</span>
-                    </a>
-                </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{route('form_pengaduan')}}">
+                    <i class="fe fe-credit-card fe-16"></i>
+                    <span class="ml-3 item-text">Form Pengaduan</span>
+                </a>
+            </li>
             @endif
 
             @if (
-                    auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS" || auth()->user()->role == "Kepala
-                            Sekolah"
+            auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS" || auth()->user()->role == "Kepala
+            Sekolah"
+            )
+            <li class="nav-item dropdown">
+                <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fe fe-grid fe-16"></i>
+                    <span class="ml-3 item-text">Kelola Data</span>
+                </a>
+
+                @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
+                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('ruangan.view')}}"><span class="ml-1 item-text">
+                                Ruangan</span></a>
+                    </li>
+                </ul>
+                @endif
+
+                @if (
+                auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS" || auth()->user()->role ==
+                "Kepala Sekolah"
                 )
-                            <li class="nav-item dropdown">
-                                <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                                    <i class="fe fe-grid fe-16"></i>
-                                    <span class="ml-3 item-text">Kelola Data</span>
-                                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('barang.view')}}"><span class="ml-1 item-text">
+                                Barang</span></a>
+                    </li>
+                </ul>
+                @endif
 
-                                @if (auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS")
-                                    <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-                                        <li class="nav-item">
-                                            <a class="nav-link pl-3" href="{{route('ruangan.view')}}"><span class="ml-1 item-text">
-                                                    Ruangan</span></a>
-                                        </li>
-                                    </ul>
-                                @endif
+                @if (auth()->user()->role == "Admin")
+                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('jenisbarang.view')}}"><span class="ml-1 item-text">
+                                Jenis Barang</span></a>
+                    </li>
+                </ul>
+                @endif
 
-                                @if (
-                                        auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS" || auth()->user()->role ==
-                                        "Kepala Sekolah"
-                                    )
-                                                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link pl-3" href="{{route('barang.view')}}"><span class="ml-1 item-text">
-                                                                Barang</span></a>
-                                                    </li>
-                                                </ul>
-                                @endif
+                @if (
+                auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS" || auth()->user()->role ==
+                "Kepala Sekolah"
+                )
+                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('pengaduan.view')}}"><span class="ml-1 item-text">
+                                Pengaduan</span></a>
+                    </li>
+                </ul>
+                @endif
 
-                                @if (auth()->user()->role == "Admin")
-                                    <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-                                        <li class="nav-item">
-                                            <a class="nav-link pl-3" href="{{route('jenisbarang.view')}}"><span class="ml-1 item-text">
-                                                    Jenis Barang</span></a>
-                                        </li>
-                                    </ul>
-                                @endif
-
-                                @if (
-                                        auth()->user()->role == "Admin" || auth()->user()->role == "SARPRAS" || auth()->user()->role ==
-                                        "Kepala Sekolah"
-                                    )
-                                                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link pl-3" href="{{route('pengaduan.view')}}"><span class="ml-1 item-text">
-                                                                Pengaduan</span></a>
-                                                    </li>
-                                                </ul>
-                                @endif
-
-                                @if (auth()->user()->role == "Admin")
-                                        <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-                                            <li class="nav-item">
-                                                <a class="nav-link pl-3" href="{{route('statuspengaduan.view')}}"><span
-                                                        class="ml-1 item-text">Status
-                                                        Pengaduan</span></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                @endif
+                @if (auth()->user()->role == "Admin")
+                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{route('statuspengaduan.view')}}"><span
+                                class="ml-1 item-text">Status
+                                Pengaduan</span></a>
+                    </li>
+                </ul>
+            </li>
+            @endif
             @endif
 
             @if (auth()->user()->role == "Admin")
-                <li class="nav-item w-100">
-                    <a class="nav-link" href="{{route('nota.upload')}}">
-                        <i class="fe fe-file fe-16"></i>
-                        <span class="ml-3 item-text">Unggah Nota</span>
-                    </a>
-                </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{route('nota.upload')}}">
+                    <i class="fe fe-file fe-16"></i>
+                    <span class="ml-3 item-text">Unggah Nota</span>
+                </a>
+            </li>
             @endif
 
             @if (auth()->user()->role == "Bendahara")
-                <li class="nav-item w-100">
-                    <a class="nav-link" href="{{route('nota.arsip')}}">
-                        <i class="fe fe-book fe-16"></i>
-                        <span class="ml-3 item-text">Arsip Nota</span>
-                    </a>
-                </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{route('nota.arsip')}}">
+                    <i class="fe fe-book fe-16"></i>
+                    <span class="ml-3 item-text">Arsip Nota</span>
+                </a>
+            </li>
             @endif
 
             @if (auth()->user()->role == "Admin")
-                <li class="nav-item w-100">
-                    <a class="nav-link" href="{{route('role.view')}}">
-                        <i class="fe fe-users fe-16"></i>
-                        <span class="ml-3 item-text">Peran</span>
-                    </a>
-                </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{route('role.view')}}">
+                    <i class="fe fe-users fe-16"></i>
+                    <span class="ml-3 item-text">Peran</span>
+                </a>
+            </li>
             @endif
 
             @if (auth()->user()->role == "Admin")
-                <li class="nav-item w-100">
-                    <a class="nav-link" href="{{route('user.view')}}">
-                        <i class="fe fe-user fe-16"></i>
-                        <span class="ml-3 item-text">Pengguna</span>
-                    </a>
-                </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{route('user.view')}}">
+                    <i class="fe fe-user fe-16"></i>
+                    <span class="ml-3 item-text">Pengguna</span>
+                </a>
+            </li>
             @endif
 
         </ul>

@@ -63,15 +63,6 @@
       @if (auth()->user()->role == "Admin")
       <ul class="collapse list-unstyled pl-4 w-100" id="tables">
       <li class="nav-item">
-      <a class="nav-link pl-3" href="{{route('kondisibarang.view')}}"><span class="ml-1 item-text">
-        Kondisi Barang</span></a>
-      </li>
-      </ul>
-    @endif
-
-      @if (auth()->user()->role == "Admin")
-      <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-      <li class="nav-item">
       <a class="nav-link pl-3" href="{{route('jenisbarang.view')}}"><span class="ml-1 item-text">
         Jenis Barang</span></a>
       </li>

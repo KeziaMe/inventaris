@@ -70,16 +70,6 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS,Kepala Sekolah'])
     });
 });
 
-Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
-    Route::prefix('kondisibarang')->group(function () {
-        Route::get('/view', [KondisiBarangController::class, 'kondisibarangView'])->name('kondisibarang.view');
-        Route::get('/tambah', [KondisiBarangController::class, 'kondisibarangTambah'])->name('kondisibarang.tambah');
-        Route::get('/edit/{id}', [KondisiBarangController::class, 'kondisibarangEdit'])->name('kondisibarang.edit');
-        Route::post('/store', [KondisiBarangController::class, 'kondisibarangStore'])->name('kondisibarang.store');
-        Route::post('/update/{id}', [KondisiBarangController::class, 'kondisibarangUpdate'])->name('kondisibarang.update');
-        Route::get('/hapus/{id}', [KondisiBarangController::class, 'kondisibarangHapus'])->name('kondisibarang.hapus');
-    });
-});
 
 Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
     Route::prefix('jenisbarang')->group(function () {

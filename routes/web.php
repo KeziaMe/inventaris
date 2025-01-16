@@ -106,17 +106,6 @@ Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
     });
 });
 
-Route::middleware(['auth', 'verified', 'CekLevel:Admin,SARPRAS'])->group(function () {
-    Route::prefix('inventarisasi')->group(function () {
-        Route::get('/view', [InventarisasiController::class, 'inventarisasiView'])->name('inventarisasi.view');
-        Route::get('/Tambah', [InventarisasiController::class, 'inventarisasiTambah'])->name('inventarisasi.tambah');
-        Route::post('/store', [InventarisasiController::class, 'inventarisasiStore'])->name('inventarisasi.store');
-        Route::get('/Edit/{id}', [InventarisasiController::class, 'inventarisasiEdit'])->name('inventarisasi.edit');
-        Route::post('/update/{id}', [InventarisasiController::class, 'inventarisasiUpdate'])->name('inventarisasi.update');
-        Route::get('/hapus/{id}', [InventarisasiController::class, 'inventarisasiHapus'])->name('inventarisasi.hapus');
-    });
-});
-
 // Semua route untuk user
 Route::middleware(['auth', 'verified', 'CekLevel:Admin'])->group(function () {
     Route::prefix('role')->group(function () {
